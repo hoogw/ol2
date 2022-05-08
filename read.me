@@ -1,0 +1,208 @@
+
+
+
+start app:  
+         npm run start
+
+
+failed: 
+         Error: Could not locate the bindings file ....
+
+
+fix error by:
+         npm rebuild
+
+fix warning: 
+              npx browserslist@latest --update-db         
+
+
+now run: 
+         npm run start
+
+
+you will see following, means ok:
+
+                   ol2@1.0.0 start
+                   parcel arcgis/*.html
+
+                   Server running at http://localhost:1234 
+                   ⚠️ Could not load source file "0" in source map of "../node_modules/jsoneditor/dist/jsoneditor.min.js".
+                   ✨  Built in 5.82s.     
+
+
+browser:
+
+          http://localhost:1234/arcgisvector.html?
+
+          http://localhost:1234/arcgisvector2.html?
+
+
+
+          us example:
+
+          http://localhost:1234/arcgisvector.html?url=https%3A%2F%2Ftiles.arcgis.com%2Ftiles%2FP3ePLMYs2RVChkJx%2Farcgis%2Frest%2Fservices%2F2020_USA_Median_Age%2FVectorTileServer&layer=uss&center_long=124.64025810380885&center_lat=15.444256840184948&center_zoom=3.282155279037548&overlayOpacity=10
+
+          http://localhost:1234/arcgisvector2.html?url=https%3A%2F%2Ftiles.arcgis.com%2Ftiles%2FP3ePLMYs2RVChkJx%2Farcgis%2Frest%2Fservices%2F2020_USA_Median_Age%2FVectorTileServer&layer=uss&center_long=124.64025810380885&center_lat=15.444256840184948&center_zoom=3.282155279037548&overlayOpacity=10
+
+
+          la quinta, parcel and zoning, example:
+          
+            http://localhost:1234/arcgisvector.html?layer=ParcelZoning+%28+VectorTileServer+%29+&center_lat=33.66339960113174&center_long=-116.31&center_zoom=17&url=https%3A%2F%2Fgis.la-quinta.org%2Farcgis%2Frest%2Fservices%2FHosted%2FParcelZoning%2FVectorTileServer
+
+         la quinta, bike, park
+            http://localhost:1234/arcgisvector.html?url=https%3A%2F%2Fvectortileservices2.arcgis.com%2F5jNzAeKAtrcgr5Es%2Farcgis%2Frest%2Fservices%2FBike_Trail_Park%2FVectorTileServer&layer=uss&center_long=-116.26891408376099&center_lat=33.67129634444516&center_zoom=14.906668020146778&overlayOpacity=7    
+
+
+
+update openlayer package:
+                           1) manually change "ol": "^6.14.1", in package.json to the version number you want, for example "ol": "^6.0.0", it will automatically update to latest 6.14.1
+                           2) run
+                              npm install ol
+
+
+update ol-mapbox-style package:
+                           1) manually change "ol-mapbox-style": "^6.9.0", in package.json to the version number you want, for example "ol": "^7.0.0", it will automatically update to latest "ol-mapbox-style": "^7.1.1",
+                              warning:   "^8.0.*", build error, v7.1.1 is latest working one so far.
+                           2) run
+                              npm install ol-mapbox-style
+
+
+
+
+
+
+
+
+================== parcel.js ========================
+
+
+During dev,  
+                 use this :   npm run start
+
+
+When production, 
+                  delete 'dist' folder,  'cach' folder
+
+                  cd /Users/gemini/node/ol2 
+                  use this:  
+                      'npm run build'  will build only
+                      
+                  copy ol2/dist to static apache server
+
+
+
+
+      build html with relative assets url    
+            https://github.com/parcel-bundler/parcel/issues/206
+            https://github.com/parcel-bundler/website/pull/30
+
+
+
+      package.json,   
+      
+                        
+                        relative url asset :             --public-url ./
+                        Disable minification :           --no-minify
+                        Disable the filesystem cache:    --no-cache
+
+     
+
+
+
+
+
+                                                                ✨ Production
+
+                                                                When it comes time to bundle your application for production, you can use Parcel's production mode.
+
+                                                                parcel build entry.js
+                                                                This disables watch mode and hot module replacement so it will only build once. It also enables the minifier for all output bundles to reduce file size. The minifiers used by Parcel are uglify-js for JavaScript, cssnano for CSS, and htmlnano for HTML.
+
+                                                                Enabling production mode also sets the NODE_ENV=production environment variable. Large libraries like React have development only debugging features which are disabled by setting this environment variable, which results in smaller and faster builds for production.
+
+                                                                Options
+
+                                                                Set the output directory
+
+                                                                Default: "dist"
+
+                                                                parcel build entry.js --out-dir build/output
+                                                                or
+                                                                parcel build entry.js -d build/output 
+                                                                root
+                                                                - build
+                                                                - - output
+                                                                - - - entry.js
+                                                                Set the public URL to serve on
+
+                                                                Default: --out-dir option
+
+                                                                parcel build entry.js --public-url ./
+                                                                will output:
+
+                                                                <link rel="stylesheet" type="text/css" href="1a2b3c4d.css">
+                                                                or
+                                                                <script src="e5f6g7h8.js"></script>
+                                                                Disable minification
+
+                                                                Default: minification enabled
+
+                                                                parcel build entry.js --no-minify
+                                                                Disable the filesystem cache
+
+                                                                Default: cache enabled
+
+                                                                parcel build entry.js --no-cache
+
+
+
+
+
+
+==================   end    ==================    parcel.js ========================
+
+
+
+
+
+
+
+
+--------  install openlayers -----------
+
+
+
+            https://openlayers.org/en/latest/doc/tutorials/bundle.html
+
+
+            create a package.json
+
+
+
+                        npm init
+
+
+
+                        npm install ol
+                        npm install ol-mapbox-style
+                        npm install proj4
+
+
+
+                        npm install --save-dev parcel-bundler                          https://parceljs.org/getting_started.html
+                        
+
+
+            macOS Catalina  10.15.2,  gyp: No Xcode or CLT version detected! gyp ERR! configure error
+            https://medium.com/flawless-app-stories/gyp-no-xcode-or-clt-version-detected-macos-catalina-anansewaa-38b536389e8d
+
+                    sudo xcode-select --reset
+
+
+
+                    re-run   
+                                npm install --save-dev parcel-bundler
+
+
+
+--------  end  --------  install openlayers -----------

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- To ensure optimum performance on mobile devices, add the following meta-tag-->
+    <meta charset="utf-8" name="viewport" content="initial-scale=1.0, width=device-width">
+
+
+
+    <title id='title'></title>
+
+
+    <!-- 
+    // These must first load before individule template js(at bottom block scripts) 
+    // load dependency javascript MUST be in order (jquery, materializecss, arcgis-geojson)
+    // jquery must before materialize
+    -->
+
+     
+    <script   src="https://code.jquery.com/jquery-3.5.1.slim.min.js"   integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="   crossorigin="anonymous"></script>
+
+
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+
+            <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+            
+
+
+    <!-- not use in node environment, must use 'import'.  distribution environment, must uncommon this line  -->
+          <link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.8.55/css/materialdesignicons.min.css">
+    
+
+
+
+    <!-- font awesome icon  -->
+    <script src='https://kit.fontawesome.com/fd26ec4ecc.js' crossorigin='anonymous'></script>
+    <!--  sprite :  not use spritejs (javascript cut image), instead use inline css cut image   -->
+    <script src='https://unpkg.com/spritejs@3/dist/spritejs.min.js'></script>
+
+
+
+    <!-- not use, instead,  import materialdesignicons.min.css  at js -->
+
+             <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    
+
+
+
+
+
+
+
+
+                            <!--   bug fix,   radio button is hidden at openlayer base map switcher, due to materialize css set radio opacity to 0 , fix by undo opacity to 1 -->
+
+                                      <!--  issue and fix
+                                          https://github.com/walkermatt/ol-layerswitcher/issues/388
+                                          https://github.com/walkermatt/ol-layerswitcher-examples/issues/2
+                                          https://stackoverflow.com/questions/49757521/materialize-css-radio-buttons-not-visible
+                                        -->
+                                      
+                                        
+                                      <style>
+                                            [type="radio"]:not(:checked), [type="radio"]:checked {
+                                                position: relative; 
+                                                opacity: 1; 
+                                            }
+                                                
+                                      </style>
+
+                            <!--   bug fix,   radio button is hidden at openlayer base map switcher, due to materialize css set radio opacity to 0 , fix by undo opacity to 1 -->
+                          
+
+
+
+
+
+
+
+</head>
+
+
+<body>
+
+
+ 
+
+        
+  <div class='row' id='row_1'>
+    
+    
+            <!--  **************** info section left side *************************  -->
+
+
+
+                    <div class='col s12 m3 l3' id='left_1'>
+
+                          
+                        
+                          <ul class='tabs'>
+                            <li class='tab col s3' id='tag_info_outline'>
+                              
+                              <a href='#info_outline'> 
+
+
+                                 <!-- 
+                                        <span style="font-size: 3em; color: Tomato;">
+                                          <i class="far fa-comment-dots"></i>
+                                        </span>
+                                  -->
+
+                                  <span class='mdi mdi-24px mdi-chat-processing-outline teal-text'> 
+                                  </span>
+
+
+                              </a>
+                          </li>
+                            
+                            <li class='tab col s3' id='tag_list'>
+                                <a href='#list'> 
+
+<!-- 
+                                  <span style="font-size: 3em; color: orange;">
+                                    <i class="far fa-comments"></i>
+                                  </span>
+-->
+
+                                  <span class='mdi mdi-24px mdi-wechat cyan-text'>
+                                  </span>
+
+                                </a>
+                            </li>
+
+
+
+                            <li class='tab col s3' id='tag_color'>
+                              <a href='#setting' class='active'>
+
+<!-- 
+
+                                <span style="font-size: 3em; color: Dodgerblue;">
+                                  <i class="far fa-cog"></i>
+                              </a>
+-->
+                              <span class='mdi mdi-24px mdi-cog-outline brown-text'>
+                              </span>
+
+
+
+                          </li>
+
+                            <li class='tab col s3' id='tag_search'>
+                              <a href='#search'> 
+
+
+<!-- 
+
+                                <span style="font-size: 3em; color: green;">
+                                  <i class="far fa-palette"></i>
+                                </span>
+-->
+                                <span class='mdi mdi-24px mdi-palette lime-text'>
+                                </span>
+
+
+                              </a>
+                            </li>
+                            
+                          </ul> 
+
+
+                            
+                          <div id='info_outline' class='col s12'>
+                         <!--     <label id="info"/>  -->
+                            <div id='jsoneditor_info_outline'>
+                            </div> 
+                          </div>       
+                                
+                          
+                          <div id='list' class='col s12' > 
+                            <label id='message_div_lock_tab'> </label>
+                            <label id='span_place_content_listTab'> </label> 
+                            <div id='jsoneditor_list'>
+                                  
+                            </div> 
+                          </div>  
+                              
+
+
+
+
+                              
+                          <div id='setting' class='col s12' >
+
+
+                                      </br>
+
+                                      <div id='row_overlay_opacity' class='row'>
+                                              <label class='col s2'> Opacity </label>
+                                              <label class='col s1' id='overlay_opacity_label'></label>
+                                              <div class='col s4 range-field'>              
+                                                <input type='range' id='overlay_opacity_range' name='overlay_opacity_range' min='0' max='10'/>   
+                                                
+                                              </div> 
+                                      </div>
+              
+                              
+                               
+                                                          
+                                  <!-- dark mode toggle -->
+                                  <a class="btn dark-toggle" href="#" onclick="localStorage.setItem('mode', (localStorage.getItem('mode') || 'dark') === 'dark' ? 'light' : 'dark'); localStorage.getItem('mode') === 'dark' ? document.querySelector('body').classList.add('dark') : document.querySelector('body').classList.remove('dark')" title="Dark/light"><i class="material-icons left">brightness_high</i> Toggle Dark Mode</a>
+                                    
+                             
+                               
+
+                          
+
+
+
+                          </div>  
+
+
+
+
+
+
+
+
+                          
+                          <div id='search' class='col s12'>
+                                  <div id='legend-div'></div>
+                          </div> 
+
+
+                    </div>
+
+
+
+
+
+            <!-- *********** Map section - right side *************************  -->
+
+                    <div class='col s12 m9 l9' id='right_1'>
+                    
+                        <div id='map'>
+                        </div>    
+
+                    </div>   
+      
+
+
+    
+
+  </div>
+
+
+
+
+
+
+
+
+
+            <link rel="stylesheet" href="../share/css/layout_portrait.css">
+
+           
+             <script type="module" src="../js/arcgis/arcgisvector/helper.js"></script>   
+             <script src="../js/arcgis/arcgisvector/default.js"></script>     
+            
+
+
+
+            
+
+      </body>
+   
+</html>
+

@@ -1,0 +1,1111 @@
+
+
+
+
+/*  original left-right-panel  https://codepen.io/hoogw/pen/yLzmoWY?editors=1100     */
+
+
+html, body{
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+
+
+
+
+
+.left_1 {
+
+  position:absolute; 
+  height: 100%;
+  width:  25%;
+  overflow-y: auto; 
+  overflow-x: auto;
+}
+
+.right_1 {
+  position:absolute; 
+
+  height:100%;
+  width:  75%;
+
+  bottom:0px;
+  right:0px;
+  overflow-y: auto; 
+  overflow-x: auto;
+  
+ }
+
+
+#map {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+
+
+
+
+
+
+.info_outline{
+
+  position: fixed;  /* fixed or absolute works ,   relative or empty not work  */
+
+  width: 23%;   
+  height: 88%;   /*1000px;*/
+  background-color: /*  white -> */ rgba(255, 255, 255, 0.5);
+                                          
+  z-index: 200;
+  opacity: 1;
+  /*float:left;*/
+
+  /* border: 2px solid rgba(200, 200, 200, .96); */
+  border: 0;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px 4px rgba(0, 0, 0, 0.8);
+
+  overflow-x: auto;
+  overflow-y: auto;
+  
+  
+  left: 20px;  /* 1% */
+  top:  120px;
+  
+}
+
+
+
+#jsoneditor_info_outline{
+  background-color: /*  white -> */ rgba(255, 255, 255, 0.96);
+}
+#jsoneditor_list{
+  background-color: /*  white -> */ rgba(255, 255, 255, 0.96);
+}
+
+
+
+
+.list{
+
+  position: fixed;  /* fixed or absolute works ,   relative or empty not work  */
+
+  width: 23%;  /* side1 300px + side2 300px = 600px , use 580px =  600 - 10px(left) -  10px(right edge) */
+  height: 88%;   /*   90% + top 5% = 95%, there is gap at bottom 5%  1000px;*/
+  background-color: /*  white -> */ rgba(0,0,0, 0.5);
+                                           
+  z-index: 300;
+  opacity: 1;
+  /*float:left;*/
+
+
+                                            /* border: 2px solid rgba(200, 200, 200, .96); */
+                                            border: 0;
+                                            border-radius: 2px;
+                                            box-shadow: 0 1px 4px 4px rgba(0, 0, 0, 0.8);
+
+
+  overflow-x: auto;
+  overflow-y: auto;
+  
+  left: 40px;  /* 2% */
+  top:  130px;
+}
+
+
+
+.floating_process_div{
+
+          position: fixed;  /* fixed or absolute works ,   relative or empty not work  */
+
+          width: 25%;  /* side1 300px + side2 300px = 600px , use 580px =  600 - 10px(left) -  10px(right edge) */
+         
+          background-color:  rgba(255, 255, 255, 0);
+          border: 0px solid rgba(255, 255, 255, 0);
+          z-index: 999;
+          opacity: 0.6;
+          /*float:left;*/
+
+          overflow-x: auto;
+          overflow-y: auto;
+          
+          left:  0px;  
+          bottom:0px;
+
+}
+
+
+
+
+
+/* for large search result collection scroll only */
+div.scrollable {
+
+        
+        
+  /*  both works 1:  independed on parent div */
+ 
+  height:80vh; 
+  
+
+
+  /* both works 2:   if use, must also define parent element height, div(id=search) ,    #search{ height:85% } */
+  /*
+  height: 85%;
+   */
+
+  display: block; 
+  overflow: auto; 
+  overflow-y: auto; 
+  overflow-x: auto;
+
+
+}
+
+
+
+
+
+                                                                       
+
+                        /*  -----  ------ json-editor customize color  ----------- */
+
+
+
+
+                              /*  
+                                  highlight multiple keywords
+                                   https://github.com/josdejong/jsoneditor/issues/1038
+                                   https://github.com/josdejong/jsoneditor/blob/develop/examples/20_custom_css_style_for_nodes.html
+                              */
+
+
+                                /* 
+                                
+                                    warning  #jsoneditor_??? must match 
+                                    should be search result jsoneditor_search
+
+                                 */
+
+
+
+                              #jsoneditor_search .different_element {
+                                background-color: #acee61;
+                              }
+                              #jsoneditor_search .different_element div.jsoneditor-field,
+                              #jsoneditor_search .different_element div.jsoneditor-value {
+                                color: red;
+                              }
+
+                           
+
+                      
+
+
+
+
+
+                          
+
+
+
+
+                  /*
+
+        
+
+                      ======   special for data table only  ====== 
+
+
+                                            json-editor customize header color
+                                            https://github.com/josdejong/jsoneditor/issues/1040
+
+
+                                            What you can do is give the containers where you attach the JSONEditors different classes:
+
+                                                      <div class="editor1"></div>
+                                                      <div class="editor2"></div>
+
+                                                      then create different styling for the different containers:
+
+                                                      div.editor1 div.jsoneditor-menu {
+                                                        background-color: red;
+                                                      }
+
+                                                      div.editor2 div.jsoneditor-menu {
+                                                        background-color: blue;
+                                                      }
+
+                                          */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                          #jsoneditor_search div.jsoneditor-menu {
+                                            background-color: #9FE2BF;
+                                            border: thin solid #9FE2BF;
+                                          }
+
+                                          #jsoneditor_search div.jsoneditor {
+                                              border: thin solid #9FE2BF;
+                                          }
+
+
+                                          #jsoneditor_search2 div.jsoneditor-menu {
+                                            background-color: #CCCCFF;
+                                            border: thin solid #CCCCFF;
+                                          }
+
+                                          #jsoneditor_search2 div.jsoneditor {
+                                              border: thin solid #CCCCFF;
+                                          }
+
+
+
+
+
+
+
+
+                                                                        #jsoneditor_info_outline div.jsoneditor-menu {
+                                                                          background-color: #009688;
+                                                                          border: thin solid #009688;
+                                                                        }
+
+                                                                        #jsoneditor_info_outline div.jsoneditor {
+                                                                            border: thin solid #009688;
+                                                                        }
+
+                                                                        #jsoneditor_list div.jsoneditor-menu {
+                                                                          background-color: #00bcd4;
+                                                                          border: thin solid #00bcd4;
+                                                                        }
+
+                                                                        #jsoneditor_list div.jsoneditor {
+                                                                          border: thin solid #00bcd4;
+                                                                        }
+
+
+                                                                        /*  dark mode, overwrite property from black to grey */
+                                                                        #jsoneditor_info_outline div.jsoneditor-field {
+                                                                          color: grey;
+                                                                        }
+                                                                        #jsoneditor_list div.jsoneditor-field {
+                                                                          color: grey;
+                                                                        }
+
+
+                                          /*  -----  end ------ json-editor customize color  ----------- */
+
+
+
+
+
+
+
+
+
+
+                  /*
+                  
+                      dark mode
+
+                      original
+                      https://codepen.io/j_holtslander/pen/MRbpLX
+                      https://codepen.io/j_holtslander/embed/MRbpLX?height=467&theme-id=dark&default-tab=result
+
+
+                      fork
+                      https://codepen.io/hoogw/pen/xxZePPY
+
+
+
+
+
+
+
+                      ---------    scss (uncompiled)  ---------  
+
+                      $transition-effects: color 1s ease, background-color 1s ease;
+
+                      body {
+                        background-color: #eee;
+                        transition: $transition-effects;
+                        &.dark {
+                          background-color: #202123;
+                          color: #fff;
+                          nav {
+                            background-color: #26A69A;
+                          }
+                          .card {
+                            background-color: rgba(255,255,255,0.2);
+                          }
+                          .btn {
+                            background-color: #EE6F73;
+                          }
+                          .divider {
+                            opacity: 0.2;
+                          }
+                          .sidenav {
+                            background-color: #2D2D31;
+                            li {
+                              a {
+                                &:not(.subheader){
+                                  color: #89B2F5;
+                                  &:hover {
+                                    background-color: #3B4043;
+                                  }
+                                }
+                                &.subheader {
+                                  color:#9AA0A6; 
+                                }
+                                .material-icons {
+                                  color: #9AA0A6;
+                                }
+                              }
+                            }
+                          }
+                          
+                          .collection {
+                            border: 1px solid rgba(255,255,255,0.2);
+                            .collection-item {
+                              background-color: rgba(255,255,255,0.2);
+                              border-bottom: 1px solid rgba(255,255,255,0.2);
+                            }
+                            
+                            
+                            .active {
+                              background-color: rgba(233, 30, 99, 0.5);
+                              
+                            }
+                          }
+
+
+
+
+
+
+                          .tabs {
+                            background-color: #2D2D31;
+                            .tab {
+                              
+                              
+                            }
+                          }
+		
+
+
+
+
+
+
+
+
+
+
+                        }
+                      }
+
+                    ---------   end -----  scss (uncompiled)  ---------  
+
+
+
+                  */
+
+                                body {
+                                  background-color: #eee;
+                                  -webkit-transition: color 1s ease, background-color 1s ease;
+                                  transition: color 1s ease, background-color 1s ease;
+                                }
+                                body.dark {
+                                  background-color: #202123;
+                                  color: #fff;
+                                }
+                                body.dark nav {
+                                  background-color: #26A69A;
+                                }
+                                body.dark .card {
+                                  background-color: rgba(255, 255, 255, 0.2);
+                                }
+                                body.dark .btn {
+                                  background-color: #EE6F73;
+                                }
+                                body.dark .divider {
+                                  opacity: 0.2;
+                                }
+                                body.dark .sidenav {
+                                  background-color: #2D2D31;
+                                }
+                                body.dark .sidenav li a:not(.subheader) {
+                                  color: #89B2F5;
+                                }
+                                body.dark .sidenav li a:not(.subheader):hover {
+                                  background-color: #3B4043;
+                                }
+                                body.dark .sidenav li a.subheader {
+                                  color: #9AA0A6;
+                                }
+                                body.dark .sidenav li a .material-icons {
+                                  color: #9AA0A6;
+                                }
+
+
+                                body.dark .collection {
+                                  border: 1px solid rgba(255, 255, 255, 0);
+                                }
+                                body.dark .collection .collection-item {
+                                  background-color: rgba(255, 255, 255, 0.5);
+                                  border-bottom: 1px solid rgba(255, 255, 255, 0);
+                                  
+                                }
+
+                                body.dark .collection .collection-item.active {
+                                  background-color: rgba(255, 255, 255, 1);
+                                }
+
+
+
+
+                                body.dark .tabs {
+                                  background-color: #2D2D31;
+                                }
+
+
+                    /*
+                    
+                          ----  End  ----  dark mode
+
+                    */
+
+
+
+
+
+
+                           
+                   /*
+                    
+                        ==========   search result collection color    ==========   for xxx_card only  ========== 
+
+                    */
+
+
+                    
+
+                                    body .collection .collection-item.active {
+                                      background-color: rgba(255, 255, 255, 1);
+                                    }
+
+                                    body .collection {
+                                      border: 1px solid rgba(0,0,0, 0);
+                                      color:rgba(255, 255, 255, 1);
+                                    }
+                                    body .collection .collection-item {
+                                      background-color: rgba(255, 255, 255, 0);
+                                      border-bottom: 1px solid rgba(0,0,0, 0);
+                                      color:rgba(255, 255, 255, 1);
+                                    }
+
+                                  
+
+
+         
+                   /*
+                    
+                        ==========  end  ========== search result collection color    ==========     for xxx_card only  ========== 
+
+                    */
+
+
+
+
+
+
+
+                                        /*
+                                          
+                                                ---------   use special  ---------    google-place-search.css   --------- 
+
+                                          */
+
+
+
+
+
+                                                            .pac-card {
+                                                              margin: 10px 10px 0 0;
+                                                              border-radius: 2px 0 0 2px;
+                                                              box-sizing: border-box;
+                                                              -moz-box-sizing: border-box;
+                                                              outline: none;
+                                                              box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+                                                              background-color: rgba(255, 255, 255, .96);
+                                                              font-family: Roboto;
+                                                              
+                                                            }
+                                                          
+                                                            #pac-container {
+                                                              padding-bottom: 12px;
+                                                              margin-right: 12px;
+                                                              
+                                                            }
+                                                          
+                                                            .pac-controls {
+                                                              display: inline-block;
+                                                              
+                                                              padding: 5px 11px;
+                                                              
+                                                            }
+                                                          
+                                                            .pac-controls label {
+                                                              font-family: Roboto;
+                                                              font-size: 15px;
+                                                              font-weight: 300;
+                                                              
+                                                            }
+                                                          
+
+
+
+                                                            #pac-input {
+
+                                                              border-color: rgba(255,255,255, .60);  
+                                                              border-width: thick; 
+                                                              background-color: rgba(0,0,0, .40);
+                                                              color: rgba(255,255,255, .80);
+                                                      
+                                                      
+                                                              font-family: Roboto;
+                                                              font-size: 15px;
+                                                              font-weight: 300;
+                                                              
+                                                      
+                                                              /*  ====== adjust postion relative to map div   ======  */
+                                                              margin-top:  10px;
+                                                              margin-left: 20px;
+                                                      
+                                                              padding: 0 11px 0 13px;
+                                                              text-overflow: ellipsis;
+                                                      
+                                                      
+                                                              /*  ====== adjust box size   ======  */
+                                                              width: 350px;
+                                                              height: 40px;
+                                                              
+                                                      
+                                                      
+                                                            }
+                                                      
+                              
+                              
+                              
+                                                          
+                                                            #pac-input:focus {
+                                                              border-color: rgba(204, 204, 255, .70);
+                                                              background-color: rgba(0,0,0, .60);
+                                                            }
+
+
+
+
+
+                                          /*
+
+                                          ---------     end   ---------   use special  ---------    google-place-search.css   --------- 
+
+                                          */
+
+
+
+
+
+
+
+
+
+
+
+     /*
+      
+          =============    time count down progress bar     =============   
+
+          https://codepen.io/hoogw/pen/RwgmNNm
+
+          https://stackoverflow.com/questions/24530908/showing-a-time-countdown-progress-bar
+          https://codepen.io/Rudchyk/pen/qNOEGj
+
+
+      */
+
+                #ajax_getJson_processing  {
+
+                  width: 100%; /* 80%; */
+                  margin: 10px auto;
+                  height: 50px;  /*  default normal size 22px  */
+                  background-color:   #0A5F44; 
+
+                }
+                
+
+
+
+
+                #ajax_getJson_processing div {
+
+
+                  height: 100%;
+                  text-align: left; /* right; */
+                  padding: 0 10px;
+                  line-height: 50px; /* same as #progressBar height if we want text middle aligned */
+                  width: 0;
+                  background-color: #9FE2BF; /* #CBEA00; */
+                  box-sizing: border-box;
+
+                  font-size: 50px;   /* timer number size*/
+
+                  color: #0A5F44; 
+
+
+                }
+
+
+
+                #ajax_image_loading_progressing {
+
+                  width: 100%; /* 80%; */
+                  margin: 10px auto;
+                  height: 50px;  /*  default normal size 22px  */
+                  background-color:   #0A5F44; 
+
+                }
+                
+
+
+
+
+                #ajax_image_loading_progressing div {
+
+
+                  height: 100%;
+                  text-align: left; /* right; */
+                  padding: 0 10px;
+                  line-height: 50px; /* same as #progressBar height if we want text middle aligned */
+                  width: 0;
+                  background-color: #FFBF00;
+                  box-sizing: border-box;
+
+                  font-size: 50px;   /* timer number size*/
+
+                  color: #0A5F44; 
+
+
+                }
+
+
+                #ajax_tile_loading_progressing {
+
+                  width: 100%; /* 80%; */
+                  margin: 10px auto;
+                  height: 50px;  /*  default normal size 22px  */
+                  background-color:   #0A5F44; 
+
+                }
+                
+
+
+
+
+                #ajax_tile_loading_progressing div {
+
+
+                  height: 100%;
+                  text-align: left; /* right; */
+                  padding: 0 10px;
+                  line-height: 50px; /* same as #progressBar height if we want text middle aligned */
+                  width: 0;
+                  background-color: #CCCCFF;
+                  box-sizing: border-box;
+
+                  font-size: 50px;   /* timer number size*/
+
+                  color: #0A5F44; 
+
+
+                }
+
+
+
+
+
+
+/*
+
+=============    end        =============      time count down progress bar     =============   
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     /*
+                                    HTML element
+  
+                   https://developer.mozilla.org/en-US/docs/Web/HTML/Element/kbd
+
+      */
+
+
+                kbd {
+                  background-color: #eee;
+                  border-radius: 3px;
+                  border: 1px solid #b4b4b4;
+                  box-shadow: 0 1px 1px rgba(0, 0, 0, .2), 0 2px 0 0 rgba(255, 255, 255, .7) inset;
+                  color: #333;
+                  display: inline-block;
+                  font-size: .85em;
+                  font-weight: 700;
+                  line-height: 1;
+                  padding: 2px 4px;
+                  white-space: nowrap;
+                }
+
+
+      /*
+         
+      
+            ======= end  =======     HTML element
+  
+         
+
+      */
+
+
+
+
+
+
+            /* ................ google geolocation api  ................    ................ */
+
+
+                        .panToCurrent_geolocation_button {
+                          background-color: rgba(255, 255, 255, .1);    
+                          
+                          border: 0;
+                          border-radius: 2px;
+                          box-shadow: 0 1px 4px 4px rgba(0, 0, 0, 0.8);
+                          margin: 10px;
+                          padding: 0 0.5em;
+                          font: 400 18px Roboto, Arial, sans-serif;
+                          font-weight: bolder;
+                          overflow: visible;
+                          height: 40px;
+                          cursor: pointer;
+                        }
+
+                        .panToCurrent_geolocation_button:hover {
+                          background: #ebebeb;
+                        }
+
+
+
+
+
+                        /*  --- also used by microsoft bing  ---*/
+                        .zoomToLayer_button {
+
+                          /* 
+                               only for mapbox icontrol,   https://stackoverflow.com/questions/51681771/how-to-create-my-custom-control-with-event-in-mapboxgl
+                               mapbox container positioning style removes mouse events handling (pointer-events: none;):
+                               So you need to add the class mapboxgl-ctrl (pointer-events: auto;) to the container for catching events:
+                               
+                                this.container.className = 'mapboxgl-ctrl my-custom-control';
+
+                                Or set this CSS-property manually:
+
+                                .my-custom-control {
+                                    pointer-events: auto;
+                                }
+
+
+                          */ 
+                          pointer-events: auto;
+
+
+
+                          background-color: rgba(255, 255, 255, .1);    
+
+                          border: 0;
+                          border-radius: 2px;
+                          box-shadow: 0 1px 4px 4px rgba(0, 0, 0, 0.8);
+                          margin: 10px;
+                          padding: 0 0.5em;
+                          font: 400 18px Roboto, Arial, sans-serif;
+                          font-weight: bolder;
+                          overflow: visible;
+                          height: 40px;
+                          cursor: pointer;
+                        }
+
+                        .zoomToLayer_button:hover {
+                          background: #ebebeb;
+                        }
+
+
+
+
+                        
+                        .zoomLevel {
+                          background-color: rgba(0, 0, 0, .5);    
+
+                          border: 0;
+                          border-radius: 2px;
+                          box-shadow: 0 1px 4px 4px rgba(255, 255, 255, 0.8);
+                          margin: 10px;
+                          padding: 0 0.5em;
+                          font: 400 38px Roboto, Arial, sans-serif;
+                          font-weight: bolder;
+                          color: white;
+                          overflow: visible;
+                          height: 40px;
+                          cursor: pointer;
+                        }
+
+                        .zoomLevel:hover {
+                          background: rgba(0, 0, 0, .2); 
+                        }
+            
+
+
+
+
+                        .opacityDIV {
+
+
+                         
+
+                          background-color: rgba(255, 255, 255, .1);    
+
+                          border: 0;
+                          border-radius: 2px;
+                          box-shadow: 0 1px 4px 4px rgba(0, 0, 0, 0.8);
+                          margin: 10px;
+                          padding: 0 0.5em;
+                          
+                          overflow: visible;
+                          height: 40px;
+                          cursor: pointer;
+                         
+                         
+                        }
+
+
+
+
+
+
+                        .opacityDIV:hover {
+                          background: rgba(255, 255, 255, .2); 
+                        }
+
+
+
+
+
+
+            
+                        
+                        .opacitySlider {
+                         
+
+                                      margin-top: 12px;
+                          
+              
+                                      /*  this not effect, must use inline css to overwrite bootstrap, materializedcss  display:block; width: 100% */
+                                      display: inline;
+                                      width:auto;    
+                                      
+                          
+                          }
+              
+              
+              
+                          .opacityLabel {
+                            
+                                            background-color: rgba(0, 0, 0, 0.5);  
+                                            font: 400 20px Roboto, Arial, sans-serif;
+                                            font-weight: bolder;
+                                            color: rgba(255, 255, 255, 0.9);
+                              
+                                            border: 0;
+                                            border-radius: 2px;
+                                            box-shadow: 0 1px 4px -1px rgba(255, 255, 255, 0.5);
+                                          
+                                            margin-left: 5px;
+              
+              
+                                            /*  this not effect, must use inline css to overwrite bootstrap, materializedcss  display:block; width: 100% */
+                                            display: inline;
+                                            width:auto;
+                                
+                                            
+                          }
+  
+  
+   
+
+
+
+
+            /* ................ google geolocation api  ................    ................ */
+
+
+
+
+
+
+
+
+
+
+
+  /*   
+         not use customized 
+
+             ................    ................  Cross-Browser Range Input With Solid Lower Fill    ................ 
+                          
+              https://codepen.io/noahblon/pen/OyajvN       
+              
+              https://stackoverflow.com/questions/28283332/style-lower-and-upper-fill-in-html5-range-input
+                          
+              https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/
+
+              http://danielstern.ca/range.css/#/
+                                                                                                                                  
+
+
+
+
+
+
+                      
+                                                                                                                                    input[type="range"] { 
+                                                                                                                                      margin: auto;
+                                                                                                                                      -webkit-appearance: none;
+                                                                                                                                      position: relative;
+                                                                                                                                      overflow: visible;
+                                                                                                                                      height: 40px;
+                                                                                                                                    
+                                                                                                                                      cursor: pointer;
+                                                                                                                                      border-radius: 0; 
+                                                                                                            
+                                                                                                            
+                                                                                                            
+                                                                                                                                      background: transparent;
+                                                                                                                                     
+                                                                                                                                  }
+                                                                                                            
+                                                                                                            
+                                                                                                                                  input[type="range"] + .thumb { 
+                                                                                                                                      background-color: teal; 
+                                                                                                                                  }
+                                                                                                            
+                                                                                                                                  
+                                                                                                                                  
+                                                                                                                                  ::-webkit-slider-runnable-track {
+                                                                                                                                       background:#ddd; 
+                                                                                                                                  }
+                                                                                                                                  
+                                                                                                            
+                                                                                                            
+                                                                                                            
+                                                                                                            
+                                                                                                                                 
+                                                                                                                                  ::-webkit-slider-thumb {
+                                                                                                                                      -webkit-appearance: none;
+                                                                                                                                      width: 20px;
+                                                                                                                                      height: 40px;
+                                                                                                                                      background: #fff; 
+                                                                                                                                      box-shadow: -100vw 0 0 100vw #40E0D0; 
+                                                                                                                                      border: 2px solid #999; 
+                                                                                                                                  }
+                                                                                                                                  
+                                                                                                                                  ::-moz-range-track {
+                                                                                                                                      height: 40px;
+                                                                                                                                      background: #ddd;
+                                                                                                                                  }
+                                                                                                                                  
+                                                                                                                                  ::-moz-range-thumb {
+                                                                                                                                      background: #fff;
+                                                                                                                                      height: 40px;
+                                                                                                                                      width: 20px;
+                                                                                                                                      border: 3px solid #999;
+                                                                                                                                      border-radius: 0 !important;
+                                                                                                                                      box-shadow: -100vw 0 0 100vw #40E0D0;
+                                                                                                                                      box-sizing: border-box;
+                                                                                                                                  }
+                                                                                                                                  
+                                                                                                                                  ::-ms-fill-lower { 
+                                                                                                                                      background: #40E0D0;
+                                                                                                                                  }
+                                                                                                                                  
+                                                                                                                                  ::-ms-thumb { 
+                                                                                                                                      background: #fff;
+                                                                                                                                      border: 2px solid #999;
+                                                                                                                                      height: 40px;
+                                                                                                                                      width: 20px;
+                                                                                                                                      box-sizing: border-box;
+                                                                                                                                  }
+                                                                                                                                  
+                                                                                                                                  ::-ms-ticks-after { 
+                                                                                                                                      display: none; 
+                                                                                                                                  }
+                                                                                                                                  
+                                                                                                                                  ::-ms-ticks-before { 
+                                                                                                                                      display: none; 
+                                                                                                                                  }
+                                                                                                                                  
+                                                                                                                                  ::-ms-track { 
+                                                                                                                                      background: #ddd;
+                                                                                                                                      color: transparent;
+                                                                                                                                      height: 40px;
+                                                                                                                                      border: none;
+                                                                                                            
+                                                                                                            
+                                                                                                                                  }
+                                                                                                                                  
+                                                                                                                                  ::-ms-tooltip { 
+                                                                                                                                      display: none;
+                                                                                                                                  }
+                                                                                                            
+                                                                                                                                  */
+                                                                                                            
+                                                                                                            
+                                                                                                                /*      ................   end   ................  Cross-Browser Range Input With Solid Lower Fill    ................ */
+                                                                                                            
+                                                                                                            
+          

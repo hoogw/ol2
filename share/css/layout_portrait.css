@@ -1,0 +1,308 @@
+html, body{
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+#row_1  {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+#left_1, #right_1 {
+ 
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  display: block; 
+  overflow-y: auto; 
+  overflow-x: auto;
+}
+
+
+#map {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  
+  /*
+   
+  bug fix: leaflet map will display scrollbar with below setting. so need comment out
+  other google map bing, here, etc do NOT need this either. 
+  Only left_1 div need this for scrollbar when large amount of content. 
+
+  display: block; 
+  overflow-y: auto; 
+  overflow-x: auto;
+
+  */
+
+
+}
+
+
+
+
+/* for large search result collection scroll only */
+div.scrollable {
+
+        
+        
+        /*  both works 1:  independed on parent div   */
+        height:80vh; 
+      
+
+        
+        /* both works 2:   if use, must also define parent element height, div(id=search) ,    #search{ height:85% }  
+        height: 100%;
+        */
+
+        display: block; 
+        overflow: auto; 
+        overflow-y: auto; 
+        overflow-x: auto;
+
+
+}
+
+
+
+
+
+
+
+
+                      /*
+                      
+                          dark mode
+
+                          original
+                          https://codepen.io/j_holtslander/pen/MRbpLX
+                          https://codepen.io/j_holtslander/embed/MRbpLX?height=467&theme-id=dark&default-tab=result
+
+
+                          fork
+                          https://codepen.io/hoogw/pen/xxZePPY
+
+
+
+
+                      ---------    scss (uncompiled)  ---------  
+
+                      $transition-effects: color 1s ease, background-color 1s ease;
+
+                      body {
+                        background-color: #eee;
+                        transition: $transition-effects;
+                        &.dark {
+                          background-color: #202123;
+                          color: #fff;
+                          nav {
+                            background-color: #26A69A;
+                          }
+                          .card {
+                            background-color: rgba(255,255,255,0.2);
+                          }
+                          .btn {
+                            background-color: #EE6F73;
+                          }
+                          .divider {
+                            opacity: 0.2;
+                          }
+                          .sidenav {
+                            background-color: #2D2D31;
+                            li {
+                              a {
+                                &:not(.subheader){
+                                  color: #89B2F5;
+                                  &:hover {
+                                    background-color: #3B4043;
+                                  }
+                                }
+                                &.subheader {
+                                  color:#9AA0A6; 
+                                }
+                                .material-icons {
+                                  color: #9AA0A6;
+                                }
+                              }
+                            }
+                          }
+                          .collection {
+                            border: 1px solid rgba(255,255,255,0.2);
+                            .collection-item {
+                              background-color: rgba(255,255,255,0.2);
+                              border-bottom: 1px solid rgba(255,255,255,0.2);
+                            }
+                            
+                            
+                            .active {
+                              background-color: rgba(233, 30, 99, 0.5);
+                              
+                            }
+                          }
+
+
+
+
+
+
+                          .tabs {
+                            background-color: #2D2D31;
+                            .tab {
+                              
+                              
+                            }
+                          }
+		
+
+
+
+
+
+
+
+                        }
+                      }
+
+                    ---------   end -----  scss (uncompiled)  ---------  
+
+
+
+                      */
+
+                                            body {
+                                              background-color: #eee;
+                                              -webkit-transition: color 1s ease, background-color 1s ease;
+                                              transition: color 1s ease, background-color 1s ease;
+                                            }
+                                            body.dark {
+                                              background-color: #202123;
+                                              color: #fff;
+                                            }
+                                            body.dark nav {
+                                              background-color: #26A69A;
+                                            }
+                                            body.dark .card {
+                                              background-color: rgba(255, 255, 255, 0.2);
+                                            }
+                                            body.dark .btn {
+                                              background-color: #EE6F73;
+                                            }
+                                            body.dark .divider {
+                                              opacity: 0.2;
+                                            }
+                                            body.dark .sidenav {
+                                              background-color: #2D2D31;
+                                            }
+                                            body.dark .sidenav li a:not(.subheader) {
+                                              color: #89B2F5;
+                                            }
+                                            body.dark .sidenav li a:not(.subheader):hover {
+                                              background-color: #3B4043;
+                                            }
+                                            body.dark .sidenav li a.subheader {
+                                              color: #9AA0A6;
+                                            }
+                                            body.dark .sidenav li a .material-icons {
+                                              color: #9AA0A6;
+                                            }
+                                            body.dark .collection {
+                                              border: 1px solid rgba(255, 255, 255, 0.2);
+                                            }
+                                            body.dark .collection .collection-item {
+                                              background-color: rgba(255, 255, 255, 0.2);
+                                              border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+                                            }
+
+
+                                            body.dark .collection .active {
+                                              background-color: rgba(233, 30, 99, 0.5);
+                                            }
+
+
+                                            body.dark .tabs {
+                                              background-color: #2D2D31;
+                                            }
+
+
+            
+            
+
+
+                      /*
+
+                      ----  End  ----  dark mode
+
+                      */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                /*
+                  json-editor customize header color
+                  https://github.com/josdejong/jsoneditor/issues/1040
+
+
+                  What you can do is give the containers where you attach the JSONEditors different classes:
+
+                            <div class="editor1"></div>
+                            <div class="editor2"></div>
+
+                            then create different styling for the different containers:
+
+                            div.editor1 div.jsoneditor-menu {
+                              background-color: red;
+                            }
+
+                            div.editor2 div.jsoneditor-menu {
+                              background-color: blue;
+                            }
+
+                */
+
+                                #jsoneditor_info_outline div.jsoneditor-menu {
+                                  background-color: #009688;
+                                  border: thin solid #009688;
+                                }
+
+                                #jsoneditor_info_outline div.jsoneditor {
+                                    border: thin solid #009688;
+                                }
+
+                                #jsoneditor_list div.jsoneditor-menu {
+                                  background-color: #00bcd4;
+                                  border: thin solid #00bcd4;
+                                }
+
+                                #jsoneditor_list div.jsoneditor {
+                                  border: thin solid #00bcd4;
+                                }
+
+
+
+                                /*  dark mode, overwrite property from black to grey */
+                                #jsoneditor_info_outline div.jsoneditor-field {
+                                  color: grey;
+                                }
+                                #jsoneditor_list div.jsoneditor-field {
+                                  color: grey;
+                                }
+
+
+                /*  -----  end ------ json-editor customize color  ----------- */
