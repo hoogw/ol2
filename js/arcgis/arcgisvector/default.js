@@ -1333,13 +1333,14 @@ import {Circle, Fill, Stroke, Style} from 'ol/style';
                                                                   
                     update_url_parameter('center_lat', _center_lat);
                     update_url_parameter('center_long', _center_long);
-                    if ( _center_zoom == null ) {
+                    if (( _center_zoom == null ) || ( _center_zoom > 20 ) || ( _center_zoom < 5 )) {
                       _center_zoom =  default_center_zoom
                       update_url_parameter('center_zoom', _center_zoom);
                     }   
                     
                    
                     map.getView().setCenter(olProj.transform([_center_long, _center_lat], 'EPSG:4326', 'EPSG:3857'));
+                    map.getView().setZoom(_center_zoom);
                 } else {
                      console.log('original rootJson sources esri bounds is not available, so not be able to zoom 2 layer !!!!')
                 }  
@@ -2427,7 +2428,7 @@ import {Circle, Fill, Stroke, Style} from 'ol/style';
                  // vtLayer.getFeatures(event.pixel).then(function (features) { 
 
 
-                      console.log('all features at pixel  ', features)
+                     // console.log('all features at pixel  ', features)
                           
                       if (features) {
                         // null.length is error  
@@ -2555,7 +2556,7 @@ import {Circle, Fill, Stroke, Style} from 'ol/style';
                                           selectionLayer.changed();
                                       /*  -- end -- for highlight selected feature only */ 
 
-                                      console.log('close info window ---> features -->  ', features )
+                                    //  console.log('close info window ---> features -->  ', features )
                                       
 
                                       if (event.type == 'pointermove'){                                      

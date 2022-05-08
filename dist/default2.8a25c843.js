@@ -78661,7 +78661,8 @@ function createUrl(tpl, layerDesc) {
 /**/
 // helper.js 
 
-// init_global_var
+var default_center_zoom = 14; // init_global_var
+
 var _layer, current_url, current_pathname, current_pathArray, urlParams, _cross, ___url_string, ___url, _center_lat, _center_long, _center_zoom, center, open_tab, base_url, ___protocol, ___hostname, ___pathname, ___urlParams, ___pathArray, ___service;
 
 function init_global_var() {
@@ -78798,8 +78799,6 @@ function change_operation_mode(__operationMode__) {
 
 
 function init_user_interface_event() {
-  $('#zoom2layer_button').on('click', function (event) {//  pan_to_real_location(); 
-  });
   $('#close_list_panel').on('click', function (event) {
     event.preventDefault(); // To prevent following the link (optional)
 
@@ -79380,12 +79379,13 @@ function _pan_to_real_location() {
               (0, _helper.update_url_parameter)('center_lat', _center_lat);
               (0, _helper.update_url_parameter)('center_long', _center_long);
 
-              if (_center_zoom == null) {
+              if (_center_zoom == null || _center_zoom > 20 || _center_zoom < 5) {
                 _center_zoom = default_center_zoom;
                 (0, _helper.update_url_parameter)('center_zoom', _center_zoom);
               }
 
               map.getView().setCenter(olProj.transform([_center_long, _center_lat], 'EPSG:4326', 'EPSG:3857'));
+              map.getView().setZoom(_center_zoom);
             } else {
               console.log('original rootJson sources esri bounds is not available, so not be able to zoom 2 layer !!!!');
             }
@@ -79928,8 +79928,7 @@ function showInfo(event) {
     var features = map.getFeaturesAtPixel(event.pixel, {
       hitTolerance: 5
     }); // default 0
-
-    console.log('all features at pixel  ', features);
+    // console.log('all features at pixel  ', features)
 
     if (features) {
       // null.length is error  
@@ -79983,8 +79982,7 @@ function showInfo(event) {
           (0, _helper.show_info_outline_Tab)(more_properties);
         }
       } else {
-        console.log('close info window ---> features -->  ', features);
-
+        // console.log('close info window ---> features -->  ', features )
         if (event.type == 'pointermove') {
           (0, _helper.empty_info_outline_Tab)();
         } else if (event.type == 'click') {// empty_list_Tab()
@@ -80024,7 +80022,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58726" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64609" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
