@@ -105,7 +105,7 @@ import 'ol/ol.css';
 import MVT from 'ol/format/MVT';
 import Map from 'ol/Map';
 import {Control, defaults as defaultControls} from 'ol/control';
-
+import * as olProj from 'ol/proj';
 
 
                 //  =====  base map   =====   switcher     =====     
@@ -244,19 +244,12 @@ import {Circle, Fill, Stroke, Style} from 'ol/style';
 
 /**/
                                   
-                                        vectorTile_opacity_readonly,
+                                       
                                     
-                                        // init_global_var
-                                        _layer, current_url, current_pathname, current_pathArray, urlParams, _cross, ___url_string, ___url, _center_lat, _center_long, _center_zoom, center, open_tab, base_url, ___protocol, ___hostname, ___pathname, ___urlParams, ___pathArray, ___service,
-                              
                                         
                                         // materialize_init_tab
                                         init_tabs ,instance_tabs,
 
-
-
-                                        // init_json_viewer
-                                        container_info_outline, container_list, editor_info_outline, editor_list, 
 
 
 
@@ -266,7 +259,7 @@ import {Circle, Fill, Stroke, Style} from 'ol/style';
 
                               // function
 
-                                            init_global_var,
+                                          
 
                                             update_url_parameter,
                                             init_json_viewer,
@@ -291,11 +284,165 @@ import {Circle, Fill, Stroke, Style} from 'ol/style';
 
 
 
+              var default_center_zoom = 14   
+
+
+                // init_global_var
+                var _layer, current_url, current_pathname, current_pathArray, urlParams, _cross, ___url_string, ___url, _center_lat, _center_long, _center_zoom, center, open_tab, base_url, ___protocol, ___hostname, ___pathname, ___urlParams, ___pathArray, ___service;
+                function init_global_var(){
+                                              
+                                              
+
+
+                  //  .......... global var ..............
+
+                    
+                        // https://developer.mozilla.org/en-US/docs/Web/API/Location
+
+                          current_url = window.location.protocol + "//" + window.location.host + window.location.pathname;
+
+                          console.log('current_url ...... ',current_url);
+                          
+                          current_pathname = window.location.pathname;       //    /json2tree/arcgisServerList.html
+                          current_pathArray = current_pathname.split('/');   //    ["", "json2tree", "arcgisServerList.html"]
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                                    // ----- parse url param ?url=xxxxxxxxxx  --------
+
+                                            urlParams = new URLSearchParams(window.location.search);
+
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            //.................. required parameter .................
+                                                    _layer = urlParams.get('layer'); 
+                                                    if (!(_layer)) {  _layer = 'default' }
+
+
+
+
+                                                    _cross = urlParams.get('cross'); // optional, without this will be  value 'default'
+                                                    if (_cross) {} else {_cross ='default' }
+
+
+
+
+
+                                                    ___url_string = urlParams.get('url');  // required
+
+
+
+                                                  _center_lat = urlParams.get('center_lat');  // required
+                                                  _center_long = urlParams.get('center_long');  // required
+                                                  _center_zoom = urlParams.get('center_zoom');  // required
+                                                  if (_center_lat) {} else {_center_lat = 34 }
+                                                  if (_center_long) {} else {_center_long = -118 }
+                                                  if (_center_zoom) { _center_zoom = Number(_center_zoom).toFixed(2);   } else {_center_zoom = 15 }
+
+                                            //.................. required parameter .................
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            center={"_center_lat":_center_lat , "_center_long": _center_long};
+                                              
+                                            
+
+
+                                            console.log('___url_string ......  ',___url_string)  
+                                          
+                                                
+                                            var param_overlayOpacity = urlParams.get('overlayOpacity');
+                                            console.log('init overlay Opacity ---> ',  param_overlayOpacity)
+                                            if (param_overlayOpacity){
+                                                  vectorTile_opacity = parseInt(param_overlayOpacity) / 10 ;
+                                            }
+
+
+
+
+
+
+
+
+                                                      // basemap=satellite, streets,light,dark,outdoors,none
+                                                        var param_basemapStyle = urlParams.get('basemap');
+                                                        console.log('init base map Style ---> ',  param_basemapStyle)
+                                                        if (param_basemapStyle){
+                                                            current_basemapStyle = param_basemapStyle
+                                                        }
+                                                      
+
+                      
+                      
+                                        if ((___url_string == undefined) || (___url_string == null) || (___url_string == ''))
+                                        {
+                                            
+                                            // nothing to do
+                                            
+                                        }else{
+
+                                        
+                                              ___url = new URL(___url_string);   // ?url=https://sampleserver3.arcgisonline.com/ArcGIS/rest/services
+
+
+                                            base_url = ___url_string;
+
+                                            ___protocol = ___url.protocol; //   https:
+                                            ___hostname = ___url.hostname; //    sampleserver3.arcgisonline.com
+                                            ___pathname = ___url.pathname; //    /ArcGIS/rest/services
+                                            ___urlParams = new URLSearchParams(___url.search); //
+                                            
+
+                                            ___pathArray = ___pathname.split('/');
+
+
+                                              // https://maps.lacity.org/arcgis/rest/services/Mapping/NavigateLA/GPServer    
+                                              // ___pathArray = ["", "arcgis", "rest", "services", "Mapping", "NavigateLA", "MapServer"]
+
+
+
+                                            // ___service = https://maps.lacity.org/arcgis/rest/services
+                                            ___service = ___protocol + '//' + ___hostname + '/' +  ___pathArray[1] + '/' +   ___pathArray[2] + '/' +   ___pathArray[3] 
+
+
+
+                                            /*
+                                              console.log(___url);
+                                              console.log(___protocol);
+                                              console.log(___hostname);
+                                            */ 
+                                              
+                                        }// if     
+                                // ----- parse url param ?url=xxxxxxxxxx  --------
+
+                  }
+
+
+
+
+
+
+
 
 
               var operation_mode = 'hover'    // empty, none    or hover  or  click.  
               // hover, means mouse hover polygon, will automatically open up info_outline panel show attribute info.  
               // click mode means, only when click polygon, will open list panel show attribute info.
+
+
 
               function change_operation_mode(__operationMode__){
 
@@ -357,9 +504,7 @@ import {Circle, Fill, Stroke, Style} from 'ol/style';
  
               function init_user_interface_event(){
 
-                $('#zoom2layer_button').on('click', function(event) {
-                      //  pan_to_real_location(); 
-                });
+               
 
 
                 $('#close_list_panel').on('click', function(event) {
@@ -408,115 +553,185 @@ import {Circle, Fill, Stroke, Style} from 'ol/style';
 
             //  ##########  vector tile    ##########  
 
-            var root_json;
-            var _sprite;
-            var _glyphs;
-            var _tile_pbf;
-            var original_rootJson;
+                          var root_json;
+                          var _sprite;
+                          var _glyphs;
+                          var _tile_pbf;
+                          var original_rootJson;
+                          var original_rootJson_source_propertyKeyName
 
 
 
-            async function asyncFetch(_url___){
-              var response = await fetch(_url___)
-              var responseJson = await response.json();
-              //console.log(' root json --> ', responseJson)
-              return responseJson
-            }
+                          async function asyncFetch(_url___){
+                            var response = await fetch(_url___)
+                            var responseJson = await response.json();
+                            //console.log(' root json --> ', responseJson)
+                            return responseJson
+                          }
 
-           async function build_root_json(___url_string) {
-
-
-                        var original_rootJson_url = ___url_string + '/resources/styles/root.json'
+                        async function build_root_json(___url_string) {
 
 
-                        // ajax not define, must import first, instead use fetch
-                        /*
-                                  original_rootJson = await $.ajax({
-                                                                                                          
-                                                                                        type: 'GET',
-                                                                                        dataType: 'jsonp',
-                                                                                        data: {},
-                                                                                        url: original_rootJson_url,
-
-                                                                                        error: function (jqXHR, textStatus, errorThrown) {
-                                                                                                          var _error_status = textStatus + ' : ' + errorThrown;         
-                                                                                                          console.log('ajax error  + ', _error_status);
-                                                                                                              
-                                                                                          },
-
-                                                                                        success: function (data) {
-                                                                                                      // note: data is already json type, you just specify dataType: jsonp
-                                                                                                      //  return data;
-                                                                                        } // success
-                                                                    });  // ajax
-                        */
+                                      var original_rootJson_url = ___url_string + '/resources/styles/root.json'
 
 
+                                      // ajax not define, must import first, instead use fetch
+                                      /*
+                                                original_rootJson = await $.ajax({
+                                                                                                                        
+                                                                                                      type: 'GET',
+                                                                                                      dataType: 'jsonp',
+                                                                                                      data: {},
+                                                                                                      url: original_rootJson_url,
 
-                       original_rootJson = await asyncFetch(original_rootJson_url)
+                                                                                                      error: function (jqXHR, textStatus, errorThrown) {
+                                                                                                                        var _error_status = textStatus + ' : ' + errorThrown;         
+                                                                                                                        console.log('ajax error  + ', _error_status);
+                                                                                                                            
+                                                                                                        },
+
+                                                                                                      success: function (data) {
+                                                                                                                    // note: data is already json type, you just specify dataType: jsonp
+                                                                                                                    //  return data;
+                                                                                                      } // success
+                                                                                  });  // ajax
+                                      */
 
 
 
-
-                        console.log(' original_rootJson_url :  ', original_rootJson_url )
-                        console.log(' original_rootJson :  ', original_rootJson )
+                                    original_rootJson = await asyncFetch(original_rootJson_url)
 
 
 
-                        _sprite = ___url_string + "/resources/sprites/sprite"
-                        _glyphs = ___url_string + "/resources/fonts/{fontstack}/{range}.pbf"
-                        _tile_pbf = ___url_string + "/tile/{z}/{y}/{x}.pbf"
+
+                                      console.log(' original_rootJson_url :  ', original_rootJson_url )
+                                      console.log(' original_rootJson :  ', original_rootJson )
 
 
-                        root_json = {
 
-                                        "version" : 8,
-                                        "name": "test",
-
-                                        //"sprite" : original_rootJson.sprite,    // original is not a full URL, not work  "../sprites/sprite"     https://github.com/openlayers/openlayers/issues/6752 
-                                        // "sprite" : "https://tiles.arcgis.com/tiles/P3ePLMYs2RVChkJx/arcgis/rest/services/2020_USA_Median_Age/VectorTileServer/resources/sprites/sprite",
-                                        "sprite" : _sprite,
-
-                                        
-
-                                        // "glyphs" : original_rootJson.glyphs,      // original is not a full URL, not work  "../fonts/{fontstack}/{range}.pbf"     https://stackoverflow.com/questions/43671343/how-to-display-esri-vector-base-map-in-openlayers-3/65221100#65221100
-                                        // "glyphs" : "https://tiles.arcgis.com/tiles/P3ePLMYs2RVChkJx/arcgis/rest/services/2020_USA_Median_Age/VectorTileServer/resources/fonts/{fontstack}/{range}.pbf",
-                                        "glyphs" : _glyphs,
-
-                                      
-
-                                        // root json  specification :   https://docs.mapbox.com/mapbox-gl-js/style-spec/sources/
-                                        "sources" : {
-
-                                                                  "esri" : {
-                                                                              "type" : "vector",
-
-                                                                              //  By supplying TileJSON properties such as "tiles", "minzoom", and "maxzoom" directly in the source:
-                                                                              "tiles": [
-                                                                                            // "https://tiles.arcgis.com/tiles/P3ePLMYs2RVChkJx/arcgis/rest/services/2020_USA_Median_Age/VectorTileServer/tile/{z}/{y}/{x}.pbf"
-                                                                                              _tile_pbf
-                                                                                        ],
-
-                                                                              // "maxzoom": 14
-                                                                              // By providing a "url" to a TileJSON resource
-                                                                              // not work,yet
-                                                                              //  "url" : "https://tiles.arcgis.com/tiles/P3ePLMYs2RVChkJx/arcgis/rest/services/Esri_Childrens_Map/VectorTileServer/tile/{z}/{y}/{x}.pbf"
-                                                                              //  "url": "http://api.example.com/tilejson.json"
-
-                                                                          }
-                                                    },
-
-                                        "layers":  original_rootJson.layers     
+                                      _sprite = ___url_string + "/resources/sprites/sprite"
+                                      _glyphs = ___url_string + "/resources/fonts/{fontstack}/{range}.pbf"
+                                      _tile_pbf = ___url_string + "/tile/{z}/{y}/{x}.pbf"
 
 
-                        } // root_json
-                        console.log(' root_json :  ', root_json )
+                                      /*
+                                                          -----     -----    sources property could be default 'esri', could be 'custom-name' depends on, must handle accordingly.  -----  -----  -----
 
-            } // function
-            
-            
+                                                                                                            1) hosted/vector tile server  (on arcgis server)
+                                                                        
+                                                                                                              sources: {
+                                                                                                                          esri: {
+                                                                                                                                    bounds:[-116.322, 33.5837, -116.225, 33.743]
+                                                                                                                                    maxzoom: 23
+                                                                                                                                    minzoom: 0
+                                                                                                                                    scheme: "xyz"
+                                                                                                                                    type: "vector"
+                                                                                                                                    url: "../../"
 
-//  ##########    end     ##########    vector tile    ##########  
+
+
+
+                                                                                                            2) vector tile server (on arcgis online, for example : vectortileservices2.arcgis.com)                        
+
+                                                                                                              sources: {
+                                                                                                                          Bike_Trail_Park: {                            (it is not 'esri', must handle it differently)
+                                                                                                                                              bounds:[-116.322, 33.5837, -116.225, 33.743]
+                                                                                                                                              maxzoom: 23
+                                                                                                                                              minzoom: 0
+                                                                                                                                              scheme: "xyz"
+                                                                                                                                              type: "vector"
+                                                                                                                                              url: "../../"
+                                                                                              
+                                                                                          
+                                                                                          
+                                                    */
+                                                                                                                                              if (original_rootJson.sources){
+
+                                                                                                                                                for (var _itemObject_key in original_rootJson.sources) {
+                                                                                                                                                      //console.log(`${property}: ${object[property]}`);
+                                                                                                                                                      if ( original_rootJson.sources[_itemObject_key].url ) {
+                                                                                                                                                              // "url" exist, or "type" "bounds" exist
+                                                                                                                                                                original_rootJson_source_propertyKeyName = _itemObject_key
+                                                                                              
+                                                                                                                                                                console.log('original_rootJson_source_propertyKeyName', original_rootJson_source_propertyKeyName)
+                                                                                              
+                                                                                                                                                                break; // break for loop
+                                                                                                                                                      }
+                                                                                                                                                } // for
+                                                                                              
+                                                                                                                                              } // if
+                                                                                              
+                                                                                              
+                                                                                                                                      /*  ----- end  -----    sources property could be default 'esri', could be 'custom-name' depends on, must handle accordingly.    -----      */
+                                                                                              
+                                                                                              
+                                                                                              
+                                                                                              
+                                                                                              
+                                                                                                                                        root_json = {
+                                                                                              
+                                                                                                                                                        "version" : 8,
+                                                                                                                                                        "name": "test",
+                                                                                              
+                                                                                                                                                        //"sprite" : original_rootJson.sprite,    // original is not a full URL, not work  "../sprites/sprite"     https://github.com/openlayers/openlayers/issues/6752 
+                                                                                                                                                        // "sprite" : "https://tiles.arcgis.com/tiles/P3ePLMYs2RVChkJx/arcgis/rest/services/2020_USA_Median_Age/VectorTileServer/resources/sprites/sprite",
+                                                                                                                                                        "sprite" : _sprite,
+                                                                                              
+                                                                                                                                                        
+                                                                                              
+                                                                                                                                                        // "glyphs" : original_rootJson.glyphs,      // original is not a full URL, not work  "../fonts/{fontstack}/{range}.pbf"     https://stackoverflow.com/questions/43671343/how-to-display-esri-vector-base-map-in-openlayers-3/65221100#65221100
+                                                                                                                                                        // "glyphs" : "https://tiles.arcgis.com/tiles/P3ePLMYs2RVChkJx/arcgis/rest/services/2020_USA_Median_Age/VectorTileServer/resources/fonts/{fontstack}/{range}.pbf",
+                                                                                                                                                        "glyphs" : _glyphs,
+                                                                                              
+                                                                                                                                                      
+                                                                                              
+                                                                                                                                                        // root json  specification :   https://docs.mapbox.com/mapbox-gl-js/style-spec/sources/
+                                                                                                                                                        "sources" : {
+                                                                                              
+                                                                                                                                                                    /* 
+                                                                                                                                                                          property name could be different depends on
+                                                                                                                                                                                //  "esri" : {                          //  1) hosted/vector tile server  (on arcgis server)
+                                                                                                                                                                                //  "Bike_Trail_Park" : {               //  2) vector tile server (on arcgis online, for example : vectortileservices2.arcgis.com)  
+                                                                                                                                                                    */
+                                                                                                                                                                    [original_rootJson_source_propertyKeyName] : {    // use variable value as object key:    [variable]: xxx
+                                                                                              
+                                                                                                                                                                                              "type" : "vector",
+                                                                                              
+                                                                                                                                                                                              //  By supplying TileJSON properties such as "tiles", "minzoom", and "maxzoom" directly in the source:
+                                                                                                                                                                                              "tiles": [
+                                                                                                                                                                                                            // "https://tiles.arcgis.com/tiles/P3ePLMYs2RVChkJx/arcgis/rest/services/2020_USA_Median_Age/VectorTileServer/tile/{z}/{y}/{x}.pbf"
+                                                                                                                                                                                                              _tile_pbf
+                                                                                                                                                                                                        ],
+                                                                                              
+                                                                                                                                                                                              // "maxzoom": 14
+                                                                                                                                                                                              // By providing a "url" to a TileJSON resource
+                                                                                                                                                                                              // not work,yet
+                                                                                                                                                                                              //  "url" : "https://tiles.arcgis.com/tiles/P3ePLMYs2RVChkJx/arcgis/rest/services/Esri_Childrens_Map/VectorTileServer/tile/{z}/{y}/{x}.pbf"
+                                                                                                                                                                                              //  "url": "http://api.example.com/tilejson.json"
+                                                                                              
+                                                                                                                                                                                          }
+                                                                                                                                                                    },
+                                                                                              
+                                                                                                                                                        "layers":  original_rootJson.layers     
+                                                                                              
+                                                                                              
+                                                                                                                                        } // root_json
+                                                                                              
+                                                                                              
+                                                                                              
+                                                                                                                                        //before_layer_id = root_json.layers[0].id
+                                                                                              
+                                                                                                                                        console.log(' root_json :  ', root_json )
+
+
+
+
+
+                          } // function
+                          
+                          
+
+              //  ##########    end     ##########    vector tile    ##########  
 
 
 
@@ -1024,10 +1239,7 @@ import {Circle, Fill, Stroke, Style} from 'ol/style';
                                     function init_settingTab(){
 
 
-                                      if ( vectorTile_opacity_readonly) {
-                                        // readonly import from helper.js from url param overlayOpacity=4 
-                                        vectorTile_opacity =  vectorTile_opacity_readonly
-                                       }
+                                     
 
 
                                       // set init value on html
@@ -1065,10 +1277,12 @@ import {Circle, Fill, Stroke, Style} from 'ol/style';
 
 
 
+/**/
 
 
-                    
-            
+
+
+
 
               // special for esri vector tile 
               async function pan_to_real_location(){
@@ -1124,15 +1338,13 @@ import {Circle, Fill, Stroke, Style} from 'ol/style';
                       update_url_parameter('center_zoom', _center_zoom);
                     }   
                     
-                    mapbox_jumpto(_center_lat, _center_long, _center_zoom )
-
+                   
+                    map.getView().setCenter(olProj.transform([_center_long, _center_lat], 'EPSG:4326', 'EPSG:3857'));
                 } else {
                      console.log('original rootJson sources esri bounds is not available, so not be able to zoom 2 layer !!!!')
                 }  
                                       
               } // pan to real location
-
-
 
 
 
@@ -1144,33 +1356,37 @@ import {Circle, Fill, Stroke, Style} from 'ol/style';
 
 
 
+(async function() {
+ 
 
-             
-console.log(' ---  ---  ---  =====  document ready  --- ----- ')
-                    
+                          
+              console.log(' ---  ---  ---  =====  document ready  --- ----- ')
+                                  
 
-               
+                            
 
-                  init_global_var();
-                  init_settingTab()
+                                init_global_var();
+                                init_settingTab()
 
-                  init_json_viewer();
-                  init_user_interface_event();
-                  change_operation_mode('hover')
-                 
+                                init_json_viewer();
+                                init_user_interface_event();
+                                change_operation_mode('hover')
+                              
 
-                  // must use await to wait until ajax get root.json back
-                  build_root_json(___url_string);
+                                // must use await to wait until ajax get root.json back
+                                await build_root_json(___url_string);
 
-                  // legend -------- get   -------   root.json (style)    -------   
-                  get_vectorTileStyle(___url_string)
+                                // legend -------- get   -------   root.json (style)    -------   
+                                get_vectorTileStyle(___url_string)
 
-                  // special for vector tile
-                  pan_to_real_location()
+                              
+                                // special for vector tile
+                                pan_to_real_location()
 
-console.log(' ------ end  ------   document ready ----- ')
+              console.log(' ------ end  ------   document ready ----- ')
 
 
+})();
 
 
                           
@@ -1916,7 +2132,7 @@ console.log(' ------ end  ------   document ready ----- ')
                                 projection: map.getView().getProjection(),
                                 tracking: true
                               });
-                              geolocation.getPosition(); //this shows the coordinates (e.g.[591374.2306195896, 6746799.171545821])
+                             // geolocation.getPosition(); //this shows the coordinates (e.g.[591374.2306195896, 6746799.171545821])
                               var extent = olExtent.createEmpty();
                               geolocation.on('change:accuracyGeometry', function() {
                                     geolocation.getAccuracyGeometry().getExtent(extent);
@@ -2360,9 +2576,7 @@ console.log(' ------ end  ------   document ready ----- ')
 
 
 
-              
-
-             
+          
 
 
      //  });  // dom ready 
@@ -2374,6 +2588,10 @@ console.log(' ------ end  ------   document ready ----- ')
 
 
 
+
+
+                    
+            
 
 
 

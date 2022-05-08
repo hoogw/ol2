@@ -244,14 +244,13 @@ n+=" if ( "+L+" === undefined ",v&&(n+=" || ! Object.prototype.hasOwnProperty.ca
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.init_global_var = init_global_var;
 exports.update_url_parameter = update_url_parameter;
 exports.init_json_viewer = init_json_viewer;
 exports.empty_list_Tab = empty_list_Tab;
 exports.empty_info_outline_Tab = empty_info_outline_Tab;
 exports.show_listTab = show_listTab;
 exports.show_info_outline_Tab = show_info_outline_Tab;
-exports.editor_list = exports.editor_info_outline = exports.container_list = exports.container_info_outline = exports.___service = exports.___pathArray = exports.___urlParams = exports.___pathname = exports.___hostname = exports.___protocol = exports.base_url = exports.open_tab = exports.center = exports._center_zoom = exports._center_long = exports._center_lat = exports.___url = exports.___url_string = exports._cross = exports.urlParams = exports.current_pathArray = exports.current_pathname = exports.current_url = exports._layer = exports.vectorTile_opacity_readonly = void 0;
+exports.editor_list = exports.editor_info_outline = exports.container_list = exports.container_info_outline = void 0;
 
 require("jsoneditor/dist/jsoneditor.css");
 
@@ -375,129 +374,6 @@ function turn_off_setting_panel() {
 } // .............. end   ..............  setting panel  .............. 
 
 /**/
-// init_global_var
-
-
-var vectorTile_opacity_readonly;
-exports.vectorTile_opacity_readonly = vectorTile_opacity_readonly;
-
-var _layer, current_url, current_pathname, current_pathArray, urlParams, _cross, ___url_string, ___url, _center_lat, _center_long, _center_zoom, center, open_tab, base_url, ___protocol, ___hostname, ___pathname, ___urlParams, ___pathArray, ___service;
-
-exports.___service = ___service;
-exports.___pathArray = ___pathArray;
-exports.___urlParams = ___urlParams;
-exports.___pathname = ___pathname;
-exports.___hostname = ___hostname;
-exports.___protocol = ___protocol;
-exports.base_url = base_url;
-exports.open_tab = open_tab;
-exports.center = center;
-exports._center_zoom = _center_zoom;
-exports._center_long = _center_long;
-exports._center_lat = _center_lat;
-exports.___url = ___url;
-exports.___url_string = ___url_string;
-exports._cross = _cross;
-exports.urlParams = urlParams;
-exports.current_pathArray = current_pathArray;
-exports.current_pathname = current_pathname;
-exports.current_url = current_url;
-exports._layer = _layer;
-
-function init_global_var() {
-  //  .......... global var ..............
-  // https://developer.mozilla.org/en-US/docs/Web/API/Location
-  exports.current_url = current_url = window.location.protocol + "//" + window.location.host + window.location.pathname;
-  console.log('current_url ...... ', current_url);
-  exports.current_pathname = current_pathname = window.location.pathname; //    /json2tree/arcgisServerList.html
-
-  exports.current_pathArray = current_pathArray = current_pathname.split('/'); //    ["", "json2tree", "arcgisServerList.html"]
-  // ----- parse url param ?url=xxxxxxxxxx  --------
-
-  exports.urlParams = urlParams = new URLSearchParams(window.location.search); //.................. required parameter .................
-
-  exports._layer = _layer = urlParams.get('layer');
-
-  if (!_layer) {
-    exports._layer = _layer = 'default';
-  }
-
-  exports._cross = _cross = urlParams.get('cross'); // optional, without this will be  value 'default'
-
-  if (_cross) {} else {
-    exports._cross = _cross = 'default';
-  }
-
-  exports.___url_string = ___url_string = urlParams.get('url'); // required
-
-  exports._center_lat = _center_lat = urlParams.get('center_lat'); // required
-
-  exports._center_long = _center_long = urlParams.get('center_long'); // required
-
-  exports._center_zoom = _center_zoom = urlParams.get('center_zoom'); // required
-
-  if (_center_lat) {} else {
-    exports._center_lat = _center_lat = 34;
-  }
-
-  if (_center_long) {} else {
-    exports._center_long = _center_long = -118;
-  }
-
-  if (_center_zoom) {
-    exports._center_zoom = _center_zoom = Number(_center_zoom).toFixed(2);
-  } else {
-    exports._center_zoom = _center_zoom = 15;
-  } //.................. required parameter .................
-
-
-  exports.center = center = {
-    "_center_lat": _center_lat,
-    "_center_long": _center_long
-  };
-  console.log('___url_string ......  ', ___url_string);
-  var param_overlayOpacity = urlParams.get('overlayOpacity');
-  console.log('init overlay Opacity ---> ', param_overlayOpacity);
-
-  if (param_overlayOpacity) {
-    exports.vectorTile_opacity_readonly = vectorTile_opacity_readonly = parseInt(param_overlayOpacity) / 10;
-  } // basemap=satellite, streets,light,dark,outdoors,none
-
-
-  var param_basemapStyle = urlParams.get('basemap');
-  console.log('init base map Style ---> ', param_basemapStyle);
-
-  if (param_basemapStyle) {
-    current_basemapStyle = param_basemapStyle;
-  }
-
-  if (___url_string == undefined || ___url_string == null || ___url_string == '') {// nothing to do
-  } else {
-    exports.___url = ___url = new URL(___url_string); // ?url=https://sampleserver3.arcgisonline.com/ArcGIS/rest/services
-
-    exports.base_url = base_url = ___url_string;
-    exports.___protocol = ___protocol = ___url.protocol; //   https:
-
-    exports.___hostname = ___hostname = ___url.hostname; //    sampleserver3.arcgisonline.com
-
-    exports.___pathname = ___pathname = ___url.pathname; //    /ArcGIS/rest/services
-
-    exports.___urlParams = ___urlParams = new URLSearchParams(___url.search); //
-
-    exports.___pathArray = ___pathArray = ___pathname.split('/'); // https://maps.lacity.org/arcgis/rest/services/Mapping/NavigateLA/GPServer    
-    // ___pathArray = ["", "arcgis", "rest", "services", "Mapping", "NavigateLA", "MapServer"]
-    // ___service = https://maps.lacity.org/arcgis/rest/services
-
-    exports.___service = ___service = ___protocol + '//' + ___hostname + '/' + ___pathArray[1] + '/' + ___pathArray[2] + '/' + ___pathArray[3];
-    /*
-      console.log(___url);
-      console.log(___protocol);
-      console.log(___hostname);
-    */
-  } // if     
-  // ----- parse url param ?url=xxxxxxxxxx  --------
-
-}
 },{"jsoneditor/dist/jsoneditor.css":"../node_modules/jsoneditor/dist/jsoneditor.css","jsoneditor":"../node_modules/jsoneditor/dist/jsoneditor.min.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -526,7 +402,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53757" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58726" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

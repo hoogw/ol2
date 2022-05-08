@@ -77949,14 +77949,13 @@ n+=" if ( "+L+" === undefined ",v&&(n+=" || ! Object.prototype.hasOwnProperty.ca
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.init_global_var = init_global_var;
 exports.update_url_parameter = update_url_parameter;
 exports.init_json_viewer = init_json_viewer;
 exports.empty_list_Tab = empty_list_Tab;
 exports.empty_info_outline_Tab = empty_info_outline_Tab;
 exports.show_listTab = show_listTab;
 exports.show_info_outline_Tab = show_info_outline_Tab;
-exports.editor_list = exports.editor_info_outline = exports.container_list = exports.container_info_outline = exports.___service = exports.___pathArray = exports.___urlParams = exports.___pathname = exports.___hostname = exports.___protocol = exports.base_url = exports.open_tab = exports.center = exports._center_zoom = exports._center_long = exports._center_lat = exports.___url = exports.___url_string = exports._cross = exports.urlParams = exports.current_pathArray = exports.current_pathname = exports.current_url = exports._layer = exports.vectorTile_opacity_readonly = void 0;
+exports.editor_list = exports.editor_info_outline = exports.container_list = exports.container_info_outline = void 0;
 
 require("jsoneditor/dist/jsoneditor.css");
 
@@ -78080,129 +78079,6 @@ function turn_off_setting_panel() {
 } // .............. end   ..............  setting panel  .............. 
 
 /**/
-// init_global_var
-
-
-var vectorTile_opacity_readonly;
-exports.vectorTile_opacity_readonly = vectorTile_opacity_readonly;
-
-var _layer, current_url, current_pathname, current_pathArray, urlParams, _cross, ___url_string, ___url, _center_lat, _center_long, _center_zoom, center, open_tab, base_url, ___protocol, ___hostname, ___pathname, ___urlParams, ___pathArray, ___service;
-
-exports.___service = ___service;
-exports.___pathArray = ___pathArray;
-exports.___urlParams = ___urlParams;
-exports.___pathname = ___pathname;
-exports.___hostname = ___hostname;
-exports.___protocol = ___protocol;
-exports.base_url = base_url;
-exports.open_tab = open_tab;
-exports.center = center;
-exports._center_zoom = _center_zoom;
-exports._center_long = _center_long;
-exports._center_lat = _center_lat;
-exports.___url = ___url;
-exports.___url_string = ___url_string;
-exports._cross = _cross;
-exports.urlParams = urlParams;
-exports.current_pathArray = current_pathArray;
-exports.current_pathname = current_pathname;
-exports.current_url = current_url;
-exports._layer = _layer;
-
-function init_global_var() {
-  //  .......... global var ..............
-  // https://developer.mozilla.org/en-US/docs/Web/API/Location
-  exports.current_url = current_url = window.location.protocol + "//" + window.location.host + window.location.pathname;
-  console.log('current_url ...... ', current_url);
-  exports.current_pathname = current_pathname = window.location.pathname; //    /json2tree/arcgisServerList.html
-
-  exports.current_pathArray = current_pathArray = current_pathname.split('/'); //    ["", "json2tree", "arcgisServerList.html"]
-  // ----- parse url param ?url=xxxxxxxxxx  --------
-
-  exports.urlParams = urlParams = new URLSearchParams(window.location.search); //.................. required parameter .................
-
-  exports._layer = _layer = urlParams.get('layer');
-
-  if (!_layer) {
-    exports._layer = _layer = 'default';
-  }
-
-  exports._cross = _cross = urlParams.get('cross'); // optional, without this will be  value 'default'
-
-  if (_cross) {} else {
-    exports._cross = _cross = 'default';
-  }
-
-  exports.___url_string = ___url_string = urlParams.get('url'); // required
-
-  exports._center_lat = _center_lat = urlParams.get('center_lat'); // required
-
-  exports._center_long = _center_long = urlParams.get('center_long'); // required
-
-  exports._center_zoom = _center_zoom = urlParams.get('center_zoom'); // required
-
-  if (_center_lat) {} else {
-    exports._center_lat = _center_lat = 34;
-  }
-
-  if (_center_long) {} else {
-    exports._center_long = _center_long = -118;
-  }
-
-  if (_center_zoom) {
-    exports._center_zoom = _center_zoom = Number(_center_zoom).toFixed(2);
-  } else {
-    exports._center_zoom = _center_zoom = 15;
-  } //.................. required parameter .................
-
-
-  exports.center = center = {
-    "_center_lat": _center_lat,
-    "_center_long": _center_long
-  };
-  console.log('___url_string ......  ', ___url_string);
-  var param_overlayOpacity = urlParams.get('overlayOpacity');
-  console.log('init overlay Opacity ---> ', param_overlayOpacity);
-
-  if (param_overlayOpacity) {
-    exports.vectorTile_opacity_readonly = vectorTile_opacity_readonly = parseInt(param_overlayOpacity) / 10;
-  } // basemap=satellite, streets,light,dark,outdoors,none
-
-
-  var param_basemapStyle = urlParams.get('basemap');
-  console.log('init base map Style ---> ', param_basemapStyle);
-
-  if (param_basemapStyle) {
-    current_basemapStyle = param_basemapStyle;
-  }
-
-  if (___url_string == undefined || ___url_string == null || ___url_string == '') {// nothing to do
-  } else {
-    exports.___url = ___url = new URL(___url_string); // ?url=https://sampleserver3.arcgisonline.com/ArcGIS/rest/services
-
-    exports.base_url = base_url = ___url_string;
-    exports.___protocol = ___protocol = ___url.protocol; //   https:
-
-    exports.___hostname = ___hostname = ___url.hostname; //    sampleserver3.arcgisonline.com
-
-    exports.___pathname = ___pathname = ___url.pathname; //    /ArcGIS/rest/services
-
-    exports.___urlParams = ___urlParams = new URLSearchParams(___url.search); //
-
-    exports.___pathArray = ___pathArray = ___pathname.split('/'); // https://maps.lacity.org/arcgis/rest/services/Mapping/NavigateLA/GPServer    
-    // ___pathArray = ["", "arcgis", "rest", "services", "Mapping", "NavigateLA", "MapServer"]
-    // ___service = https://maps.lacity.org/arcgis/rest/services
-
-    exports.___service = ___service = ___protocol + '//' + ___hostname + '/' + ___pathArray[1] + '/' + ___pathArray[2] + '/' + ___pathArray[3];
-    /*
-      console.log(___url);
-      console.log(___protocol);
-      console.log(___hostname);
-    */
-  } // if     
-  // ----- parse url param ?url=xxxxxxxxxx  --------
-
-}
 },{"jsoneditor/dist/jsoneditor.css":"../node_modules/jsoneditor/dist/jsoneditor.css","jsoneditor":"../node_modules/jsoneditor/dist/jsoneditor.min.js"}],"../node_modules/ol/Geolocation.js":[function(require,module,exports) {
 "use strict";
 
@@ -78702,6 +78578,8 @@ var _Map = _interopRequireDefault(require("ol/Map"));
 
 var _control = require("ol/control");
 
+var olProj = _interopRequireWildcard(require("ol/proj"));
+
 var _OSM = _interopRequireDefault(require("ol/source/OSM"));
 
 var _BingMaps = _interopRequireDefault(require("ol/source/BingMaps"));
@@ -78723,8 +78601,6 @@ var _olLayerswitcher = _interopRequireWildcard(require("ol-layerswitcher"));
 require("ol-layerswitcher/dist/ol-layerswitcher.css");
 
 var olExtent = _interopRequireWildcard(require("ol/extent"));
-
-var _proj = require("ol/proj");
 
 var _VectorTile = _interopRequireDefault(require("ol/layer/VectorTile"));
 
@@ -78749,6 +78625,8 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
@@ -78779,6 +78657,104 @@ function createUrl(tpl, layerDesc) {
 // *****   end  *****    ol-mapbox-style   *****  
 //import '@mdi/font/css/materialdesignicons.min.css'
 // helper.js 
+
+// init_global_var
+var _layer, current_url, current_pathname, current_pathArray, urlParams, _cross, ___url_string, ___url, _center_lat, _center_long, _center_zoom, center, open_tab, base_url, ___protocol, ___hostname, ___pathname, ___urlParams, ___pathArray, ___service;
+
+function init_global_var() {
+  //  .......... global var ..............
+  // https://developer.mozilla.org/en-US/docs/Web/API/Location
+  current_url = window.location.protocol + "//" + window.location.host + window.location.pathname;
+  console.log('current_url ...... ', current_url);
+  current_pathname = window.location.pathname; //    /json2tree/arcgisServerList.html
+
+  current_pathArray = current_pathname.split('/'); //    ["", "json2tree", "arcgisServerList.html"]
+  // ----- parse url param ?url=xxxxxxxxxx  --------
+
+  urlParams = new URLSearchParams(window.location.search); //.................. required parameter .................
+
+  _layer = urlParams.get('layer');
+
+  if (!_layer) {
+    _layer = 'default';
+  }
+
+  _cross = urlParams.get('cross'); // optional, without this will be  value 'default'
+
+  if (_cross) {} else {
+    _cross = 'default';
+  }
+
+  ___url_string = urlParams.get('url'); // required
+
+  _center_lat = urlParams.get('center_lat'); // required
+
+  _center_long = urlParams.get('center_long'); // required
+
+  _center_zoom = urlParams.get('center_zoom'); // required
+
+  if (_center_lat) {} else {
+    _center_lat = 34;
+  }
+
+  if (_center_long) {} else {
+    _center_long = -118;
+  }
+
+  if (_center_zoom) {
+    _center_zoom = Number(_center_zoom).toFixed(2);
+  } else {
+    _center_zoom = 15;
+  } //.................. required parameter .................
+
+
+  center = {
+    "_center_lat": _center_lat,
+    "_center_long": _center_long
+  };
+  console.log('___url_string ......  ', ___url_string);
+  var param_overlayOpacity = urlParams.get('overlayOpacity');
+  console.log('init overlay Opacity ---> ', param_overlayOpacity);
+
+  if (param_overlayOpacity) {
+    vectorTile_opacity = parseInt(param_overlayOpacity) / 10;
+  } // basemap=satellite, streets,light,dark,outdoors,none
+
+
+  var param_basemapStyle = urlParams.get('basemap');
+  console.log('init base map Style ---> ', param_basemapStyle);
+
+  if (param_basemapStyle) {
+    current_basemapStyle = param_basemapStyle;
+  }
+
+  if (___url_string == undefined || ___url_string == null || ___url_string == '') {// nothing to do
+  } else {
+    ___url = new URL(___url_string); // ?url=https://sampleserver3.arcgisonline.com/ArcGIS/rest/services
+
+    base_url = ___url_string;
+    ___protocol = ___url.protocol; //   https:
+
+    ___hostname = ___url.hostname; //    sampleserver3.arcgisonline.com
+
+    ___pathname = ___url.pathname; //    /ArcGIS/rest/services
+
+    ___urlParams = new URLSearchParams(___url.search); //
+
+    ___pathArray = ___pathname.split('/'); // https://maps.lacity.org/arcgis/rest/services/Mapping/NavigateLA/GPServer    
+    // ___pathArray = ["", "arcgis", "rest", "services", "Mapping", "NavigateLA", "MapServer"]
+    // ___service = https://maps.lacity.org/arcgis/rest/services
+
+    ___service = ___protocol + '//' + ___hostname + '/' + ___pathArray[1] + '/' + ___pathArray[2] + '/' + ___pathArray[3];
+    /*
+      console.log(___url);
+      console.log(___protocol);
+      console.log(___hostname);
+    */
+  } // if     
+  // ----- parse url param ?url=xxxxxxxxxx  --------
+
+}
 
 var operation_mode = 'hover'; // empty, none    or hover  or  click.  
 // hover, means mouse hover polygon, will automatically open up info_outline panel show attribute info.  
@@ -78855,36 +78831,37 @@ var _glyphs;
 var _tile_pbf;
 
 var original_rootJson;
+var original_rootJson_source_propertyKeyName;
 
 function asyncFetch(_x) {
   return _asyncFetch.apply(this, arguments);
 }
 
 function _asyncFetch() {
-  _asyncFetch = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(_url___) {
+  _asyncFetch = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(_url___) {
     var response, responseJson;
-    return regeneratorRuntime.wrap(function _callee$(_context) {
+    return regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
-        switch (_context.prev = _context.next) {
+        switch (_context2.prev = _context2.next) {
           case 0:
-            _context.next = 2;
+            _context2.next = 2;
             return fetch(_url___);
 
           case 2:
-            response = _context.sent;
-            _context.next = 5;
+            response = _context2.sent;
+            _context2.next = 5;
             return response.json();
 
           case 5:
-            responseJson = _context.sent;
-            return _context.abrupt("return", responseJson);
+            responseJson = _context2.sent;
+            return _context2.abrupt("return", responseJson);
 
           case 7:
           case "end":
-            return _context.stop();
+            return _context2.stop();
         }
       }
-    }, _callee);
+    }, _callee2);
   }));
   return _asyncFetch.apply(this, arguments);
 }
@@ -78901,11 +78878,12 @@ function build_root_json(_x2) {
 
 
 function _build_root_json() {
-  _build_root_json = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(___url_string) {
-    var original_rootJson_url;
-    return regeneratorRuntime.wrap(function _callee2$(_context2) {
+  _build_root_json = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(___url_string) {
+    var original_rootJson_url, _itemObject_key;
+
+    return regeneratorRuntime.wrap(function _callee3$(_context3) {
       while (1) {
-        switch (_context2.prev = _context2.next) {
+        switch (_context3.prev = _context3.next) {
           case 0:
             original_rootJson_url = ___url_string + '/resources/styles/root.json'; // ajax not define, must import first, instead use fetch
 
@@ -78928,16 +78906,75 @@ function _build_root_json() {
                                                         });  // ajax
             */
 
-            _context2.next = 3;
+            _context3.next = 3;
             return asyncFetch(original_rootJson_url);
 
           case 3:
-            original_rootJson = _context2.sent;
+            original_rootJson = _context3.sent;
             console.log(' original_rootJson_url :  ', original_rootJson_url);
             console.log(' original_rootJson :  ', original_rootJson);
             _sprite = ___url_string + "/resources/sprites/sprite";
             _glyphs = ___url_string + "/resources/fonts/{fontstack}/{range}.pbf";
             _tile_pbf = ___url_string + "/tile/{z}/{y}/{x}.pbf";
+            /*
+                                -----     -----    sources property could be default 'esri', could be 'custom-name' depends on, must handle accordingly.  -----  -----  -----
+                                                                                   1) hosted/vector tile server  (on arcgis server)
+                                              
+                                                                                    sources: {
+                                                                                                esri: {
+                                                                                                          bounds:[-116.322, 33.5837, -116.225, 33.743]
+                                                                                                          maxzoom: 23
+                                                                                                          minzoom: 0
+                                                                                                          scheme: "xyz"
+                                                                                                          type: "vector"
+                                                                                                          url: "../../"
+                                                                                      2) vector tile server (on arcgis online, for example : vectortileservices2.arcgis.com)                        
+                                                                                     sources: {
+                                                                                                Bike_Trail_Park: {                            (it is not 'esri', must handle it differently)
+                                                                                                                    bounds:[-116.322, 33.5837, -116.225, 33.743]
+                                                                                                                    maxzoom: 23
+                                                                                                                    minzoom: 0
+                                                                                                                    scheme: "xyz"
+                                                                                                                    type: "vector"
+                                                                                                                    url: "../../"
+                                                                    
+                                                                
+                                                                
+                          */
+
+            if (!original_rootJson.sources) {
+              _context3.next = 19;
+              break;
+            }
+
+            _context3.t0 = regeneratorRuntime.keys(original_rootJson.sources);
+
+          case 11:
+            if ((_context3.t1 = _context3.t0()).done) {
+              _context3.next = 19;
+              break;
+            }
+
+            _itemObject_key = _context3.t1.value;
+
+            if (!original_rootJson.sources[_itemObject_key].url) {
+              _context3.next = 17;
+              break;
+            }
+
+            // "url" exist, or "type" "bounds" exist
+            original_rootJson_source_propertyKeyName = _itemObject_key;
+            console.log('original_rootJson_source_propertyKeyName', original_rootJson_source_propertyKeyName);
+            return _context3.abrupt("break", 19);
+
+          case 17:
+            _context3.next = 11;
+            break;
+
+          case 19:
+            // if
+
+            /*  ----- end  -----    sources property could be default 'esri', could be 'custom-name' depends on, must handle accordingly.    -----      */
             root_json = {
               "version": 8,
               "name": "test",
@@ -78948,30 +78985,30 @@ function _build_root_json() {
               // "glyphs" : "https://tiles.arcgis.com/tiles/P3ePLMYs2RVChkJx/arcgis/rest/services/2020_USA_Median_Age/VectorTileServer/resources/fonts/{fontstack}/{range}.pbf",
               "glyphs": _glyphs,
               // root json  specification :   https://docs.mapbox.com/mapbox-gl-js/style-spec/sources/
-              "sources": {
-                "esri": {
-                  "type": "vector",
-                  //  By supplying TileJSON properties such as "tiles", "minzoom", and "maxzoom" directly in the source:
-                  "tiles": [// "https://tiles.arcgis.com/tiles/P3ePLMYs2RVChkJx/arcgis/rest/services/2020_USA_Median_Age/VectorTileServer/tile/{z}/{y}/{x}.pbf"
-                  _tile_pbf] // "maxzoom": 14
-                  // By providing a "url" to a TileJSON resource
-                  // not work,yet
-                  //  "url" : "https://tiles.arcgis.com/tiles/P3ePLMYs2RVChkJx/arcgis/rest/services/Esri_Childrens_Map/VectorTileServer/tile/{z}/{y}/{x}.pbf"
-                  //  "url": "http://api.example.com/tilejson.json"
+              "sources": _defineProperty({}, original_rootJson_source_propertyKeyName, {
+                // use variable value as object key:    [variable]: xxx
+                "type": "vector",
+                //  By supplying TileJSON properties such as "tiles", "minzoom", and "maxzoom" directly in the source:
+                "tiles": [// "https://tiles.arcgis.com/tiles/P3ePLMYs2RVChkJx/arcgis/rest/services/2020_USA_Median_Age/VectorTileServer/tile/{z}/{y}/{x}.pbf"
+                _tile_pbf] // "maxzoom": 14
+                // By providing a "url" to a TileJSON resource
+                // not work,yet
+                //  "url" : "https://tiles.arcgis.com/tiles/P3ePLMYs2RVChkJx/arcgis/rest/services/Esri_Childrens_Map/VectorTileServer/tile/{z}/{y}/{x}.pbf"
+                //  "url": "http://api.example.com/tilejson.json"
 
-                }
-              },
+              }),
               "layers": original_rootJson.layers
             }; // root_json
+            //before_layer_id = root_json.layers[0].id
 
             console.log(' root_json :  ', root_json);
 
-          case 11:
+          case 21:
           case "end":
-            return _context2.stop();
+            return _context3.stop();
         }
       }
-    }, _callee2);
+    }, _callee3);
   }));
   return _build_root_json.apply(this, arguments);
 }
@@ -79012,7 +79049,7 @@ function vectorStyle_toLegent(vectorStyleJson, spriteJson, spritePNG, spriteJson
 
   if (vectorStyleJson.layers) {
     _legend_html = '<fieldset>';
-    _legend_html += '<legend>' + _helper._layer + '</legend>';
+    _legend_html += '<legend>' + _layer + '</legend>';
     _layersStyle = vectorStyleJson.layers;
     _uniqueLayers = getUniqueLayers(_layersStyle);
     console.log('_uniqueLayers', _uniqueLayers);
@@ -79176,12 +79213,12 @@ function get_vectorTileStyle(_x3) {
 
 
 function _get_vectorTileStyle() {
-  _get_vectorTileStyle = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(_vectorTileServer_url) {
+  _get_vectorTileStyle = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(_vectorTileServer_url) {
     var _vectorStyle_url, _vectorStyle_resourceInfo_url, _sprite_json_url, _sprite_json2x_url, _sprite_png_url, _sprite_png2x_url, _vectorStyle_json, _sprite_json;
 
-    return regeneratorRuntime.wrap(function _callee3$(_context3) {
+    return regeneratorRuntime.wrap(function _callee4$(_context4) {
       while (1) {
-        switch (_context3.prev = _context3.next) {
+        switch (_context4.prev = _context4.next) {
           case 0:
             // https://developers.arcgis.com/rest/services-reference/vector-tile-style.htm
             // var _vectorStyle_url = _vectorTileServer_url + '/resources/styles'
@@ -79222,26 +79259,26 @@ function _get_vectorTileStyle() {
               });  // ajax
              */
 
-            _context3.next = 14;
+            _context4.next = 14;
             return asyncFetch(_vectorStyle_url);
 
           case 14:
-            _vectorStyle_json = _context3.sent;
-            _context3.next = 17;
+            _vectorStyle_json = _context4.sent;
+            _context4.next = 17;
             return asyncFetch(_sprite_json_url);
 
           case 17:
-            _sprite_json = _context3.sent;
+            _sprite_json = _context4.sent;
             console.log('vector style json', _vectorStyle_json);
             console.log('sprite json', _sprite_json);
             vectorStyle_toLegent(_vectorStyle_json, _sprite_json, _sprite_png_url, _sprite_json2x_url, _sprite_png2x_url);
 
           case 21:
           case "end":
-            return _context3.stop();
+            return _context4.stop();
         }
       }
-    }, _callee3);
+    }, _callee4);
   }));
   return _get_vectorTileStyle.apply(this, arguments);
 }
@@ -79265,12 +79302,7 @@ function set_opacity(_opacity__) {
 }
 
 function init_settingTab() {
-  if (_helper.vectorTile_opacity_readonly) {
-    // readonly import from helper.js from url param overlayOpacity=4 
-    vectorTile_opacity = _helper.vectorTile_opacity_readonly;
-  } // set init value on html
-
-
+  // set init value on html
   $('#overlay_opacity_label').text(parseInt(vectorTile_opacity * 10));
   $('#overlay_opacity_range').val(parseInt(vectorTile_opacity * 10));
   $('#overlay_opacity_range').change(function () {
@@ -79283,6 +79315,8 @@ function init_settingTab() {
     set_opacity(vectorTile_opacity);
   });
 } // --------------  end    --------------  layer opacity  --------------------
+
+/**/
 // special for esri vector tile 
 
 
@@ -79294,12 +79328,12 @@ function pan_to_real_location() {
 
 
 function _pan_to_real_location() {
-  _pan_to_real_location = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
+  _pan_to_real_location = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
     var _bounds_array, _southWest_long, _southWest_lat, _northEast_long, _northEast_lat;
 
-    return regeneratorRuntime.wrap(function _callee4$(_context4) {
+    return regeneratorRuntime.wrap(function _callee5$(_context5) {
       while (1) {
-        switch (_context4.prev = _context4.next) {
+        switch (_context5.prev = _context5.next) {
           case 0:
             /*
                                         -----     -----    sources property could be default 'esri', could be 'custom-name' depends on, must handle accordingly.  -----  -----  -----
@@ -79332,51 +79366,61 @@ function _pan_to_real_location() {
               _southWest_lat = _bounds_array.bounds[1];
               _northEast_long = _bounds_array.bounds[2];
               _northEast_lat = _bounds_array.bounds[3];
-              _helper._center_lat = ((_northEast_lat + _southWest_lat) / 2, function () {
-                throw new Error('"' + "_center_lat" + '" is read-only.');
-              }());
-              _helper._center_long = ((_southWest_long + _northEast_long) / 2, function () {
-                throw new Error('"' + "_center_long" + '" is read-only.');
-              }());
-              console.log(' pan to real location ---->>>>> ', _helper._center_lat, _helper._center_long, _helper._center_zoom);
-              (0, _helper.update_url_parameter)('center_lat', _helper._center_lat);
-              (0, _helper.update_url_parameter)('center_long', _helper._center_long);
+              _center_lat = (_northEast_lat + _southWest_lat) / 2;
+              _center_long = (_southWest_long + _northEast_long) / 2;
+              console.log(' pan to real location ---->>>>> ', _center_lat, _center_long, _center_zoom);
+              (0, _helper.update_url_parameter)('center_lat', _center_lat);
+              (0, _helper.update_url_parameter)('center_long', _center_long);
 
-              if (_helper._center_zoom == null) {
-                _helper._center_zoom = (default_center_zoom, function () {
-                  throw new Error('"' + "_center_zoom" + '" is read-only.');
-                }());
-                (0, _helper.update_url_parameter)('center_zoom', _helper._center_zoom);
+              if (_center_zoom == null) {
+                _center_zoom = default_center_zoom;
+                (0, _helper.update_url_parameter)('center_zoom', _center_zoom);
               }
 
-              mapbox_jumpto(_helper._center_lat, _helper._center_long, _helper._center_zoom);
+              map.getView().setCenter(olProj.transform([_center_long, _center_lat], 'EPSG:4326', 'EPSG:3857'));
             } else {
               console.log('original rootJson sources esri bounds is not available, so not be able to zoom 2 layer !!!!');
             }
 
           case 1:
           case "end":
-            return _context4.stop();
+            return _context5.stop();
         }
       }
-    }, _callee4);
+    }, _callee5);
   }));
   return _pan_to_real_location.apply(this, arguments);
 }
 
-console.log(' ---  ---  ---  =====  document ready  --- ----- ');
-(0, _helper.init_global_var)();
-init_settingTab();
-(0, _helper.init_json_viewer)();
-init_user_interface_event();
-change_operation_mode('hover'); // must use await to wait until ajax get root.json back
+_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+  return regeneratorRuntime.wrap(function _callee$(_context) {
+    while (1) {
+      switch (_context.prev = _context.next) {
+        case 0:
+          console.log(' ---  ---  ---  =====  document ready  --- ----- ');
+          init_global_var();
+          init_settingTab();
+          (0, _helper.init_json_viewer)();
+          init_user_interface_event();
+          change_operation_mode('hover'); // must use await to wait until ajax get root.json back
 
-build_root_json(_helper.___url_string); // legend -------- get   -------   root.json (style)    -------   
+          _context.next = 8;
+          return build_root_json(___url_string);
 
-get_vectorTileStyle(_helper.___url_string); // special for vector tile
+        case 8:
+          // legend -------- get   -------   root.json (style)    -------   
+          get_vectorTileStyle(___url_string); // special for vector tile
 
-pan_to_real_location();
-console.log(' ------ end  ------   document ready ----- ');
+          pan_to_real_location();
+          console.log(' ------ end  ------   document ready ----- ');
+
+        case 11:
+        case "end":
+          return _context.stop();
+      }
+    }
+  }, _callee);
+}))();
 /*  for highlight feature polygon only */
 
 /**/
@@ -79384,6 +79428,7 @@ console.log(' ------ end  ------   document ready ----- ');
 
 /**/
 // lookup for selection objects
+
 
 var selection = {}; // ---- default style  ----  must keep  ---- use -----
 
@@ -79469,7 +79514,7 @@ var selected_style; // selected_style =   styles[GeometryType.MULTI_LINE_STRING]
 selected_style = styles;
 console.log(" - - - selected - - - style - - - ", selected_style); //  *** end *** *** selected style  *** *** ***    
 
-var _pbf_url = _helper.___url_string + '/tile/{z}/{y}/{x}.pbf'; // default style
+var _pbf_url = ___url_string + '/tile/{z}/{y}/{x}.pbf'; // default style
 
 
 var vtLayer = new _VectorTile.default({
@@ -79515,8 +79560,8 @@ var selectionLayer = new _VectorTile.default({
 /**/
 // How do I change the projection  https://openlayers.org/en/latest/doc/faq.html
 
-var initLonLat = [_helper._center_long, _helper._center_lat];
-var initLonLatWebMercator = (0, _proj.fromLonLat)(initLonLat); // openlayer toggle layers  
+var initLonLat = [_center_long, _center_lat];
+var initLonLatWebMercator = (0, olProj.fromLonLat)(initLonLat); // openlayer toggle layers  
 // https://medium.com/gis-tips/openlayers-3-adding-a-layer-switcher-9b63ae9e5253
 //  https://github.com/walkermatt/ol-layerswitcher     
 
@@ -79796,7 +79841,7 @@ var map = new _Map.default({
   view: new _View.default({
     //How do I change the projection  https://openlayers.org/en/latest/doc/faq.html
     center: initLonLatWebMercator,
-    zoom: _helper._center_zoom
+    zoom: _center_zoom
   })
 }); // ---- base map switcher ------
 // https://github.com/walkermatt/ol-layerswitcher#options
@@ -79828,8 +79873,7 @@ https://stackoverflow.com/questions/65923306/openlayers-add-control-zoom-pan-to-
 var geolocation = new _Geolocation.default({
   projection: map.getView().getProjection(),
   tracking: true
-});
-geolocation.getPosition(); //this shows the coordinates (e.g.[591374.2306195896, 6746799.171545821])
+}); // geolocation.getPosition(); //this shows the coordinates (e.g.[591374.2306195896, 6746799.171545821])
 
 var extent = olExtent.createEmpty();
 geolocation.on('change:accuracyGeometry', function () {
@@ -79860,7 +79904,7 @@ map.addControl(zoom2layerControl);
 var element4 = document.createElement('div');
 element4.id = 'zoom_level_id'; //element4.value = _center_zoom
 
-element4.innerHTML = '<big>' + _helper._center_zoom + '</big>';
+element4.innerHTML = '<big>' + _center_zoom + '</big>';
 element4.className = 'zoomLevel';
 var zoomlevelControl = new _control.Control({
   element: element4
@@ -79888,10 +79932,10 @@ map.addControl(opacityControl);
  */
 //   ====================  add ol-mapbox-gl    ====================  
 
-var _rootJson_url = _helper.___url_string + '/resources/styles/root.json';
+var _rootJson_url = ___url_string + '/resources/styles/root.json';
 
 console.log(' _rootJson_url ', _rootJson_url);
-console.log('___url_strin ', _helper.___url_string);
+console.log('___url_strin ', ___url_string);
 /*   
                               olms( map,    "https://tiles.arcgis.com/tiles/P3ePLMYs2RVChkJx/arcgis/rest/services/2020_USA_Median_Age/VectorTileServer/resources/styles/root.json"  );
                                   Like olms, but returns an ol/Map instance instead of a Promise
@@ -79938,7 +79982,7 @@ var promise = (0, _olMapboxStyle.default)(map, _rootJson_url, {
           should correct to : https://tiles.arcgis.com/tiles/P3ePLMYs2RVChkJx/arcgis/rest/services/Esri_Childrens_Map/VectorTileServer/tile/4/7/5.pbf
       */
       var index_of_tile = url.indexOf('/tile/');
-      tilepathfixed_urlstring = _helper.___url_string + url.substring(index_of_tile); //console.log(' pbf --> ', tilepathfixed_urlstring)
+      tilepathfixed_urlstring = ___url_string + url.substring(index_of_tile); //console.log(' pbf --> ', tilepathfixed_urlstring)
 
       modifiedUrl_obj = new URL(tilepathfixed_urlstring);
     } else {
@@ -79997,8 +80041,8 @@ function onMoveEnd(evt) {
   //https://openlayers.org/en/latest/examples/moveend.html
   var map = evt.map;
   var extent = map.getView().calculateExtent(map.getSize());
-  var bottomLeft = (0, _proj.toLonLat)((0, olExtent.getBottomLeft)(extent));
-  var topRight = (0, _proj.toLonLat)((0, olExtent.getTopRight)(extent)); // display('left', wrapLon(bottomLeft[0]));
+  var bottomLeft = (0, olProj.toLonLat)((0, olExtent.getBottomLeft)(extent));
+  var topRight = (0, olProj.toLonLat)((0, olExtent.getTopRight)(extent)); // display('left', wrapLon(bottomLeft[0]));
   // display('bottom', bottomLeft[1]);
   // display('right', wrapLon(topRight[0]));
   // display('top', topRight[1]);
@@ -80145,7 +80189,7 @@ function showInfo(event) {
 
 } // function showInfo
 //  });  // dom ready
-},{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js","ol/ol.css":"../node_modules/ol/ol.css","ol/format/MVT":"../node_modules/ol/format/MVT.js","ol/Map":"../node_modules/ol/Map.js","ol/control":"../node_modules/ol/control.js","ol/source/OSM":"../node_modules/ol/source/OSM.js","ol/source/BingMaps":"../node_modules/ol/source/BingMaps.js","ol/source/XYZ":"../node_modules/ol/source/XYZ.js","ol/source/ImageArcGISRest":"../node_modules/ol/source/ImageArcGISRest.js","ol/source/Stamen":"../node_modules/ol/source/Stamen.js","ol/layer/Tile":"../node_modules/ol/layer/Tile.js","ol/layer/Group":"../node_modules/ol/layer/Group.js","ol/layer/Image":"../node_modules/ol/layer/Image.js","ol-layerswitcher":"../node_modules/ol-layerswitcher/dist/ol-layerswitcher.js","ol-layerswitcher/dist/ol-layerswitcher.css":"../node_modules/ol-layerswitcher/dist/ol-layerswitcher.css","ol/extent":"../node_modules/ol/extent.js","ol/proj":"../node_modules/ol/proj.js","ol/layer/VectorTile":"../node_modules/ol/layer/VectorTile.js","ol/source/VectorTile":"../node_modules/ol/source/VectorTile.js","ol/View":"../node_modules/ol/View.js","ol/geom/GeometryType":"../node_modules/ol/geom/GeometryType.js","ol/style":"../node_modules/ol/style.js","ol-mapbox-style":"../node_modules/ol-mapbox-style/dist/index.js","./helper.js":"../js/arcgis/arcgisvector/helper.js","ol/Geolocation":"../node_modules/ol/Geolocation.js","ol/control/ZoomToExtent":"../node_modules/ol/control/ZoomToExtent.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js","ol/ol.css":"../node_modules/ol/ol.css","ol/format/MVT":"../node_modules/ol/format/MVT.js","ol/Map":"../node_modules/ol/Map.js","ol/control":"../node_modules/ol/control.js","ol/proj":"../node_modules/ol/proj.js","ol/source/OSM":"../node_modules/ol/source/OSM.js","ol/source/BingMaps":"../node_modules/ol/source/BingMaps.js","ol/source/XYZ":"../node_modules/ol/source/XYZ.js","ol/source/ImageArcGISRest":"../node_modules/ol/source/ImageArcGISRest.js","ol/source/Stamen":"../node_modules/ol/source/Stamen.js","ol/layer/Tile":"../node_modules/ol/layer/Tile.js","ol/layer/Group":"../node_modules/ol/layer/Group.js","ol/layer/Image":"../node_modules/ol/layer/Image.js","ol-layerswitcher":"../node_modules/ol-layerswitcher/dist/ol-layerswitcher.js","ol-layerswitcher/dist/ol-layerswitcher.css":"../node_modules/ol-layerswitcher/dist/ol-layerswitcher.css","ol/extent":"../node_modules/ol/extent.js","ol/layer/VectorTile":"../node_modules/ol/layer/VectorTile.js","ol/source/VectorTile":"../node_modules/ol/source/VectorTile.js","ol/View":"../node_modules/ol/View.js","ol/geom/GeometryType":"../node_modules/ol/geom/GeometryType.js","ol/style":"../node_modules/ol/style.js","ol-mapbox-style":"../node_modules/ol-mapbox-style/dist/index.js","./helper.js":"../js/arcgis/arcgisvector/helper.js","ol/Geolocation":"../node_modules/ol/Geolocation.js","ol/control/ZoomToExtent":"../node_modules/ol/control/ZoomToExtent.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -80173,7 +80217,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53757" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58726" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
