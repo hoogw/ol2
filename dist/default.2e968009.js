@@ -79030,9 +79030,12 @@ var selectionLayer = new _VectorTile.default({
     var F_id_ = feature.getId();
     var geometry_type_ = feature.type_; // only for testing, will slow down browser
     //console.log(' ====  ---====  ---==== selection  ====---  ====---  ==== ',feature, F_id_,  ol_uid, geometry_type_,  selection )
-    // not use,  because "id_" is always undefined
+
+    /* not use,  because "id_" is always undefined
     //if (feature.getId() in selection) {
     // in use,  ol_uid  
+    */
+    // without "if ()" will highlight all feature, with 'if' only highlight selected feature. 
 
     if (ol_uid in selection) {
       // only for testing, will slow down browser
