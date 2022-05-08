@@ -1,5 +1,16 @@
 
-/*  for     searchable only   -->     googlemap    googlemap111   socrata/googlemap                  */
+/*  
+
+
+        for     -----------  open layer only    ------------
+
+                map control is different
+
+
+*/
+
+
+
 
 
 html, body{
@@ -66,10 +77,10 @@ html, body{
     overflow-x: auto;
     overflow-y: auto;
    
-    padding-top: 10px;
-    padding-left: 10px;
-    padding-bottom: 10px;
-    padding-right: 10px;
+    padding-top: 00px;
+    padding-left: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
   }
   
 
@@ -1519,10 +1530,10 @@ html, body{
 
 
 
-            /* ................ google geolocation api  ................    ................ */
+            /* ................ openlayer control only  ................    ................ */
 
 
-            .panToCurrent_geolocation_button {
+            .zoom2you {
               background-color: rgba(255, 255, 255, .1);    
               
               border: 0;
@@ -1533,19 +1544,25 @@ html, body{
               font: 400 18px Roboto, Arial, sans-serif;
               font-weight: bolder;
               overflow: visible;
-              height: 40px;
+              height: 30px;
               cursor: pointer;
+
+              color: rgba(0, 0, 0, .5);
+              width: 90px;
+              margin-left: 50px;  
+
+              
             }
 
-            .panToCurrent_geolocation_button:hover {
-              background: #ebebeb;
+            .zoom2you:hover {
+              background: rgba(0, 0, 0, 0.5); 
             }
 
 
 
 
 
-            .zoomToLayer_button {
+            .zoom2layer {
 
 
 
@@ -1578,12 +1595,20 @@ html, body{
               font: 400 18px Roboto, Arial, sans-serif;
               font-weight: bolder;
               overflow: visible;
-              height: 40px;
+              height: 30px;
               cursor: pointer;
+
+              color: rgba(255, 255, 255, .9);
+              width: 120px;
+              margin-left: 170px;  
+
+              /* openlayers only , let label and input in the same line    https://stackoverflow.com/questions/23530064/how-to-make-label-and-input-appear-on-the-same-line-on-an-html-form     */
+              display:flex; flex-direction: row; justify-content: center; align-items: center;
+              
             }
 
-            .zoomToLayer_button:hover {
-              background: #ebebeb;
+            .zoom2layer:hover {
+              background: rgba(0, 0, 0, 0.5);
             }
 
 
@@ -1602,13 +1627,20 @@ html, body{
               font-weight: bolder;
               color: rgba(255, 255, 255, .8);
               overflow: visible;
-              height: 40px;
+              height: 50px;
               cursor: pointer;
+
+              color: rgba(255, 255, 255, .9);
+              width: 100px;
+              margin-left: 50px; 
+
+              /* openlayers only , let label and input in the same line    https://stackoverflow.com/questions/23530064/how-to-make-label-and-input-appear-on-the-same-line-on-an-html-form     */
+              display:flex; flex-direction: row; justify-content: center; align-items: center;
             }
 
 
             .zoomLevel:hover {
-              background: rgba(0, 0, 0, .2); 
+              background: rgba(0, 0, 0, 0.5);
             }
 
 
@@ -1626,8 +1658,13 @@ html, body{
               height: 40px;
              
               cursor: pointer;
-             
-             
+
+              color: rgba(255, 255, 255, .9);
+              width: 210px;
+              margin-left: 50px; 
+              
+              /* openlayers only , let label and input in the same line    https://stackoverflow.com/questions/23530064/how-to-make-label-and-input-appear-on-the-same-line-on-an-html-form     */
+              display:flex; flex-direction: row; justify-content: center; align-items: center;
             }
 
 
@@ -1635,7 +1672,7 @@ html, body{
 
 
             .opacityDIV:hover {
-              background: rgba(255, 255, 255, .2); 
+              background: rgba(0, 0, 0, .2); 
             }
 
 
@@ -1684,7 +1721,7 @@ html, body{
 
 
 
-/* ................ google geolocation api  ................    ................ */
+/* ................ openlayer control only  ................    ................ */
 
 
 

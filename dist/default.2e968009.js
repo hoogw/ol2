@@ -77889,13 +77889,7 @@ var __webpack_exports__setFeatureState = __webpack_exports__.LN;
 exports.setFeatureState = __webpack_exports__setFeatureState;
 var __webpack_exports__stylefunction = __webpack_exports__.uX;
 exports.stylefunction = __webpack_exports__stylefunction;
-},{"ol/style/Circle.js":"../node_modules/ol/style/Circle.js","ol/style/Fill.js":"../node_modules/ol/style/Fill.js","ol/style/Icon.js":"../node_modules/ol/style/Icon.js","ol/render/Feature.js":"../node_modules/ol/render/Feature.js","ol/style/Stroke.js":"../node_modules/ol/style/Stroke.js","ol/style/Style.js":"../node_modules/ol/style/Style.js","ol/style/Text.js":"../node_modules/ol/style/Text.js","ol/obj.js":"../node_modules/ol/obj.js","ol/format/GeoJSON.js":"../node_modules/ol/format/GeoJSON.js","ol/format/MVT.js":"../node_modules/ol/format/MVT.js","ol/Map.js":"../node_modules/ol/Map.js","ol/tilegrid/TileGrid.js":"../node_modules/ol/tilegrid/TileGrid.js","ol/source/TileJSON.js":"../node_modules/ol/source/TileJSON.js","ol/layer/Tile.js":"../node_modules/ol/layer/Tile.js","ol/layer/Vector.js":"../node_modules/ol/layer/Vector.js","ol/source/Vector.js":"../node_modules/ol/source/Vector.js","ol/layer/VectorTile.js":"../node_modules/ol/layer/VectorTile.js","ol/source/VectorTile.js":"../node_modules/ol/source/VectorTile.js","ol/View.js":"../node_modules/ol/View.js","ol/tilegrid.js":"../node_modules/ol/tilegrid.js","ol/proj.js":"../node_modules/ol/proj.js"}],"../node_modules/@mdi/font/css/materialdesignicons.min.css":[function(require,module,exports) {
-
-        var reloadCSS = require('_css_loader');
-        module.hot.dispose(reloadCSS);
-        module.hot.accept(reloadCSS);
-      
-},{"./../fonts/materialdesignicons-webfont.eot":[["materialdesignicons-webfont.6e1fcca2.eot","../node_modules/@mdi/font/fonts/materialdesignicons-webfont.eot"],"../node_modules/@mdi/font/fonts/materialdesignicons-webfont.eot"],"./../fonts/materialdesignicons-webfont.woff2":[["materialdesignicons-webfont.6dab8170.woff2","../node_modules/@mdi/font/fonts/materialdesignicons-webfont.woff2"],"../node_modules/@mdi/font/fonts/materialdesignicons-webfont.woff2"],"./../fonts/materialdesignicons-webfont.woff":[["materialdesignicons-webfont.c803ff2e.woff","../node_modules/@mdi/font/fonts/materialdesignicons-webfont.woff"],"../node_modules/@mdi/font/fonts/materialdesignicons-webfont.woff"],"./../fonts/materialdesignicons-webfont.ttf":[["materialdesignicons-webfont.23408420.ttf","../node_modules/@mdi/font/fonts/materialdesignicons-webfont.ttf"],"../node_modules/@mdi/font/fonts/materialdesignicons-webfont.ttf"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../node_modules/jsoneditor/dist/jsoneditor.css":[function(require,module,exports) {
+},{"ol/style/Circle.js":"../node_modules/ol/style/Circle.js","ol/style/Fill.js":"../node_modules/ol/style/Fill.js","ol/style/Icon.js":"../node_modules/ol/style/Icon.js","ol/render/Feature.js":"../node_modules/ol/render/Feature.js","ol/style/Stroke.js":"../node_modules/ol/style/Stroke.js","ol/style/Style.js":"../node_modules/ol/style/Style.js","ol/style/Text.js":"../node_modules/ol/style/Text.js","ol/obj.js":"../node_modules/ol/obj.js","ol/format/GeoJSON.js":"../node_modules/ol/format/GeoJSON.js","ol/format/MVT.js":"../node_modules/ol/format/MVT.js","ol/Map.js":"../node_modules/ol/Map.js","ol/tilegrid/TileGrid.js":"../node_modules/ol/tilegrid/TileGrid.js","ol/source/TileJSON.js":"../node_modules/ol/source/TileJSON.js","ol/layer/Tile.js":"../node_modules/ol/layer/Tile.js","ol/layer/Vector.js":"../node_modules/ol/layer/Vector.js","ol/source/Vector.js":"../node_modules/ol/source/Vector.js","ol/layer/VectorTile.js":"../node_modules/ol/layer/VectorTile.js","ol/source/VectorTile.js":"../node_modules/ol/source/VectorTile.js","ol/View.js":"../node_modules/ol/View.js","ol/tilegrid.js":"../node_modules/ol/tilegrid.js","ol/proj.js":"../node_modules/ol/proj.js"}],"../node_modules/jsoneditor/dist/jsoneditor.css":[function(require,module,exports) {
 
         var reloadCSS = require('_css_loader');
         module.hot.dispose(reloadCSS);
@@ -77962,21 +77956,13 @@ exports.empty_list_Tab = empty_list_Tab;
 exports.empty_info_outline_Tab = empty_info_outline_Tab;
 exports.show_listTab = show_listTab;
 exports.show_info_outline_Tab = show_info_outline_Tab;
-exports.get_vectorTileStyle = get_vectorTileStyle;
-exports.vectorStyle_toLegent = vectorStyle_toLegent;
-exports.getUniqueLayers = getUniqueLayers;
-exports.build_root_json = build_root_json;
-exports.original_rootJson = exports._tile_pbf = exports._glyphs = exports._sprite = exports.root_json = exports.editor_list = exports.editor_info_outline = exports.container_list = exports.container_info_outline = exports.___service = exports.___pathArray = exports.___urlParams = exports.___pathname = exports.___hostname = exports.___protocol = exports.base_url = exports.open_tab = exports.center = exports._center_zoom = exports._center_long = exports._center_lat = exports.___url = exports.___url_string = exports._cross = exports.urlParams = exports.current_pathArray = exports.current_pathname = exports.current_url = exports._layer = exports.vectorTile_opacity_readonly = void 0;
+exports.editor_list = exports.editor_info_outline = exports.container_list = exports.container_info_outline = exports.___service = exports.___pathArray = exports.___urlParams = exports.___pathname = exports.___hostname = exports.___protocol = exports.base_url = exports.open_tab = exports.center = exports._center_zoom = exports._center_long = exports._center_lat = exports.___url = exports.___url_string = exports._cross = exports.urlParams = exports.current_pathArray = exports.current_pathname = exports.current_url = exports._layer = exports.vectorTile_opacity_readonly = void 0;
 
 require("jsoneditor/dist/jsoneditor.css");
 
 var _jsoneditor2 = _interopRequireDefault(require("jsoneditor"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 /**/
 // .............. setting panel  ..............  
@@ -78080,10 +78066,915 @@ function update_url_parameter(_field, _value) {
 
   history.pushState(null, '', _____newRelativePathQuery); //   }            
 } // =======================  end  ======================== helper   =============================================== 
+// .............. setting panel  .............. 
+
+
+function turn_on_setting_panel() {
+  $('#setting_panel').show();
+  setting_panel_status = true;
+}
+
+function turn_off_setting_panel() {
+  $('#setting_panel').hide();
+  setting_panel_status = false;
+} // .............. end   ..............  setting panel  .............. 
+
+/**/
+// init_global_var
+
+
+var vectorTile_opacity_readonly;
+exports.vectorTile_opacity_readonly = vectorTile_opacity_readonly;
+
+var _layer, current_url, current_pathname, current_pathArray, urlParams, _cross, ___url_string, ___url, _center_lat, _center_long, _center_zoom, center, open_tab, base_url, ___protocol, ___hostname, ___pathname, ___urlParams, ___pathArray, ___service;
+
+exports.___service = ___service;
+exports.___pathArray = ___pathArray;
+exports.___urlParams = ___urlParams;
+exports.___pathname = ___pathname;
+exports.___hostname = ___hostname;
+exports.___protocol = ___protocol;
+exports.base_url = base_url;
+exports.open_tab = open_tab;
+exports.center = center;
+exports._center_zoom = _center_zoom;
+exports._center_long = _center_long;
+exports._center_lat = _center_lat;
+exports.___url = ___url;
+exports.___url_string = ___url_string;
+exports._cross = _cross;
+exports.urlParams = urlParams;
+exports.current_pathArray = current_pathArray;
+exports.current_pathname = current_pathname;
+exports.current_url = current_url;
+exports._layer = _layer;
+
+function init_global_var() {
+  //  .......... global var ..............
+  // https://developer.mozilla.org/en-US/docs/Web/API/Location
+  exports.current_url = current_url = window.location.protocol + "//" + window.location.host + window.location.pathname;
+  console.log('current_url ...... ', current_url);
+  exports.current_pathname = current_pathname = window.location.pathname; //    /json2tree/arcgisServerList.html
+
+  exports.current_pathArray = current_pathArray = current_pathname.split('/'); //    ["", "json2tree", "arcgisServerList.html"]
+  // ----- parse url param ?url=xxxxxxxxxx  --------
+
+  exports.urlParams = urlParams = new URLSearchParams(window.location.search); //.................. required parameter .................
+
+  exports._layer = _layer = urlParams.get('layer');
+
+  if (!_layer) {
+    exports._layer = _layer = 'default';
+  }
+
+  exports._cross = _cross = urlParams.get('cross'); // optional, without this will be  value 'default'
+
+  if (_cross) {} else {
+    exports._cross = _cross = 'default';
+  }
+
+  exports.___url_string = ___url_string = urlParams.get('url'); // required
+
+  exports._center_lat = _center_lat = urlParams.get('center_lat'); // required
+
+  exports._center_long = _center_long = urlParams.get('center_long'); // required
+
+  exports._center_zoom = _center_zoom = urlParams.get('center_zoom'); // required
+
+  if (_center_lat) {} else {
+    exports._center_lat = _center_lat = 34;
+  }
+
+  if (_center_long) {} else {
+    exports._center_long = _center_long = -118;
+  }
+
+  if (_center_zoom) {
+    exports._center_zoom = _center_zoom = Number(_center_zoom).toFixed(2);
+  } else {
+    exports._center_zoom = _center_zoom = 15;
+  } //.................. required parameter .................
+
+
+  exports.center = center = {
+    "_center_lat": _center_lat,
+    "_center_long": _center_long
+  };
+  console.log('___url_string ......  ', ___url_string);
+  var param_overlayOpacity = urlParams.get('overlayOpacity');
+  console.log('init overlay Opacity ---> ', param_overlayOpacity);
+
+  if (param_overlayOpacity) {
+    exports.vectorTile_opacity_readonly = vectorTile_opacity_readonly = parseInt(param_overlayOpacity) / 10;
+  } // basemap=satellite, streets,light,dark,outdoors,none
+
+
+  var param_basemapStyle = urlParams.get('basemap');
+  console.log('init base map Style ---> ', param_basemapStyle);
+
+  if (param_basemapStyle) {
+    current_basemapStyle = param_basemapStyle;
+  }
+
+  if (___url_string == undefined || ___url_string == null || ___url_string == '') {// nothing to do
+  } else {
+    exports.___url = ___url = new URL(___url_string); // ?url=https://sampleserver3.arcgisonline.com/ArcGIS/rest/services
+
+    exports.base_url = base_url = ___url_string;
+    exports.___protocol = ___protocol = ___url.protocol; //   https:
+
+    exports.___hostname = ___hostname = ___url.hostname; //    sampleserver3.arcgisonline.com
+
+    exports.___pathname = ___pathname = ___url.pathname; //    /ArcGIS/rest/services
+
+    exports.___urlParams = ___urlParams = new URLSearchParams(___url.search); //
+
+    exports.___pathArray = ___pathArray = ___pathname.split('/'); // https://maps.lacity.org/arcgis/rest/services/Mapping/NavigateLA/GPServer    
+    // ___pathArray = ["", "arcgis", "rest", "services", "Mapping", "NavigateLA", "MapServer"]
+    // ___service = https://maps.lacity.org/arcgis/rest/services
+
+    exports.___service = ___service = ___protocol + '//' + ___hostname + '/' + ___pathArray[1] + '/' + ___pathArray[2] + '/' + ___pathArray[3];
+    /*
+      console.log(___url);
+      console.log(___protocol);
+      console.log(___hostname);
+    */
+  } // if     
+  // ----- parse url param ?url=xxxxxxxxxx  --------
+
+}
+},{"jsoneditor/dist/jsoneditor.css":"../node_modules/jsoneditor/dist/jsoneditor.css","jsoneditor":"../node_modules/jsoneditor/dist/jsoneditor.min.js"}],"../node_modules/ol/Geolocation.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _Event = _interopRequireDefault(require("./events/Event.js"));
+
+var _Object = _interopRequireDefault(require("./Object.js"));
+
+var _EventType = _interopRequireDefault(require("./events/EventType.js"));
+
+var _Polygon = require("./geom/Polygon.js");
+
+var _proj = require("./proj.js");
+
+var _math = require("./math.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var __extends = void 0 && (void 0).__extends || function () {
+  var extendStatics = function (d, b) {
+    extendStatics = Object.setPrototypeOf || {
+      __proto__: []
+    } instanceof Array && function (d, b) {
+      d.__proto__ = b;
+    } || function (d, b) {
+      for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p];
+    };
+
+    return extendStatics(d, b);
+  };
+
+  return function (d, b) {
+    if (typeof b !== "function" && b !== null) throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+    extendStatics(d, b);
+
+    function __() {
+      this.constructor = d;
+    }
+
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+  };
+}();
+/**
+ * @module ol/Geolocation
+ */
+
+
+/**
+ * @enum {string}
+ */
+var Property = {
+  ACCURACY: 'accuracy',
+  ACCURACY_GEOMETRY: 'accuracyGeometry',
+  ALTITUDE: 'altitude',
+  ALTITUDE_ACCURACY: 'altitudeAccuracy',
+  HEADING: 'heading',
+  POSITION: 'position',
+  PROJECTION: 'projection',
+  SPEED: 'speed',
+  TRACKING: 'tracking',
+  TRACKING_OPTIONS: 'trackingOptions'
+};
+/**
+ * @classdesc
+ * Events emitted on Geolocation error.
+ */
+
+var GeolocationError =
+/** @class */
+function (_super) {
+  __extends(GeolocationError, _super);
+  /**
+   * @param {GeolocationPositionError} error error object.
+   */
+
+
+  function GeolocationError(error) {
+    var _this = _super.call(this, _EventType.default.ERROR) || this;
+    /**
+     * @type {number}
+     */
+
+
+    _this.code = error.code;
+    /**
+     * @type {string}
+     */
+
+    _this.message = error.message;
+    return _this;
+  }
+
+  return GeolocationError;
+}(_Event.default);
+/**
+ * @typedef {Object} Options
+ * @property {boolean} [tracking=false] Start Tracking right after
+ * instantiation.
+ * @property {PositionOptions} [trackingOptions] Tracking options.
+ * See https://www.w3.org/TR/geolocation-API/#position_options_interface.
+ * @property {import("./proj.js").ProjectionLike} [projection] The projection the position
+ * is reported in.
+ */
+
+/**
+ * @typedef {import("./ObjectEventType").Types|'change:accuracy'|'change:accuracyGeometry'|'change:altitude'|
+ *    'change:altitudeAccuracy'|'change:heading'|'change:position'|'change:projection'|'change:speed'|'change:tracking'|
+ *    'change:trackingOptions'} GeolocationObjectEventTypes
+ */
+
+/***
+ * @template Return
+ * @typedef {import("./Observable").OnSignature<import("./Observable").EventTypes, import("./events/Event.js").default, Return> &
+ *   import("./Observable").OnSignature<GeolocationObjectEventTypes, import("./Object").ObjectEvent, Return> &
+ *   import("./Observable").OnSignature<'error', GeolocationError, Return> &
+ *   import("./Observable").CombinedOnSignature<import("./Observable").EventTypes|GeolocationObjectEventTypes|
+ *     'error', Return>} GeolocationOnSignature
+ */
+
+/**
+ * @classdesc
+ * Helper class for providing HTML5 Geolocation capabilities.
+ * The [Geolocation API](https://www.w3.org/TR/geolocation-API/)
+ * is used to locate a user's position.
+ *
+ * To get notified of position changes, register a listener for the generic
+ * `change` event on your instance of {@link module:ol/Geolocation~Geolocation}.
+ *
+ * Example:
+ *
+ *     var geolocation = new Geolocation({
+ *       // take the projection to use from the map's view
+ *       projection: view.getProjection()
+ *     });
+ *     // listen to changes in position
+ *     geolocation.on('change', function(evt) {
+ *       window.console.log(geolocation.getPosition());
+ *     });
+ *
+ * @fires module:ol/events/Event~BaseEvent#event:error
+ * @api
+ */
+
+
+var Geolocation =
+/** @class */
+function (_super) {
+  __extends(Geolocation, _super);
+  /**
+   * @param {Options} [opt_options] Options.
+   */
+
+
+  function Geolocation(opt_options) {
+    var _this = _super.call(this) || this;
+    /***
+     * @type {GeolocationOnSignature<import("./events").EventsKey>}
+     */
+
+
+    _this.on;
+    /***
+     * @type {GeolocationOnSignature<import("./events").EventsKey>}
+     */
+
+    _this.once;
+    /***
+     * @type {GeolocationOnSignature<void>}
+     */
+
+    _this.un;
+    var options = opt_options || {};
+    /**
+     * The unprojected (EPSG:4326) device position.
+     * @private
+     * @type {?import("./coordinate.js").Coordinate}
+     */
+
+    _this.position_ = null;
+    /**
+     * @private
+     * @type {import("./proj.js").TransformFunction}
+     */
+
+    _this.transform_ = _proj.identityTransform;
+    /**
+     * @private
+     * @type {number|undefined}
+     */
+
+    _this.watchId_ = undefined;
+
+    _this.addChangeListener(Property.PROJECTION, _this.handleProjectionChanged_);
+
+    _this.addChangeListener(Property.TRACKING, _this.handleTrackingChanged_);
+
+    if (options.projection !== undefined) {
+      _this.setProjection(options.projection);
+    }
+
+    if (options.trackingOptions !== undefined) {
+      _this.setTrackingOptions(options.trackingOptions);
+    }
+
+    _this.setTracking(options.tracking !== undefined ? options.tracking : false);
+
+    return _this;
+  }
+  /**
+   * Clean up.
+   */
+
+
+  Geolocation.prototype.disposeInternal = function () {
+    this.setTracking(false);
+
+    _super.prototype.disposeInternal.call(this);
+  };
+  /**
+   * @private
+   */
+
+
+  Geolocation.prototype.handleProjectionChanged_ = function () {
+    var projection = this.getProjection();
+
+    if (projection) {
+      this.transform_ = (0, _proj.getTransformFromProjections)((0, _proj.get)('EPSG:4326'), projection);
+
+      if (this.position_) {
+        this.set(Property.POSITION, this.transform_(this.position_));
+      }
+    }
+  };
+  /**
+   * @private
+   */
+
+
+  Geolocation.prototype.handleTrackingChanged_ = function () {
+    if ('geolocation' in navigator) {
+      var tracking = this.getTracking();
+
+      if (tracking && this.watchId_ === undefined) {
+        this.watchId_ = navigator.geolocation.watchPosition(this.positionChange_.bind(this), this.positionError_.bind(this), this.getTrackingOptions());
+      } else if (!tracking && this.watchId_ !== undefined) {
+        navigator.geolocation.clearWatch(this.watchId_);
+        this.watchId_ = undefined;
+      }
+    }
+  };
+  /**
+   * @private
+   * @param {GeolocationPosition} position position event.
+   */
+
+
+  Geolocation.prototype.positionChange_ = function (position) {
+    var coords = position.coords;
+    this.set(Property.ACCURACY, coords.accuracy);
+    this.set(Property.ALTITUDE, coords.altitude === null ? undefined : coords.altitude);
+    this.set(Property.ALTITUDE_ACCURACY, coords.altitudeAccuracy === null ? undefined : coords.altitudeAccuracy);
+    this.set(Property.HEADING, coords.heading === null ? undefined : (0, _math.toRadians)(coords.heading));
+
+    if (!this.position_) {
+      this.position_ = [coords.longitude, coords.latitude];
+    } else {
+      this.position_[0] = coords.longitude;
+      this.position_[1] = coords.latitude;
+    }
+
+    var projectedPosition = this.transform_(this.position_);
+    this.set(Property.POSITION, projectedPosition);
+    this.set(Property.SPEED, coords.speed === null ? undefined : coords.speed);
+    var geometry = (0, _Polygon.circular)(this.position_, coords.accuracy);
+    geometry.applyTransform(this.transform_);
+    this.set(Property.ACCURACY_GEOMETRY, geometry);
+    this.changed();
+  };
+  /**
+   * @private
+   * @param {GeolocationPositionError} error error object.
+   */
+
+
+  Geolocation.prototype.positionError_ = function (error) {
+    this.dispatchEvent(new GeolocationError(error));
+  };
+  /**
+   * Get the accuracy of the position in meters.
+   * @return {number|undefined} The accuracy of the position measurement in
+   *     meters.
+   * @observable
+   * @api
+   */
+
+
+  Geolocation.prototype.getAccuracy = function () {
+    return (
+      /** @type {number|undefined} */
+      this.get(Property.ACCURACY)
+    );
+  };
+  /**
+   * Get a geometry of the position accuracy.
+   * @return {?import("./geom/Polygon.js").default} A geometry of the position accuracy.
+   * @observable
+   * @api
+   */
+
+
+  Geolocation.prototype.getAccuracyGeometry = function () {
+    return (
+      /** @type {?import("./geom/Polygon.js").default} */
+      this.get(Property.ACCURACY_GEOMETRY) || null
+    );
+  };
+  /**
+   * Get the altitude associated with the position.
+   * @return {number|undefined} The altitude of the position in meters above mean
+   *     sea level.
+   * @observable
+   * @api
+   */
+
+
+  Geolocation.prototype.getAltitude = function () {
+    return (
+      /** @type {number|undefined} */
+      this.get(Property.ALTITUDE)
+    );
+  };
+  /**
+   * Get the altitude accuracy of the position.
+   * @return {number|undefined} The accuracy of the altitude measurement in
+   *     meters.
+   * @observable
+   * @api
+   */
+
+
+  Geolocation.prototype.getAltitudeAccuracy = function () {
+    return (
+      /** @type {number|undefined} */
+      this.get(Property.ALTITUDE_ACCURACY)
+    );
+  };
+  /**
+   * Get the heading as radians clockwise from North.
+   * Note: depending on the browser, the heading is only defined if the `enableHighAccuracy`
+   * is set to `true` in the tracking options.
+   * @return {number|undefined} The heading of the device in radians from north.
+   * @observable
+   * @api
+   */
+
+
+  Geolocation.prototype.getHeading = function () {
+    return (
+      /** @type {number|undefined} */
+      this.get(Property.HEADING)
+    );
+  };
+  /**
+   * Get the position of the device.
+   * @return {import("./coordinate.js").Coordinate|undefined} The current position of the device reported
+   *     in the current projection.
+   * @observable
+   * @api
+   */
+
+
+  Geolocation.prototype.getPosition = function () {
+    return (
+      /** @type {import("./coordinate.js").Coordinate|undefined} */
+      this.get(Property.POSITION)
+    );
+  };
+  /**
+   * Get the projection associated with the position.
+   * @return {import("./proj/Projection.js").default|undefined} The projection the position is
+   *     reported in.
+   * @observable
+   * @api
+   */
+
+
+  Geolocation.prototype.getProjection = function () {
+    return (
+      /** @type {import("./proj/Projection.js").default|undefined} */
+      this.get(Property.PROJECTION)
+    );
+  };
+  /**
+   * Get the speed in meters per second.
+   * @return {number|undefined} The instantaneous speed of the device in meters
+   *     per second.
+   * @observable
+   * @api
+   */
+
+
+  Geolocation.prototype.getSpeed = function () {
+    return (
+      /** @type {number|undefined} */
+      this.get(Property.SPEED)
+    );
+  };
+  /**
+   * Determine if the device location is being tracked.
+   * @return {boolean} The device location is being tracked.
+   * @observable
+   * @api
+   */
+
+
+  Geolocation.prototype.getTracking = function () {
+    return (
+      /** @type {boolean} */
+      this.get(Property.TRACKING)
+    );
+  };
+  /**
+   * Get the tracking options.
+   * See https://www.w3.org/TR/geolocation-API/#position-options.
+   * @return {PositionOptions|undefined} PositionOptions as defined by
+   *     the [HTML5 Geolocation spec
+   *     ](https://www.w3.org/TR/geolocation-API/#position_options_interface).
+   * @observable
+   * @api
+   */
+
+
+  Geolocation.prototype.getTrackingOptions = function () {
+    return (
+      /** @type {PositionOptions|undefined} */
+      this.get(Property.TRACKING_OPTIONS)
+    );
+  };
+  /**
+   * Set the projection to use for transforming the coordinates.
+   * @param {import("./proj.js").ProjectionLike} projection The projection the position is
+   *     reported in.
+   * @observable
+   * @api
+   */
+
+
+  Geolocation.prototype.setProjection = function (projection) {
+    this.set(Property.PROJECTION, (0, _proj.get)(projection));
+  };
+  /**
+   * Enable or disable tracking.
+   * @param {boolean} tracking Enable tracking.
+   * @observable
+   * @api
+   */
+
+
+  Geolocation.prototype.setTracking = function (tracking) {
+    this.set(Property.TRACKING, tracking);
+  };
+  /**
+   * Set the tracking options.
+   * See http://www.w3.org/TR/geolocation-API/#position-options.
+   * @param {PositionOptions} options PositionOptions as defined by the
+   *     [HTML5 Geolocation spec
+   *     ](http://www.w3.org/TR/geolocation-API/#position_options_interface).
+   * @observable
+   * @api
+   */
+
+
+  Geolocation.prototype.setTrackingOptions = function (options) {
+    this.set(Property.TRACKING_OPTIONS, options);
+  };
+
+  return Geolocation;
+}(_Object.default);
+
+var _default = Geolocation;
+exports.default = _default;
+},{"./events/Event.js":"../node_modules/ol/events/Event.js","./Object.js":"../node_modules/ol/Object.js","./events/EventType.js":"../node_modules/ol/events/EventType.js","./geom/Polygon.js":"../node_modules/ol/geom/Polygon.js","./proj.js":"../node_modules/ol/proj.js","./math.js":"../node_modules/ol/math.js"}],"../js/arcgis/arcgisvector/default.js":[function(require,module,exports) {
+"use strict";
+
+require("regenerator-runtime/runtime");
+
+require("ol/ol.css");
+
+var _MVT = _interopRequireDefault(require("ol/format/MVT"));
+
+var _Map = _interopRequireDefault(require("ol/Map"));
+
+var _control = require("ol/control");
+
+var _OSM = _interopRequireDefault(require("ol/source/OSM"));
+
+var _BingMaps = _interopRequireDefault(require("ol/source/BingMaps"));
+
+var _XYZ = _interopRequireDefault(require("ol/source/XYZ"));
+
+var _ImageArcGISRest = _interopRequireDefault(require("ol/source/ImageArcGISRest"));
+
+var _Stamen = _interopRequireDefault(require("ol/source/Stamen"));
+
+var _Tile = _interopRequireDefault(require("ol/layer/Tile"));
+
+var _Group = _interopRequireDefault(require("ol/layer/Group"));
+
+var _Image = _interopRequireDefault(require("ol/layer/Image"));
+
+var _olLayerswitcher = _interopRequireWildcard(require("ol-layerswitcher"));
+
+require("ol-layerswitcher/dist/ol-layerswitcher.css");
+
+var olExtent = _interopRequireWildcard(require("ol/extent"));
+
+var _proj = require("ol/proj");
+
+var _VectorTile = _interopRequireDefault(require("ol/layer/VectorTile"));
+
+var _VectorTile2 = _interopRequireDefault(require("ol/source/VectorTile"));
+
+var _View = _interopRequireDefault(require("ol/View"));
+
+var _GeometryType = _interopRequireDefault(require("ol/geom/GeometryType"));
+
+var _style = require("ol/style");
+
+var _olMapboxStyle = _interopRequireWildcard(require("ol-mapbox-style"));
+
+var _helper = require("./helper.js");
+
+var _Geolocation = _interopRequireDefault(require("ol/Geolocation"));
+
+var _ZoomToExtent = _interopRequireDefault(require("ol/control/ZoomToExtent"));
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+var bingMaps_key = 'AqolQaLKcrqzBFTdehvd2R2JHyocemymF4YyrN0ZFaT9NKGz5AFbEaHiMTlCye2-'; //  ----  here map    ----  
+// sample https://openlayers.org/en/latest/examples/here-maps.html
+// here map  https://developer.here.com/documentation/map-tile/dev_guide/topics/example-authentication.html
+
+var here_apiKey = 'aFfzO1tN4DxEPCkXrb93YHI13mFbXPbUALxeMokWcYk';
+var appId = 'MIqMFnVN3Bryc2mk6kf2';
+var appCode = 'MlI0PycHE8NFdd4MrCnhlw';
+var urlTpl = 'https://{1-4}.{base}.maps.cit.api.here.com' + '/{type}/2.1/maptile/newest/{scheme}/{z}/{x}/{y}/256/png' + '?app_id={app_id}&app_code={app_code}' + '&apiKey={api_key}';
+
+function createUrl(tpl, layerDesc) {
+  return tpl.replace('{base}', layerDesc.base).replace('{type}', layerDesc.type).replace('{scheme}', layerDesc.scheme).replace('{api_key}', layerDesc.api_key).replace('{app_id}', layerDesc.app_id).replace('{app_code}', layerDesc.app_code);
+} //  ----  end   ----   here map    ----  
+// arcgis 
+// sample https://openlayers.org/en/latest/examples/xyz-esri-4326-512.html
+
+
+/*
+    show properties when user click by Know which layer a feature belongs to  https://github.com/openlayers/ol-mapbox-style/pull/312
+    v6.9.0 only,  v8.0.5 no longer allow import from 'dist' folder, instead import from above single import statement
+    //import { recordStyleLayer } from 'ol-mapbox-style/dist/stylefunction';
+*/
+(0, _olMapboxStyle.recordStyleLayer)(true); // allow properties window show layer id and etc.
+// *****   end  *****    ol-mapbox-style   *****  
+//import '@mdi/font/css/materialdesignicons.min.css'
+// helper.js 
+
+var operation_mode = 'hover'; // empty, none    or hover  or  click.  
+// hover, means mouse hover polygon, will automatically open up info_outline panel show attribute info.  
+// click mode means, only when click polygon, will open list panel show attribute info.
+
+function change_operation_mode(__operationMode__) {
+  operation_mode = __operationMode__;
+  $('#info_outline').hide();
+  $('#jsoneditor_info_outline').hide();
+  $('#list').hide();
+  $('#jsoneditor_list').hide();
+
+  switch (__operationMode__) {
+    case 'hover':
+      //$('#close_info_outline_panel').hide()
+      $('#close_info_outline_panel').text('Turn off popup');
+      $('#close_info_outline_panel').css("background-color", 'red');
+      $('#close_info_outline_panel').css("color", 'white');
+      break;
+
+    case 'none':
+      // change from hover to click 
+      //$('#close_info_outline_panel').show()
+      $('#close_info_outline_panel').text('Turn on popup');
+      $('#close_info_outline_panel').css("background-color", 'white');
+      $('#close_info_outline_panel').css("color", 'black');
+      break;
+
+    case '':
+      // code block
+      break;
+
+    default: // code block
+
+  } // switch
+
+} // function
+
+
+function init_user_interface_event() {
+  $('#zoom2layer_button').on('click', function (event) {//  pan_to_real_location(); 
+  });
+  $('#close_list_panel').on('click', function (event) {
+    event.preventDefault(); // To prevent following the link (optional)
+
+    change_operation_mode('hover');
+  });
+  $('#close_info_outline_panel').on('click', function (event) {
+    event.preventDefault(); // To prevent following the link (optional)
+
+    var _toggle_popup = $('#close_info_outline_panel').text();
+
+    if (_toggle_popup == 'Turn off popup') {
+      console.log('click mode popup ', _toggle_popup);
+      change_operation_mode('none');
+    } else if (_toggle_popup == 'Turn on popup') {
+      console.log('hover mode popup ', _toggle_popup);
+      change_operation_mode('hover');
+    }
+  });
+}
+/**/
+
+/**/
+//  ##########  vector tile    ##########  
+
+
+var root_json;
+
+var _sprite;
+
+var _glyphs;
+
+var _tile_pbf;
+
+var original_rootJson;
+
+function asyncFetch(_x) {
+  return _asyncFetch.apply(this, arguments);
+}
+
+function _asyncFetch() {
+  _asyncFetch = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(_url___) {
+    var response, responseJson;
+    return regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.next = 2;
+            return fetch(_url___);
+
+          case 2:
+            response = _context.sent;
+            _context.next = 5;
+            return response.json();
+
+          case 5:
+            responseJson = _context.sent;
+            return _context.abrupt("return", responseJson);
+
+          case 7:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+  return _asyncFetch.apply(this, arguments);
+}
+
+function build_root_json(_x2) {
+  return _build_root_json.apply(this, arguments);
+} // function
+//  ##########    end     ##########    vector tile    ##########  
+
+/**/
 
 /**/
 //  +++++++++++++++++++++++++++ legend +++++++++++++++++++++++++++++++++++++++++++
 
+
+function _build_root_json() {
+  _build_root_json = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(___url_string) {
+    var original_rootJson_url;
+    return regeneratorRuntime.wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            original_rootJson_url = ___url_string + '/resources/styles/root.json'; // ajax not define, must import first, instead use fetch
+
+            /*
+                      original_rootJson = await $.ajax({
+                                                                                              
+                                                                            type: 'GET',
+                                                                            dataType: 'jsonp',
+                                                                            data: {},
+                                                                            url: original_rootJson_url,
+                                                                             error: function (jqXHR, textStatus, errorThrown) {
+                                                                                              var _error_status = textStatus + ' : ' + errorThrown;         
+                                                                                              console.log('ajax error  + ', _error_status);
+                                                                                                  
+                                                                              },
+                                                                             success: function (data) {
+                                                                                          // note: data is already json type, you just specify dataType: jsonp
+                                                                                          //  return data;
+                                                                            } // success
+                                                        });  // ajax
+            */
+
+            _context2.next = 3;
+            return asyncFetch(original_rootJson_url);
+
+          case 3:
+            original_rootJson = _context2.sent;
+            console.log(' original_rootJson_url :  ', original_rootJson_url);
+            console.log(' original_rootJson :  ', original_rootJson);
+            _sprite = ___url_string + "/resources/sprites/sprite";
+            _glyphs = ___url_string + "/resources/fonts/{fontstack}/{range}.pbf";
+            _tile_pbf = ___url_string + "/tile/{z}/{y}/{x}.pbf";
+            root_json = {
+              "version": 8,
+              "name": "test",
+              //"sprite" : original_rootJson.sprite,    // original is not a full URL, not work  "../sprites/sprite"     https://github.com/openlayers/openlayers/issues/6752 
+              // "sprite" : "https://tiles.arcgis.com/tiles/P3ePLMYs2RVChkJx/arcgis/rest/services/2020_USA_Median_Age/VectorTileServer/resources/sprites/sprite",
+              "sprite": _sprite,
+              // "glyphs" : original_rootJson.glyphs,      // original is not a full URL, not work  "../fonts/{fontstack}/{range}.pbf"     https://stackoverflow.com/questions/43671343/how-to-display-esri-vector-base-map-in-openlayers-3/65221100#65221100
+              // "glyphs" : "https://tiles.arcgis.com/tiles/P3ePLMYs2RVChkJx/arcgis/rest/services/2020_USA_Median_Age/VectorTileServer/resources/fonts/{fontstack}/{range}.pbf",
+              "glyphs": _glyphs,
+              // root json  specification :   https://docs.mapbox.com/mapbox-gl-js/style-spec/sources/
+              "sources": {
+                "esri": {
+                  "type": "vector",
+                  //  By supplying TileJSON properties such as "tiles", "minzoom", and "maxzoom" directly in the source:
+                  "tiles": [// "https://tiles.arcgis.com/tiles/P3ePLMYs2RVChkJx/arcgis/rest/services/2020_USA_Median_Age/VectorTileServer/tile/{z}/{y}/{x}.pbf"
+                  _tile_pbf] // "maxzoom": 14
+                  // By providing a "url" to a TileJSON resource
+                  // not work,yet
+                  //  "url" : "https://tiles.arcgis.com/tiles/P3ePLMYs2RVChkJx/arcgis/rest/services/Esri_Childrens_Map/VectorTileServer/tile/{z}/{y}/{x}.pbf"
+                  //  "url": "http://api.example.com/tilejson.json"
+
+                }
+              },
+              "layers": original_rootJson.layers
+            }; // root_json
+
+            console.log(' root_json :  ', root_json);
+
+          case 11:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2);
+  }));
+  return _build_root_json.apply(this, arguments);
+}
 
 function getUniqueLayers(layerStyleArray) {
   //  .... js array find unique values  .... 
@@ -78121,7 +79012,7 @@ function vectorStyle_toLegent(vectorStyleJson, spriteJson, spritePNG, spriteJson
 
   if (vectorStyleJson.layers) {
     _legend_html = '<fieldset>';
-    _legend_html += '<legend>' + _layer + '</legend>';
+    _legend_html += '<legend>' + _helper._layer + '</legend>';
     _layersStyle = vectorStyleJson.layers;
     _uniqueLayers = getUniqueLayers(_layersStyle);
     console.log('_uniqueLayers', _uniqueLayers);
@@ -78229,7 +79120,7 @@ function vectorStyle_toLegent(vectorStyleJson, spriteJson, spritePNG, spriteJson
                     fill-outline-color: "#D6D6D6"
                     }
               },
-                                                                                            id: top-level-group/sub-group/sub-sub-group/layer 
+                                                                              id: top-level-group/sub-group/sub-sub-group/layer 
               source-layer: top-level-group
            */
 
@@ -78275,21 +79166,22 @@ function vectorStyle_toLegent(vectorStyleJson, spriteJson, spritePNG, spriteJson
 
 }
 
-function get_vectorTileStyle(_x) {
+function get_vectorTileStyle(_x3) {
   return _get_vectorTileStyle.apply(this, arguments);
 } //  ++++++++++++++ end +++++++++++++ legend +++++++++++++++++++++++++++++++++++++++++++
-
-/**/
-//  ##########  vector tile    ##########  
+// --------------  layer opacity  --------------------
+// can not be in helper.js, map object is not available in helper.js, 
+// must be in the begining
+//  special only for vector tile opacity
 
 
 function _get_vectorTileStyle() {
-  _get_vectorTileStyle = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(_vectorTileServer_url) {
+  _get_vectorTileStyle = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(_vectorTileServer_url) {
     var _vectorStyle_url, _vectorStyle_resourceInfo_url, _sprite_json_url, _sprite_json2x_url, _sprite_png_url, _sprite_png2x_url, _vectorStyle_json, _sprite_json;
 
-    return regeneratorRuntime.wrap(function _callee$(_context) {
+    return regeneratorRuntime.wrap(function _callee3$(_context3) {
       while (1) {
-        switch (_context.prev = _context.next) {
+        switch (_context3.prev = _context3.next) {
           case 0:
             // https://developers.arcgis.com/rest/services-reference/vector-tile-style.htm
             // var _vectorStyle_url = _vectorTileServer_url + '/resources/styles'
@@ -78330,540 +79222,34 @@ function _get_vectorTileStyle() {
               });  // ajax
              */
 
-            _context.next = 14;
+            _context3.next = 14;
             return asyncFetch(_vectorStyle_url);
 
           case 14:
-            _vectorStyle_json = _context.sent;
-            _context.next = 17;
+            _vectorStyle_json = _context3.sent;
+            _context3.next = 17;
             return asyncFetch(_sprite_json_url);
 
           case 17:
-            _sprite_json = _context.sent;
+            _sprite_json = _context3.sent;
             console.log('vector style json', _vectorStyle_json);
             console.log('sprite json', _sprite_json);
             vectorStyle_toLegent(_vectorStyle_json, _sprite_json, _sprite_png_url, _sprite_json2x_url, _sprite_png2x_url);
 
           case 21:
           case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee);
-  }));
-  return _get_vectorTileStyle.apply(this, arguments);
-}
-
-var root_json;
-exports.root_json = root_json;
-
-var _sprite;
-
-exports._sprite = _sprite;
-
-var _glyphs;
-
-exports._glyphs = _glyphs;
-
-var _tile_pbf;
-
-exports._tile_pbf = _tile_pbf;
-var original_rootJson;
-exports.original_rootJson = original_rootJson;
-
-function asyncFetch(_x2) {
-  return _asyncFetch.apply(this, arguments);
-}
-
-function _asyncFetch() {
-  _asyncFetch = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(_url___) {
-    var response, responseJson;
-    return regeneratorRuntime.wrap(function _callee2$(_context2) {
-      while (1) {
-        switch (_context2.prev = _context2.next) {
-          case 0:
-            _context2.next = 2;
-            return fetch(_url___);
-
-          case 2:
-            response = _context2.sent;
-            _context2.next = 5;
-            return response.json();
-
-          case 5:
-            responseJson = _context2.sent;
-            return _context2.abrupt("return", responseJson);
-
-          case 7:
-          case "end":
-            return _context2.stop();
-        }
-      }
-    }, _callee2);
-  }));
-  return _asyncFetch.apply(this, arguments);
-}
-
-function build_root_json(_x3) {
-  return _build_root_json.apply(this, arguments);
-} // function
-//  ##########    end     ##########    vector tile    ##########  
-
-/**/
-// .............. setting panel  .............. 
-
-
-function _build_root_json() {
-  _build_root_json = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(___url_string) {
-    var original_rootJson_url;
-    return regeneratorRuntime.wrap(function _callee3$(_context3) {
-      while (1) {
-        switch (_context3.prev = _context3.next) {
-          case 0:
-            original_rootJson_url = ___url_string + '/resources/styles/root.json'; // ajax not define, must import first, instead use fetch
-
-            /*
-                      original_rootJson = await $.ajax({
-                                                                                              
-                                                                            type: 'GET',
-                                                                            dataType: 'jsonp',
-                                                                            data: {},
-                                                                            url: original_rootJson_url,
-                                                                             error: function (jqXHR, textStatus, errorThrown) {
-                                                                                              var _error_status = textStatus + ' : ' + errorThrown;         
-                                                                                              console.log('ajax error  + ', _error_status);
-                                                                                                  
-                                                                              },
-                                                                             success: function (data) {
-                                                                                          // note: data is already json type, you just specify dataType: jsonp
-                                                                                          //  return data;
-                                                                            } // success
-                                                        });  // ajax
-            */
-
-            _context3.next = 3;
-            return asyncFetch(original_rootJson_url);
-
-          case 3:
-            exports.original_rootJson = original_rootJson = _context3.sent;
-            console.log(' original_rootJson_url :  ', original_rootJson_url);
-            console.log(' original_rootJson :  ', original_rootJson);
-            exports._sprite = _sprite = ___url_string + "/resources/sprites/sprite";
-            exports._glyphs = _glyphs = ___url_string + "/resources/fonts/{fontstack}/{range}.pbf";
-            exports._tile_pbf = _tile_pbf = ___url_string + "/tile/{z}/{y}/{x}.pbf";
-            exports.root_json = root_json = {
-              "version": 8,
-              "name": "test",
-              //"sprite" : original_rootJson.sprite,    // original is not a full URL, not work  "../sprites/sprite"     https://github.com/openlayers/openlayers/issues/6752 
-              // "sprite" : "https://tiles.arcgis.com/tiles/P3ePLMYs2RVChkJx/arcgis/rest/services/2020_USA_Median_Age/VectorTileServer/resources/sprites/sprite",
-              "sprite": _sprite,
-              // "glyphs" : original_rootJson.glyphs,      // original is not a full URL, not work  "../fonts/{fontstack}/{range}.pbf"     https://stackoverflow.com/questions/43671343/how-to-display-esri-vector-base-map-in-openlayers-3/65221100#65221100
-              // "glyphs" : "https://tiles.arcgis.com/tiles/P3ePLMYs2RVChkJx/arcgis/rest/services/2020_USA_Median_Age/VectorTileServer/resources/fonts/{fontstack}/{range}.pbf",
-              "glyphs": _glyphs,
-              // root json  specification :   https://docs.mapbox.com/mapbox-gl-js/style-spec/sources/
-              "sources": {
-                "esri": {
-                  "type": "vector",
-                  //  By supplying TileJSON properties such as "tiles", "minzoom", and "maxzoom" directly in the source:
-                  "tiles": [// "https://tiles.arcgis.com/tiles/P3ePLMYs2RVChkJx/arcgis/rest/services/2020_USA_Median_Age/VectorTileServer/tile/{z}/{y}/{x}.pbf"
-                  _tile_pbf] // "maxzoom": 14
-                  // By providing a "url" to a TileJSON resource
-                  // not work,yet
-                  //  "url" : "https://tiles.arcgis.com/tiles/P3ePLMYs2RVChkJx/arcgis/rest/services/Esri_Childrens_Map/VectorTileServer/tile/{z}/{y}/{x}.pbf"
-                  //  "url": "http://api.example.com/tilejson.json"
-
-                }
-              },
-              "layers": original_rootJson.layers
-            }; // root_json
-
-            console.log(' root_json :  ', root_json);
-
-          case 11:
-          case "end":
             return _context3.stop();
         }
       }
     }, _callee3);
   }));
-  return _build_root_json.apply(this, arguments);
+  return _get_vectorTileStyle.apply(this, arguments);
 }
-
-function turn_on_setting_panel() {
-  $('#setting_panel').show();
-  setting_panel_status = true;
-}
-
-function turn_off_setting_panel() {
-  $('#setting_panel').hide();
-  setting_panel_status = false;
-} // .............. end   ..............  setting panel  .............. 
-
-/**/
-// init_global_var
-
-
-var vectorTile_opacity_readonly;
-exports.vectorTile_opacity_readonly = vectorTile_opacity_readonly;
-
-var _layer, current_url, current_pathname, current_pathArray, urlParams, _cross, ___url_string, ___url, _center_lat, _center_long, _center_zoom, center, open_tab, base_url, ___protocol, ___hostname, ___pathname, ___urlParams, ___pathArray, ___service;
-
-exports.___service = ___service;
-exports.___pathArray = ___pathArray;
-exports.___urlParams = ___urlParams;
-exports.___pathname = ___pathname;
-exports.___hostname = ___hostname;
-exports.___protocol = ___protocol;
-exports.base_url = base_url;
-exports.open_tab = open_tab;
-exports.center = center;
-exports._center_zoom = _center_zoom;
-exports._center_long = _center_long;
-exports._center_lat = _center_lat;
-exports.___url = ___url;
-exports.___url_string = ___url_string;
-exports._cross = _cross;
-exports.urlParams = urlParams;
-exports.current_pathArray = current_pathArray;
-exports.current_pathname = current_pathname;
-exports.current_url = current_url;
-exports._layer = _layer;
-
-function init_global_var() {
-  //  .......... global var ..............
-  // https://developer.mozilla.org/en-US/docs/Web/API/Location
-  exports.current_url = current_url = window.location.protocol + "//" + window.location.host + window.location.pathname;
-  console.log('current_url ...... ', current_url);
-  exports.current_pathname = current_pathname = window.location.pathname; //    /json2tree/arcgisServerList.html
-
-  exports.current_pathArray = current_pathArray = current_pathname.split('/'); //    ["", "json2tree", "arcgisServerList.html"]
-  // ----- parse url param ?url=xxxxxxxxxx  --------
-
-  exports.urlParams = urlParams = new URLSearchParams(window.location.search); //.................. required parameter .................
-
-  exports._layer = _layer = urlParams.get('layer');
-
-  if (!_layer) {
-    exports._layer = _layer = 'default';
-  }
-
-  exports._cross = _cross = urlParams.get('cross'); // optional, without this will be  value 'default'
-
-  if (_cross) {} else {
-    exports._cross = _cross = 'default';
-  }
-
-  exports.___url_string = ___url_string = urlParams.get('url'); // required
-
-  exports._center_lat = _center_lat = urlParams.get('center_lat'); // required
-
-  exports._center_long = _center_long = urlParams.get('center_long'); // required
-
-  exports._center_zoom = _center_zoom = urlParams.get('center_zoom'); // required
-
-  if (_center_lat) {} else {
-    exports._center_lat = _center_lat = 34;
-  }
-
-  if (_center_long) {} else {
-    exports._center_long = _center_long = -118;
-  }
-
-  if (_center_zoom) {} else {
-    exports._center_zoom = _center_zoom = 5;
-  } //.................. required parameter .................
-
-
-  exports.center = center = {
-    "_center_lat": _center_lat,
-    "_center_long": _center_long
-  };
-  console.log('___url_string ......  ', ___url_string);
-  var param_overlayOpacity = urlParams.get('overlayOpacity');
-  console.log('init overlay Opacity ---> ', param_overlayOpacity);
-
-  if (param_overlayOpacity) {
-    exports.vectorTile_opacity_readonly = vectorTile_opacity_readonly = parseInt(param_overlayOpacity) / 10;
-  } // basemap=satellite, streets,light,dark,outdoors,none
-
-
-  var param_basemapStyle = urlParams.get('basemap');
-  console.log('init base map Style ---> ', param_basemapStyle);
-
-  if (param_basemapStyle) {
-    current_basemapStyle = param_basemapStyle;
-  }
-
-  if (___url_string == undefined || ___url_string == null || ___url_string == '') {// nothing to do
-  } else {
-    exports.___url = ___url = new URL(___url_string); // ?url=https://sampleserver3.arcgisonline.com/ArcGIS/rest/services
-
-    exports.base_url = base_url = ___url_string;
-    exports.___protocol = ___protocol = ___url.protocol; //   https:
-
-    exports.___hostname = ___hostname = ___url.hostname; //    sampleserver3.arcgisonline.com
-
-    exports.___pathname = ___pathname = ___url.pathname; //    /ArcGIS/rest/services
-
-    exports.___urlParams = ___urlParams = new URLSearchParams(___url.search); //
-
-    exports.___pathArray = ___pathArray = ___pathname.split('/'); // https://maps.lacity.org/arcgis/rest/services/Mapping/NavigateLA/GPServer    
-    // ___pathArray = ["", "arcgis", "rest", "services", "Mapping", "NavigateLA", "MapServer"]
-    // ___service = https://maps.lacity.org/arcgis/rest/services
-
-    exports.___service = ___service = ___protocol + '//' + ___hostname + '/' + ___pathArray[1] + '/' + ___pathArray[2] + '/' + ___pathArray[3];
-    /*
-      console.log(___url);
-      console.log(___protocol);
-      console.log(___hostname);
-    */
-  } // if     
-  // ----- parse url param ?url=xxxxxxxxxx  --------
-
-}
-},{"jsoneditor/dist/jsoneditor.css":"../node_modules/jsoneditor/dist/jsoneditor.css","jsoneditor":"../node_modules/jsoneditor/dist/jsoneditor.min.js"}],"../js/arcgis/arcgisvector/default.js":[function(require,module,exports) {
-"use strict";
-
-require("regenerator-runtime/runtime");
-
-require("ol/ol.css");
-
-var _MVT = _interopRequireDefault(require("ol/format/MVT"));
-
-var _Map = _interopRequireDefault(require("ol/Map"));
-
-var _OSM = _interopRequireDefault(require("ol/source/OSM"));
-
-var _BingMaps = _interopRequireDefault(require("ol/source/BingMaps"));
-
-var _XYZ = _interopRequireDefault(require("ol/source/XYZ"));
-
-var _ImageArcGISRest = _interopRequireDefault(require("ol/source/ImageArcGISRest"));
-
-var _Stamen = _interopRequireDefault(require("ol/source/Stamen"));
-
-var _Tile = _interopRequireDefault(require("ol/layer/Tile"));
-
-var _Group = _interopRequireDefault(require("ol/layer/Group"));
-
-var _Image = _interopRequireDefault(require("ol/layer/Image"));
-
-var _olLayerswitcher = _interopRequireWildcard(require("ol-layerswitcher"));
-
-require("ol-layerswitcher/dist/ol-layerswitcher.css");
-
-var _extent = require("ol/extent");
-
-var _proj = require("ol/proj");
-
-var _VectorTile = _interopRequireDefault(require("ol/layer/VectorTile"));
-
-var _VectorTile2 = _interopRequireDefault(require("ol/source/VectorTile"));
-
-var _View = _interopRequireDefault(require("ol/View"));
-
-var _GeometryType = _interopRequireDefault(require("ol/geom/GeometryType"));
-
-var _style = require("ol/style");
-
-var _olMapboxStyle = _interopRequireWildcard(require("ol-mapbox-style"));
-
-require("@mdi/font/css/materialdesignicons.min.css");
-
-var _helper = require("./helper.js");
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/*
-
-        arcgisvector, with highlight,  highlight selection feature
-
-        with all label (normal)
-
-
-*/
-
-/*
-
-  highlight vector tile feature:
-
-              Vector Tile Selection (in use)
-              https://openlayers.org/en/latest/examples/vector-tile-selection.html
-
-
-              Select Features by Hover (not use)
-              https://openlayers.org/en/latest/examples/select-hover-features.html
-
-
-
-
-
-
-
-          openlayers ,   show  mapbox style
-
-
-
-                https://github.com/openlayers/openlayers/issues/6752
-
-               
-
-
-                our test example:  
-
-               highlight vector tile feature:
-               https://codesandbox.io/s/sweet-river-mdjhb?file=/src/index.js
-
-
-
-                6.3.0 in use
-                https://codesandbox.io/s/gallant-goldstine-dd40f?file=/src/index.js
-
-                6.2.1 , not use, fetch work around
-                https://codesandbox.io/s/young-water-uquvh?file=/src/index.js
-
-
-
-
-
-                    https://codesandbox.io/s/infallible-tdd-h39j9?file=/src/index.js
-
-
-
-
-
-
-
-                  https://github.com/openlayers/ol-mapbox-style
-
-                https://stackoverflow.com/questions/43671343/how-to-display-esri-vector-base-map-in-openlayers-3
-
-
-
-
-                  Vector Tiles on Google Cloud Storage: Web Clients
-
-                  https://support.woolpert.io/hc/en-us/articles/360047005294
-
-
-
-
-
-openlayers sample : 
-                  https://openlayersbook.github.io/ch05-using-vector-layers/example-09.html
-
-
-
-*/
-
-/**/
-// use fetch, must include 'regenerator-runtime/runtime', without this  "parcel" (package bundler) will 'regeneratorRuntime is not defined' error
-// avoid error,  regeneratorRuntime is not defined` error
-// https://flaviocopes.com/parcel-regeneratorruntime-not-defined/
-//  =====  base map   =====   switcher     =====     
-// https://github.com/walkermatt/ol-layerswitcher#examples
-// open street map 
-// bing map
-// sample https://openlayers.org/en/latest/examples/bing-maps.html
-var bingMaps_key = 'AqolQaLKcrqzBFTdehvd2R2JHyocemymF4YyrN0ZFaT9NKGz5AFbEaHiMTlCye2-'; //  ----  here map    ----  
-// sample https://openlayers.org/en/latest/examples/here-maps.html
-// here map  https://developer.here.com/documentation/map-tile/dev_guide/topics/example-authentication.html
-
-var here_apiKey = 'aFfzO1tN4DxEPCkXrb93YHI13mFbXPbUALxeMokWcYk';
-var appId = 'MIqMFnVN3Bryc2mk6kf2';
-var appCode = 'MlI0PycHE8NFdd4MrCnhlw';
-var urlTpl = 'https://{1-4}.{base}.maps.cit.api.here.com' + '/{type}/2.1/maptile/newest/{scheme}/{z}/{x}/{y}/256/png' + '?app_id={app_id}&app_code={app_code}' + '&apiKey={api_key}';
-
-function createUrl(tpl, layerDesc) {
-  return tpl.replace('{base}', layerDesc.base).replace('{type}', layerDesc.type).replace('{scheme}', layerDesc.scheme).replace('{api_key}', layerDesc.api_key).replace('{app_id}', layerDesc.app_id).replace('{app_code}', layerDesc.app_code);
-} //  ----  end   ----   here map    ----  
-// arcgis 
-// sample https://openlayers.org/en/latest/examples/xyz-esri-4326-512.html
-
-
-/*
-    show properties when user click by Know which layer a feature belongs to  https://github.com/openlayers/ol-mapbox-style/pull/312
-    v6.9.0 only,  v8.0.5 no longer allow import from 'dist' folder, instead import from above single import statement
-    //import { recordStyleLayer } from 'ol-mapbox-style/dist/stylefunction';
-*/
-(0, _olMapboxStyle.recordStyleLayer)(true); // allow properties window show layer id and etc.
-// *****   end  *****    ol-mapbox-style   *****  
-
-var operation_mode = 'hover'; // empty, none    or hover  or  click.  
-// hover, means mouse hover polygon, will automatically open up info_outline panel show attribute info.  
-// click mode means, only when click polygon, will open list panel show attribute info.
-
-function change_operation_mode(__operationMode__) {
-  operation_mode = __operationMode__;
-  $('#info_outline').hide();
-  $('#jsoneditor_info_outline').hide();
-  $('#list').hide();
-  $('#jsoneditor_list').hide();
-
-  switch (__operationMode__) {
-    case 'hover':
-      //$('#close_info_outline_panel').hide()
-      $('#close_info_outline_panel').text('Turn off popup');
-      $('#close_info_outline_panel').css("background-color", 'red');
-      $('#close_info_outline_panel').css("color", 'white');
-      break;
-
-    case 'none':
-      // change from hover to click 
-      //$('#close_info_outline_panel').show()
-      $('#close_info_outline_panel').text('Turn on popup');
-      $('#close_info_outline_panel').css("background-color", 'white');
-      $('#close_info_outline_panel').css("color", 'black');
-      break;
-
-    case '':
-      // code block
-      break;
-
-    default: // code block
-
-  } // switch
-
-} // function
-
-
-function init_user_interface_event() {
-  $('#zoom2layer_button').on('click', function (event) {//  pan_to_real_location(); 
-  });
-  $('#close_list_panel').on('click', function (event) {
-    event.preventDefault(); // To prevent following the link (optional)
-
-    change_operation_mode('hover');
-  });
-  $('#close_info_outline_panel').on('click', function (event) {
-    event.preventDefault(); // To prevent following the link (optional)
-
-    var _toggle_popup = $('#close_info_outline_panel').text();
-
-    if (_toggle_popup == 'Turn off popup') {
-      console.log('click mode popup ', _toggle_popup);
-      change_operation_mode('none');
-    } else if (_toggle_popup == 'Turn on popup') {
-      console.log('hover mode popup ', _toggle_popup);
-      change_operation_mode('hover');
-    }
-  });
-}
-/**/
-// --------------  layer opacity  --------------------
-// can not be in helper.js, map object is not available in helper.js, 
-// must be in the begining
-//  special only for vector tile opacity
-
 
 var vectorTile_opacity = 0.6; // by default 
 
 function set_opacity(_opacity__) {
-  var layers = _helper.root_json.layers;
+  var layers = root_json.layers;
   var current_layer_json;
   var currentLayer_ol_instance;
   var currentlayer_id;
@@ -78897,9 +79283,86 @@ function init_settingTab() {
     set_opacity(vectorTile_opacity);
   });
 } // --------------  end    --------------  layer opacity  --------------------
+// special for esri vector tile 
+
+
+function pan_to_real_location() {
+  return _pan_to_real_location.apply(this, arguments);
+} // pan to real location
 
 /**/
 
+
+function _pan_to_real_location() {
+  _pan_to_real_location = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
+    var _bounds_array, _southWest_long, _southWest_lat, _northEast_long, _northEast_lat;
+
+    return regeneratorRuntime.wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            /*
+                                        -----     -----    sources property could be default 'esri', could be 'custom-name' depends on, must handle accordingly.  -----  -----  -----
+                                                                                           1) hosted/vector tile server  (on arcgis server)
+                                                      
+                                                                                            sources: {
+                                                                                                        esri: {
+                                                                                                                   bounds:[-116.322, 33.5837, -116.225, 33.743]
+                                                                                                                  maxzoom: 23
+                                                                                                                  minzoom: 0
+                                                                                                                  scheme: "xyz"
+                                                                                                                  type: "vector"
+                                                                                                                  url: "../../"
+                                                                                              2) vector tile server (on arcgis online, for example : vectortileservices2.arcgis.com)                        
+                                                                                             sources: {
+                                                                                                        Bike_Trail_Park: {                            (it is not 'esri', must handle it differently)
+                                                                                                                            bounds:[-116.322, 33.5837, -116.225, 33.743]
+                                                                                                                            maxzoom: 23
+                                                                                                                            minzoom: 0
+                                                                                                                            scheme: "xyz"
+                                                                                                                            type: "vector"
+                                                                                                                            url: "../../"
+                                                                             
+                                                                         
+                                                                         
+            */
+            if (original_rootJson.sources) {
+              _bounds_array = original_rootJson.sources[original_rootJson_source_propertyKeyName];
+              _southWest_long = _bounds_array.bounds[0];
+              _southWest_lat = _bounds_array.bounds[1];
+              _northEast_long = _bounds_array.bounds[2];
+              _northEast_lat = _bounds_array.bounds[3];
+              _helper._center_lat = ((_northEast_lat + _southWest_lat) / 2, function () {
+                throw new Error('"' + "_center_lat" + '" is read-only.');
+              }());
+              _helper._center_long = ((_southWest_long + _northEast_long) / 2, function () {
+                throw new Error('"' + "_center_long" + '" is read-only.');
+              }());
+              console.log(' pan to real location ---->>>>> ', _helper._center_lat, _helper._center_long, _helper._center_zoom);
+              (0, _helper.update_url_parameter)('center_lat', _helper._center_lat);
+              (0, _helper.update_url_parameter)('center_long', _helper._center_long);
+
+              if (_helper._center_zoom == null) {
+                _helper._center_zoom = (default_center_zoom, function () {
+                  throw new Error('"' + "_center_zoom" + '" is read-only.');
+                }());
+                (0, _helper.update_url_parameter)('center_zoom', _helper._center_zoom);
+              }
+
+              mapbox_jumpto(_helper._center_lat, _helper._center_long, _helper._center_zoom);
+            } else {
+              console.log('original rootJson sources esri bounds is not available, so not be able to zoom 2 layer !!!!');
+            }
+
+          case 1:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4);
+  }));
+  return _pan_to_real_location.apply(this, arguments);
+}
 
 console.log(' ---  ---  ---  =====  document ready  --- ----- ');
 (0, _helper.init_global_var)();
@@ -78908,9 +79371,11 @@ init_settingTab();
 init_user_interface_event();
 change_operation_mode('hover'); // must use await to wait until ajax get root.json back
 
-(0, _helper.build_root_json)(_helper.___url_string); // legend -------- get   -------   root.json (style)    -------   
+build_root_json(_helper.___url_string); // legend -------- get   -------   root.json (style)    -------   
 
-(0, _helper.get_vectorTileStyle)(_helper.___url_string);
+get_vectorTileStyle(_helper.___url_string); // special for vector tile
+
+pan_to_real_location();
 console.log(' ------ end  ------   document ready ----- ');
 /*  for highlight feature polygon only */
 
@@ -79065,11 +79530,23 @@ var map = new _Map.default({
     new _Tile.default({
       title: 'Open Street Map',
       type: 'base',
-      visible: true,
+      visible: false,
       source: new _OSM.default()
     }), //  BingMaps
     //https://openlayers.org/en/latest/examples/bing-maps.html
     new _Tile.default({
+      title: 'BingMaps Aerial With Labels',
+      type: 'base',
+      visible: true,
+      preload: Infinity,
+      source: new _BingMaps.default({
+        key: bingMaps_key,
+        imagerySet: 'AerialWithLabelsOnDemand' // use maxZoom 19 to see stretched tiles instead of the BingMaps
+        // "no photos at this zoom level" tiles
+        // maxZoom: 19
+
+      })
+    }), new _Tile.default({
       title: 'BingMaps Arial',
       type: 'base',
       visible: false,
@@ -79077,18 +79554,6 @@ var map = new _Map.default({
       source: new _BingMaps.default({
         key: bingMaps_key,
         imagerySet: 'Aerial' // use maxZoom 19 to see stretched tiles instead of the BingMaps
-        // "no photos at this zoom level" tiles
-        // maxZoom: 19
-
-      })
-    }), new _Tile.default({
-      title: 'BingMaps Aerial With Labels',
-      type: 'base',
-      visible: false,
-      preload: Infinity,
-      source: new _BingMaps.default({
-        key: bingMaps_key,
-        imagerySet: 'AerialWithLabelsOnDemand' // use maxZoom 19 to see stretched tiles instead of the BingMaps
         // "no photos at this zoom level" tiles
         // maxZoom: 19
 
@@ -79339,8 +79804,8 @@ var map = new _Map.default({
 var layerSwitcher = new _olLayerswitcher.default({
   activationMode: 'click',
   //'mouseover',   // or click
-  startActive: true,
-  // when create
+  startActive: false,
+  //true,             // when create
   // label: 'base',
   // collapseLabel: '\u00BB',    // default
   // tipLabel: 'Legend',
@@ -79350,7 +79815,77 @@ var layerSwitcher = new _olLayerswitcher.default({
 });
 map.addControl(layerSwitcher); // ----  end   ----  base map switcher ------
 
+/*
+          =============  ============== add control   =============  ==============
+geolocation, zoom2you
+   
+https://stackoverflow.com/questions/65923306/openlayers-add-control-zoom-pan-to-current-location
+
+               */
+
+//import {createEmpty} from 'ol/extent';
+//import {extend} from 'ol/extent';
+var geolocation = new _Geolocation.default({
+  projection: map.getView().getProjection(),
+  tracking: true
+});
+geolocation.getPosition(); //this shows the coordinates (e.g.[591374.2306195896, 6746799.171545821])
+
+var extent = olExtent.createEmpty();
+geolocation.on('change:accuracyGeometry', function () {
+  geolocation.getAccuracyGeometry().getExtent(extent);
+});
+var zoomToExtentControl = new _ZoomToExtent.default({
+  //https://openlayers.org/en/latest/apidoc/module-ol_control_ZoomToExtent-ZoomToExtent.html
+  extent: extent,
+  className: 'zoom2you',
+  // label: '🔍'
+  label: 'zoom2you'
+});
+map.addControl(zoomToExtentControl);
+
+var zoom2layer_now = function zoom2layer_now(e) {
+  // special for vector tile
+  pan_to_real_location();
+};
+
+var element2 = document.createElement('div');
+element2.innerHTML = '<big>zoom2layer</big>';
+element2.className = 'zoom2layer';
+element2.addEventListener('click', zoom2layer_now, false);
+var zoom2layerControl = new _control.Control({
+  element: element2
+});
+map.addControl(zoom2layerControl);
+var element4 = document.createElement('div');
+element4.id = 'zoom_level_id'; //element4.value = _center_zoom
+
+element4.innerHTML = '<big>' + _helper._center_zoom + '</big>';
+element4.className = 'zoomLevel';
+var zoomlevelControl = new _control.Control({
+  element: element4
+});
+map.addControl(zoomlevelControl);
 /**/
+
+/*  do not use opacity control, because it trigger popup window, also some basic without image overlay, do not need opacity. so keep opacity in setting area 
+var opacity_now = function(e) {
+    //map.getView().setRotation(0);
+    alert('opacity')
+};
+var element3 = document.createElement('div');
+    element3.innerHTML = '<label> Opacity </label> <label id="overlay_opacity_label"></label><input type="range" id="overlay_opacity_range" name="overlay_opacity_range" min="0" max="10"/> ';
+    element3.className = 'opacityDIV';
+    //element3.addEventListener('click', opacity_now, false);
+var opacityControl = new Control({
+    element: element3
+}); 
+map.addControl(opacityControl);
+*/
+
+/*
+         =============   end  ============== add control   =============  ==============        
+ */
 //   ====================  add ol-mapbox-gl    ====================  
 
 var _rootJson_url = _helper.___url_string + '/resources/styles/root.json';
@@ -79454,22 +79989,28 @@ function wrapLon(value) {
   return value - worlds * 360;
 }
 
+var centerlong;
+var centerlat;
+var centerzoom;
+
 function onMoveEnd(evt) {
   //https://openlayers.org/en/latest/examples/moveend.html
   var map = evt.map;
   var extent = map.getView().calculateExtent(map.getSize());
-  var bottomLeft = (0, _proj.toLonLat)((0, _extent.getBottomLeft)(extent));
-  var topRight = (0, _proj.toLonLat)((0, _extent.getTopRight)(extent)); // display('left', wrapLon(bottomLeft[0]));
+  var bottomLeft = (0, _proj.toLonLat)((0, olExtent.getBottomLeft)(extent));
+  var topRight = (0, _proj.toLonLat)((0, olExtent.getTopRight)(extent)); // display('left', wrapLon(bottomLeft[0]));
   // display('bottom', bottomLeft[1]);
   // display('right', wrapLon(topRight[0]));
   // display('top', topRight[1]);
 
-  var centerlong = (wrapLon(bottomLeft[0]) + wrapLon(topRight[0])) / 2;
-  var centerlat = (bottomLeft[1] + topRight[1]) / 2;
-  var centerzoom = map.getView().getZoom();
+  centerlong = (wrapLon(bottomLeft[0]) + wrapLon(topRight[0])) / 2;
+  centerlat = (bottomLeft[1] + topRight[1]) / 2;
+  centerzoom = map.getView().getZoom();
+  centerzoom = Number(centerzoom).toFixed(2);
   (0, _helper.update_url_parameter)('center_long', centerlong);
   (0, _helper.update_url_parameter)('center_lat', centerlat);
   (0, _helper.update_url_parameter)('center_zoom', centerzoom);
+  $('#zoom_level_id').html('<big>' + centerzoom + '</big>');
 }
 
 function showInfo(event) {
@@ -79604,7 +80145,7 @@ function showInfo(event) {
 
 } // function showInfo
 //  });  // dom ready
-},{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js","ol/ol.css":"../node_modules/ol/ol.css","ol/format/MVT":"../node_modules/ol/format/MVT.js","ol/Map":"../node_modules/ol/Map.js","ol/source/OSM":"../node_modules/ol/source/OSM.js","ol/source/BingMaps":"../node_modules/ol/source/BingMaps.js","ol/source/XYZ":"../node_modules/ol/source/XYZ.js","ol/source/ImageArcGISRest":"../node_modules/ol/source/ImageArcGISRest.js","ol/source/Stamen":"../node_modules/ol/source/Stamen.js","ol/layer/Tile":"../node_modules/ol/layer/Tile.js","ol/layer/Group":"../node_modules/ol/layer/Group.js","ol/layer/Image":"../node_modules/ol/layer/Image.js","ol-layerswitcher":"../node_modules/ol-layerswitcher/dist/ol-layerswitcher.js","ol-layerswitcher/dist/ol-layerswitcher.css":"../node_modules/ol-layerswitcher/dist/ol-layerswitcher.css","ol/extent":"../node_modules/ol/extent.js","ol/proj":"../node_modules/ol/proj.js","ol/layer/VectorTile":"../node_modules/ol/layer/VectorTile.js","ol/source/VectorTile":"../node_modules/ol/source/VectorTile.js","ol/View":"../node_modules/ol/View.js","ol/geom/GeometryType":"../node_modules/ol/geom/GeometryType.js","ol/style":"../node_modules/ol/style.js","ol-mapbox-style":"../node_modules/ol-mapbox-style/dist/index.js","@mdi/font/css/materialdesignicons.min.css":"../node_modules/@mdi/font/css/materialdesignicons.min.css","./helper.js":"../js/arcgis/arcgisvector/helper.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js","ol/ol.css":"../node_modules/ol/ol.css","ol/format/MVT":"../node_modules/ol/format/MVT.js","ol/Map":"../node_modules/ol/Map.js","ol/control":"../node_modules/ol/control.js","ol/source/OSM":"../node_modules/ol/source/OSM.js","ol/source/BingMaps":"../node_modules/ol/source/BingMaps.js","ol/source/XYZ":"../node_modules/ol/source/XYZ.js","ol/source/ImageArcGISRest":"../node_modules/ol/source/ImageArcGISRest.js","ol/source/Stamen":"../node_modules/ol/source/Stamen.js","ol/layer/Tile":"../node_modules/ol/layer/Tile.js","ol/layer/Group":"../node_modules/ol/layer/Group.js","ol/layer/Image":"../node_modules/ol/layer/Image.js","ol-layerswitcher":"../node_modules/ol-layerswitcher/dist/ol-layerswitcher.js","ol-layerswitcher/dist/ol-layerswitcher.css":"../node_modules/ol-layerswitcher/dist/ol-layerswitcher.css","ol/extent":"../node_modules/ol/extent.js","ol/proj":"../node_modules/ol/proj.js","ol/layer/VectorTile":"../node_modules/ol/layer/VectorTile.js","ol/source/VectorTile":"../node_modules/ol/source/VectorTile.js","ol/View":"../node_modules/ol/View.js","ol/geom/GeometryType":"../node_modules/ol/geom/GeometryType.js","ol/style":"../node_modules/ol/style.js","ol-mapbox-style":"../node_modules/ol-mapbox-style/dist/index.js","./helper.js":"../js/arcgis/arcgisvector/helper.js","ol/Geolocation":"../node_modules/ol/Geolocation.js","ol/control/ZoomToExtent":"../node_modules/ol/control/ZoomToExtent.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -79632,7 +80173,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58910" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53757" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

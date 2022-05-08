@@ -90,9 +90,11 @@ openlayers sample :
 /**/
 
 
- // use fetch, must include 'regenerator-runtime/runtime', without this  "parcel" (package bundler) will 'regeneratorRuntime is not defined' error
-// avoid error,  regeneratorRuntime is not defined` error
-// https://flaviocopes.com/parcel-regeneratorruntime-not-defined/
+ /* 
+        use fetch, must include 'regenerator-runtime/runtime', without this  "parcel" (package bundler) will 'regeneratorRuntime is not defined' error
+        // avoid error,  regeneratorRuntime is not defined` error
+        // https://flaviocopes.com/parcel-regeneratorruntime-not-defined/
+*/
 import 'regenerator-runtime/runtime'
 
 
@@ -102,7 +104,7 @@ import 'regenerator-runtime/runtime'
 import 'ol/ol.css';
 import MVT from 'ol/format/MVT';
 import Map from 'ol/Map';
-
+import {Control, defaults as defaultControls} from 'ol/control';
 
 
 
@@ -228,7 +230,7 @@ import {Circle, Fill, Stroke, Style} from 'ol/style';
 
 
 
-import '@mdi/font/css/materialdesignicons.min.css'
+//import '@mdi/font/css/materialdesignicons.min.css'
 
 
 
@@ -258,9 +260,7 @@ import '@mdi/font/css/materialdesignicons.min.css'
 
 
 
-                                        //  vector tile 
-                                        root_json,_sprite,_glyphs,_tile_pbf,original_rootJson,
-
+                                  
                                       
 
 
@@ -279,13 +279,9 @@ import '@mdi/font/css/materialdesignicons.min.css'
                                             show_info_outline_Tab,
                                             
 
-                                            //legend
-                                            get_vectorTileStyle,
-                                            vectorStyle_toLegent,
-                                            getUniqueLayers,
+                                           
 
-                                            // vector tile
-                                            build_root_json,
+                                           
 
                                            
 
@@ -402,6 +398,591 @@ import '@mdi/font/css/materialdesignicons.min.css'
 
 
 
+
+
+/**/
+
+
+
+
+
+            //  ##########  vector tile    ##########  
+
+            var root_json;
+            var _sprite;
+            var _glyphs;
+            var _tile_pbf;
+            var original_rootJson;
+
+
+
+            async function asyncFetch(_url___){
+              var response = await fetch(_url___)
+              var responseJson = await response.json();
+              //console.log(' root json --> ', responseJson)
+              return responseJson
+            }
+
+           async function build_root_json(___url_string) {
+
+
+                        var original_rootJson_url = ___url_string + '/resources/styles/root.json'
+
+
+                        // ajax not define, must import first, instead use fetch
+                        /*
+                                  original_rootJson = await $.ajax({
+                                                                                                          
+                                                                                        type: 'GET',
+                                                                                        dataType: 'jsonp',
+                                                                                        data: {},
+                                                                                        url: original_rootJson_url,
+
+                                                                                        error: function (jqXHR, textStatus, errorThrown) {
+                                                                                                          var _error_status = textStatus + ' : ' + errorThrown;         
+                                                                                                          console.log('ajax error  + ', _error_status);
+                                                                                                              
+                                                                                          },
+
+                                                                                        success: function (data) {
+                                                                                                      // note: data is already json type, you just specify dataType: jsonp
+                                                                                                      //  return data;
+                                                                                        } // success
+                                                                    });  // ajax
+                        */
+
+
+
+                       original_rootJson = await asyncFetch(original_rootJson_url)
+
+
+
+
+                        console.log(' original_rootJson_url :  ', original_rootJson_url )
+                        console.log(' original_rootJson :  ', original_rootJson )
+
+
+
+                        _sprite = ___url_string + "/resources/sprites/sprite"
+                        _glyphs = ___url_string + "/resources/fonts/{fontstack}/{range}.pbf"
+                        _tile_pbf = ___url_string + "/tile/{z}/{y}/{x}.pbf"
+
+
+                        root_json = {
+
+                                        "version" : 8,
+                                        "name": "test",
+
+                                        //"sprite" : original_rootJson.sprite,    // original is not a full URL, not work  "../sprites/sprite"     https://github.com/openlayers/openlayers/issues/6752 
+                                        // "sprite" : "https://tiles.arcgis.com/tiles/P3ePLMYs2RVChkJx/arcgis/rest/services/2020_USA_Median_Age/VectorTileServer/resources/sprites/sprite",
+                                        "sprite" : _sprite,
+
+                                        
+
+                                        // "glyphs" : original_rootJson.glyphs,      // original is not a full URL, not work  "../fonts/{fontstack}/{range}.pbf"     https://stackoverflow.com/questions/43671343/how-to-display-esri-vector-base-map-in-openlayers-3/65221100#65221100
+                                        // "glyphs" : "https://tiles.arcgis.com/tiles/P3ePLMYs2RVChkJx/arcgis/rest/services/2020_USA_Median_Age/VectorTileServer/resources/fonts/{fontstack}/{range}.pbf",
+                                        "glyphs" : _glyphs,
+
+                                      
+
+                                        // root json  specification :   https://docs.mapbox.com/mapbox-gl-js/style-spec/sources/
+                                        "sources" : {
+
+                                                                  "esri" : {
+                                                                              "type" : "vector",
+
+                                                                              //  By supplying TileJSON properties such as "tiles", "minzoom", and "maxzoom" directly in the source:
+                                                                              "tiles": [
+                                                                                            // "https://tiles.arcgis.com/tiles/P3ePLMYs2RVChkJx/arcgis/rest/services/2020_USA_Median_Age/VectorTileServer/tile/{z}/{y}/{x}.pbf"
+                                                                                              _tile_pbf
+                                                                                        ],
+
+                                                                              // "maxzoom": 14
+                                                                              // By providing a "url" to a TileJSON resource
+                                                                              // not work,yet
+                                                                              //  "url" : "https://tiles.arcgis.com/tiles/P3ePLMYs2RVChkJx/arcgis/rest/services/Esri_Childrens_Map/VectorTileServer/tile/{z}/{y}/{x}.pbf"
+                                                                              //  "url": "http://api.example.com/tilejson.json"
+
+                                                                          }
+                                                    },
+
+                                        "layers":  original_rootJson.layers     
+
+
+                        } // root_json
+                        console.log(' root_json :  ', root_json )
+
+            } // function
+            
+            
+
+//  ##########    end     ##########    vector tile    ##########  
+
+
+
+
+
+
+/**/
+
+
+
+
+/**/
+
+
+            //  +++++++++++++++++++++++++++ legend +++++++++++++++++++++++++++++++++++++++++++
+
+              
+
+
+
+            function getUniqueLayers(layerStyleArray){
+
+
+              //  .... js array find unique values  .... 
+                        Array.prototype.unique = function() {
+                          let arr = [];
+                          for(let i = 0; i < this.length; i++) {
+                              if(!arr.includes(this[i])) {
+                                  arr.push(this[i]);
+                              }
+                          }
+                          return arr; 
+                        }
+              //  ....  end   ....  js array find unique values  .... 
+              
+
+
+              console.log('layerStyleArray', layerStyleArray)
+
+              var layerNameArray = []
+              for(let j = 0; j < layerStyleArray.length; j++) {
+                layerNameArray.push(layerStyleArray[j]['source-layer'])
+              }
+
+              const uniqueLayers = layerNameArray.unique()
+              //console.log('uniqueLayers', uniqueLayers)
+              return uniqueLayers
+
+
+            }
+
+
+
+            function vectorStyle_toLegent(vectorStyleJson, spriteJson, spritePNG, spriteJson2x,spritePNG2x){
+
+
+              var _layersStyle
+              var _legend_html
+              var _uniqueLayers
+
+
+
+                
+                    if (vectorStyleJson.layers){
+
+                                _legend_html = '<fieldset>'
+                                _legend_html +=  '<legend>'  + _layer +  '</legend>'
+
+                                _layersStyle = vectorStyleJson.layers
+
+                                _uniqueLayers = getUniqueLayers(_layersStyle);
+                                console.log('_uniqueLayers', _uniqueLayers)
+
+                                for (var u = 0; u < _uniqueLayers.length; u++) { 
+                                  
+                                        var sourceLayerName = _uniqueLayers[u]
+                                        _legend_html += '<span><strong>' + sourceLayerName + '</strong></span><br/>'
+
+                                        for (var l = 0; l < _layersStyle.length; l++) { 
+                                  
+
+                                            if (_layersStyle[l]['source-layer'] == sourceLayerName) {
+
+                                                    //  +++++++  symbology  +++++++  
+
+
+                                                              // case (polygon)
+                                                              var symbolType = _layersStyle[l].type
+                                                              var layerID = _layersStyle[l].id 
+
+                                                              switch(symbolType) {  
+
+                                                                case "fill":
+                                                                  
+                                                                              var fillcolor = _layersStyle[l].paint['fill-color']
+                                                                              var filloutlinecolor = _layersStyle[l].paint['fill-outline-color']
+
+                                                                              // span works
+                                                                              //_legend_html +=  '&nbsp;&nbsp;&nbsp; <span style="font-size: 1.5em; color:' + fillcolor + ';">' + '<i class="fas fa-square"></i></span>'
+                                                                              // div works by prevent div break into next line by add "display: inline-block;"
+                                                                              _legend_html +=  '&nbsp;&nbsp;&nbsp; <div style="display: inline-block;  font-size: 1.5em; background-color:' + fillcolor + ';">' + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>'
+                                                                              
+                                                                  break;
+
+                                                                case "line":
+                                                                                          
+                                                                              var linecolor = _layersStyle[l].paint['line-color']
+                                                                              var linewidth = _layersStyle[l].paint['line-width']
+
+                                                                              // span works
+                                                                              //_legend_html +=  '&nbsp;&nbsp;&nbsp; <span style="font-size: 2em; color:' + linecolor +  ';">' + '<i class="fas fa-minus"></i></span>'
+                                                                              // div works by prevent div break into next line by add "display: inline-block;"
+                                                                              //_legend_html +=  '&nbsp;&nbsp;&nbsp; <div style="display: inline-block; font-size: 2em; color:' + linecolor +  ';">' + '<i class="fas fa-minus"></i></div>'
+                                                                              _legend_html +=  '&nbsp;&nbsp;&nbsp; <div style="display: inline-block; font-size: 2em; text-decoration-line: line-through; color:' + linecolor +  ';">' + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>'
+                                                                              
+
+
+                                                                  break;
+
+
+
+                                                                  case "symbol":
+                                                                                        
+
+                                                                              /*
+
+                                                                                  // test sprite at http://www.spritecow.com
+                                                                                  // prevent div break into next line by add "display: inline-block;"
+
+                                                                                          <div id='sprite_test' style="background: url(https://tiles.arcgis.com/tiles/P3ePLMYs2RVChkJx/arcgis/rest/services/Esri_Childrens_Map/VectorTileServer/resources/sprites/sprite.png) no-repeat -91px -49px; width:76px;height:48px; display: inline-block;" >
+                                                                                          </div>
+                                                                                
+                                                                                          <div id='sprite_test' style="background: url(https://tiles.arcgis.com/tiles/P3ePLMYs2RVChkJx/arcgis/rest/services/Esri_Childrens_Map/VectorTileServer/resources/sprites/sprite.png) no-repeat -66px 0px; width:136px;height:136px; display: inline-block;" >
+                                                                                          </div>
+
+                                                                              */
+
+
+
+
+
+
+                                                                                // place holder, later will fill the real sprite image
+                                                                              // _legend_html +=  '&nbsp;&nbsp;&nbsp; <span style="width:10px;height:10px" id="'   + layerID + '"></span>'
+
+                                                                              var spritePosition = spriteJson[layerID]
+
+
+                                                                              
+
+
+
+
+                                                                              console.log('spritePosition',  layerID,  spritePosition)
+
+
+                                                                              // warn: spritePosition undefined
+                                                                              if (spritePosition) {
+
+
+                                                                                var spanStyle = 'background: url(' + spritePNG + ') no-repeat -'+ spritePosition.x + 'px -' + spritePosition.y + 'px;   width:' + spritePosition.width + 'px;height:' + spritePosition.height + 'px; display: inline-block;'
+
+                                                                                // must use div (span, label not work)
+                                                                                _legend_html +=  '&nbsp;&nbsp;&nbsp; <div style="' +  spanStyle + '" id="'   + layerID + '"></div>'
+
+
+
+                                                                              }
+                                                                              
+
+                                                                                
+                                                                  break;
+
+
+
+
+
+
+                                                                  case "circle":
+
+                                                                                // https://pro.arcgis.com/en/pro-app/help/mapping/map-authoring/symbology-in-vector-tiles.htm
+
+                                                                                  /*
+                                                                                      "layers": [{
+
+                                                                                        "id": "xxxxxx", 
+
+                                                                                        "type":  "circle", 
+
+                                                                                        "source": "",
+                                                                                        "source-layer": "",
+                                                                                        "layout": {},
+
+                                                                                          "paint" : {
+
+                                                                                                      "circle-color" : "#000fff",
+
+                                                                                                      'circle-opacity': 1,
+
+                                                                                                      "circle-radius" : {
+                                                                                                                            "property" : "size",
+                                                                                                                            "default" : 6.2,
+                                                                                                                            "stops" : [[2, 2.2], [26, 29.5333]]
+                                                                                                                          }
+
+
+                                                                                                    }
+
+                                                                                      }]        
+
+                                                                                  */
+
+
+
+                                                                                var circlecolor = _layersStyle[l].paint['circle-color']
+                                                                                
+                                                                                // 'far' is circle-hole, 'fas' is solid circle 
+                                                                                _legend_html +=  '&nbsp;&nbsp;&nbsp; <div style="display: inline-block;"><span style=" height: 1.5em; width: 1.5em;  background-color:'+  circlecolor + ' border-radius: 50%; display: inline-block;"></span></div>'
+                                                                                
+
+
+                                                                  break;
+
+
+
+
+
+
+
+                                                                default:
+                                                                  // code block
+                                                              }
+
+
+
+
+                                                      //  +++++++   end    +++++++  symbol  +++++++  
+                                                    
+                                                      
+                                                      
+
+                                                      //    ------  text   ------  
+
+                                                                /*
+                                                                    {
+                                                                          id: "Block Group/0 - 28 years of age",
+                                                                          type: "fill",
+                                                                          source: "esri",
+                                                                          source-layer: "Block Group",
+                                                                          filter: [
+                                                                          "==",
+                                                                          "_symbol",
+                                                                          2
+                                                                          ],
+                                                                          minzoom: 11.85,
+                                                                          layout: { },
+                                                                          paint: {
+                                                                          fill-color: "#00729A",
+                                                                          fill-outline-color: "#D6D6D6"
+                                                                          }
+                                                                    },
+                                                              
+
+                                                                    id: top-level-group/sub-group/sub-sub-group/layer 
+                                                                    source-layer: top-level-group
+
+                                                                */
+
+                                                                var _id = _layersStyle[l].id
+                                                                var _source_layer = _layersStyle[l]['source-layer']
+                                                                var _id_without_topGroup = _id.replace(_source_layer,'');
+                                                                var displaylayerName = _id_without_topGroup
+
+                                                                var _id_array = _id.split('/')
+                                                                var _id_array_length = _id_array.length;
+
+
+                                                                // we use 'sub-group/sub-sub-group/layer' as layer name, _id_array remove the first element(top-level-group)
+
+                                                                // span works
+                                                                //_legend_html += '&nbsp;&nbsp;<span>' + _id_array[_id_array_length - 1] + '</span> <br/>'
+                                                                // div works by prevent div break into next line by add "display: inline-block;"
+
+                                                                if (_id_without_topGroup.length > 0) {
+                                                                          
+                                                                          if (_id_without_topGroup.charAt(0) == '/') {
+                                                                            displaylayerName =  _id_without_topGroup.slice(1)
+                                                                          }
+                                                                        
+                                                                } else {
+
+
+                                                                    // _id_without_topGroup is empty, means id is identical to source layer
+                                                                    displaylayerName = _source_layer 
+                                                                  
+                                                                }   
+
+
+
+
+                                                                _legend_html += '&nbsp;&nbsp;<div style="display: inline-block;">' + displaylayerName + '</div> <br/>'
+
+
+
+
+
+                                                        //    ------  end    ------ text   ------  
+
+
+                                          
+                                            } // if
+                                                                                
+
+                                        }// for  l  
+
+                                        _legend_html += '<br/>'
+                                      // break;
+
+                                }// for  u     
+
+                                _legend_html += '</fieldset>'
+
+                                // console.log(' legend html ', _legend_html)
+
+                                // set html to legend_div
+                                document.getElementById('legend-div').innerHTML = _legend_html
+
+                    }//if
+
+
+
+
+            }
+
+
+
+
+            async function get_vectorTileStyle(_vectorTileServer_url){
+
+              // https://developers.arcgis.com/rest/services-reference/vector-tile-style.htm
+              // var _vectorStyle_url = _vectorTileServer_url + '/resources/styles'
+
+              // also works the same way
+              var _vectorStyle_url = _vectorTileServer_url + '/resources/styles/root.json'
+
+
+              var _vectorStyle_resourceInfo_url = _vectorTileServer_url + '/resources/info'
+              var _sprite_json_url = _vectorTileServer_url + '/resources/sprites/sprite.json'
+              var _sprite_json2x_url = _vectorTileServer_url + '/resources/sprites/sprite@2x.json'
+              var _sprite_png_url = _vectorTileServer_url + '/resources/sprites/sprite.png'
+              var _sprite_png2x_url = _vectorTileServer_url + '/resources/sprites/sprite@2x.png'
+
+              
+
+
+              console.log(' vectorStyle url :  ',  _vectorStyle_url )
+              console.log(' vectorStyle resourceInfo url :  ',  _vectorStyle_resourceInfo_url)
+              console.log(' sprite json url :  ',  _sprite_json_url )
+              console.log('  sprite png url :  ',  _sprite_png_url )
+              console.log(' sprite json 2x url :  ',  _sprite_json2x_url )
+              console.log('  sprite png 2x url :  ',  _sprite_png2x_url )
+
+
+              /* not use ajax, use fetch instead
+              var _vectorStyle_json =  await $.ajax({
+
+                                  // large data take long long time , so should not time out, let it run until get it
+                                  // timeout: _timeout,
+                                  
+                                  type: 'GET',
+                                  dataType: 'jsonp',
+                                  data: {},
+                                  url: _vectorStyle_url,
+
+                                    error: function (jqXHR, textStatus, errorThrown) {
+                                      
+                                      var _error_status = textStatus + ' : ' + errorThrown;         
+                                                            console.log('ajax error  + ', _error_status);
+                                                          // browsing_message(_error_status) 
+                                    },
+
+
+                                    success: function (data) {
+                                              
+                                                // note: data is already json type, you just specify dataType: jsonp
+                                                //  return data;
+                    
+                                    } // success
+
+
+              });  // ajax
+
+              */
+             
+             var _vectorStyle_json = await asyncFetch(_vectorStyle_url)
+
+
+
+               /* not use ajax, use fetch instead
+
+                  var _sprite_json = await  $.ajax({
+                      // large data take long long time , so should not time out, let it run until get it
+                                      // timeout: _timeout,
+                                      
+                                      type: 'GET',
+                                      dataType: 'jsonp',
+                                      data: {},
+                                      url: _sprite_json_url,
+
+                                        error: function (jqXHR, textStatus, errorThrown) {
+                                          
+                                          var _error_status = textStatus + ' : ' + errorThrown;         
+                                                                console.log('ajax error  + ', _error_status);
+                                                              // browsing_message(_error_status) 
+                                        },
+
+
+                                        success: function (data) {
+                                                  
+                                                    // note: data is already json type, you just specify dataType: jsonp
+                                                    // return data;
+                        
+                                        } // success
+
+
+                  });  // ajax
+
+              */
+                                      
+             var _sprite_json = await asyncFetch(_sprite_json_url)
+
+
+
+
+              console.log('vector style json', _vectorStyle_json)
+
+              console.log('sprite json', _sprite_json)
+
+
+
+              vectorStyle_toLegent(_vectorStyle_json, _sprite_json, _sprite_png_url, _sprite_json2x_url, _sprite_png2x_url)
+                  
+                                
+
+
+
+            }
+
+
+
+
+
+
+
+//  ++++++++++++++ end +++++++++++++ legend +++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+
+
+
 // --------------  layer opacity  --------------------
                           // can not be in helper.js, map object is not available in helper.js, 
                           // must be in the begining
@@ -486,6 +1067,74 @@ import '@mdi/font/css/materialdesignicons.min.css'
 
 
 
+                    
+            
+
+              // special for esri vector tile 
+              async function pan_to_real_location(){
+                /*
+                                            -----     -----    sources property could be default 'esri', could be 'custom-name' depends on, must handle accordingly.  -----  -----  -----
+
+                                                                                              1) hosted/vector tile server  (on arcgis server)
+                                                          
+                                                                                                sources: {
+                                                                                                            esri: {
+                                                                                                                       bounds:[-116.322, 33.5837, -116.225, 33.743]
+                                                                                                                      maxzoom: 23
+                                                                                                                      minzoom: 0
+                                                                                                                      scheme: "xyz"
+                                                                                                                      type: "vector"
+                                                                                                                      url: "../../"
+
+
+
+
+                                                                                              2) vector tile server (on arcgis online, for example : vectortileservices2.arcgis.com)                        
+
+                                                                                                sources: {
+                                                                                                            Bike_Trail_Park: {                            (it is not 'esri', must handle it differently)
+                                                                                                                                bounds:[-116.322, 33.5837, -116.225, 33.743]
+                                                                                                                                maxzoom: 23
+                                                                                                                                minzoom: 0
+                                                                                                                                scheme: "xyz"
+                                                                                                                                type: "vector"
+                                                                                                                                url: "../../"
+                                                                                 
+                                                                             
+                                                                             
+                */
+
+                if (original_rootJson.sources){
+
+                    var _bounds_array = original_rootJson.sources[original_rootJson_source_propertyKeyName]
+
+                    var _southWest_long = _bounds_array.bounds[0]
+                    var _southWest_lat  = _bounds_array.bounds[1]
+                    var _northEast_long = _bounds_array.bounds[2]
+                    var _northEast_lat  = _bounds_array.bounds[3]
+                    _center_lat  =  (_northEast_lat + _southWest_lat) / 2
+                    _center_long = (_southWest_long + _northEast_long) / 2
+                    
+                    console.log(' pan to real location ---->>>>> ', _center_lat, _center_long, _center_zoom)
+                                                                  
+                    update_url_parameter('center_lat', _center_lat);
+                    update_url_parameter('center_long', _center_long);
+                    if ( _center_zoom == null ) {
+                      _center_zoom =  default_center_zoom
+                      update_url_parameter('center_zoom', _center_zoom);
+                    }   
+                    
+                    mapbox_jumpto(_center_lat, _center_long, _center_zoom )
+
+                } else {
+                     console.log('original rootJson sources esri bounds is not available, so not be able to zoom 2 layer !!!!')
+                }  
+                                      
+              } // pan to real location
+
+
+
+
 
 
 /**/
@@ -515,6 +1164,9 @@ console.log(' ---  ---  ---  =====  document ready  --- ----- ')
 
                   // legend -------- get   -------   root.json (style)    -------   
                   get_vectorTileStyle(___url_string)
+
+                  // special for vector tile
+                  pan_to_real_location()
 
 console.log(' ------ end  ------   document ready ----- ')
 
@@ -736,8 +1388,18 @@ console.log(' ------ end  ------   document ready ----- ')
 
 
 
-                var map = new Map({
 
+
+               
+
+
+
+
+
+
+
+                var map = new Map({
+                 
                                               target: 'map',
 
                                               // base map layer switcher  at :  https://github.com/walkermatt/ol-layerswitcher-examples/blob/master/parcel/main.js
@@ -755,7 +1417,7 @@ console.log(' ------ end  ------   document ready ----- ')
                                                                                                       new LayerTile({
                                                                                                         title: 'Open Street Map',
                                                                                                         type: 'base',
-                                                                                                        visible: true,
+                                                                                                        visible: false,
                                                                                                         source: new SourceOSM()
                                                                                                     }),
 
@@ -763,7 +1425,30 @@ console.log(' ------ end  ------   document ready ----- ')
 
 
                                                                                 //  BingMaps
+
+
+
+
                                                                                               //https://openlayers.org/en/latest/examples/bing-maps.html
+
+
+
+                                                                                                  new TileLayer({
+                                                                                                    title: 'BingMaps Aerial With Labels',
+                                                                                                    type: 'base',
+                                                                                                    visible: true,
+                                                                                                    preload: Infinity,
+                                                                                                    source: new BingMaps({
+                                                                                                      key: bingMaps_key,
+                                                                                                      imagerySet: 'AerialWithLabelsOnDemand',
+                                                                                                      // use maxZoom 19 to see stretched tiles instead of the BingMaps
+                                                                                                      // "no photos at this zoom level" tiles
+                                                                                                      // maxZoom: 19
+                                                                                                    })
+                                                                                                  }),
+
+
+
 
                                                                                                   new TileLayer({
                                                                                                     title: 'BingMaps Arial',
@@ -780,20 +1465,6 @@ console.log(' ------ end  ------   document ready ----- ')
                                                                                                   }),
 
 
-
-                                                                                                new TileLayer({
-                                                                                                    title: 'BingMaps Aerial With Labels',
-                                                                                                    type: 'base',
-                                                                                                    visible: false,
-                                                                                                    preload: Infinity,
-                                                                                                    source: new BingMaps({
-                                                                                                      key: bingMaps_key,
-                                                                                                      imagerySet: 'AerialWithLabelsOnDemand',
-                                                                                                      // use maxZoom 19 to see stretched tiles instead of the BingMaps
-                                                                                                      // "no photos at this zoom level" tiles
-                                                                                                      // maxZoom: 19
-                                                                                                    })
-                                                                                                  }),
 
 
 
@@ -1214,7 +1885,7 @@ console.log(' ------ end  ------   document ready ----- ')
 
                       var layerSwitcher = new LayerSwitcher({
                                                               activationMode:'click', //'mouseover',   // or click
-                                                              startActive: true,             // when create
+                                                              startActive: false, //true,             // when create
                                                               // label: 'base',
                                                               // collapseLabel: '\u00BB',    // default
                                                               // tipLabel: 'Legend',
@@ -1227,7 +1898,93 @@ console.log(' ------ end  ------   document ready ----- ')
 
 
 
-          /**/
+                /*
+                          =============  ============== add control   =============  ==============
+                geolocation, zoom2you
+                   
+                https://stackoverflow.com/questions/65923306/openlayers-add-control-zoom-pan-to-current-location
+                
+                               */
+
+                              import Geolocation from 'ol/Geolocation';
+                              import ZoomToExtent from 'ol/control/ZoomToExtent';
+                              import * as olExtent from 'ol/extent';
+                              //import {createEmpty} from 'ol/extent';
+                              //import {extend} from 'ol/extent';
+
+                              var geolocation = new Geolocation({
+                                projection: map.getView().getProjection(),
+                                tracking: true
+                              });
+                              geolocation.getPosition(); //this shows the coordinates (e.g.[591374.2306195896, 6746799.171545821])
+                              var extent = olExtent.createEmpty();
+                              geolocation.on('change:accuracyGeometry', function() {
+                                    geolocation.getAccuracyGeometry().getExtent(extent);
+                              });
+                              var zoomToExtentControl = new ZoomToExtent({
+                              //https://openlayers.org/en/latest/apidoc/module-ol_control_ZoomToExtent-ZoomToExtent.html
+                                  extent: extent,
+                                  className: 'zoom2you',
+                                  // label: '🔍'
+                                  label: 'zoom2you'
+                                });
+                              map.addControl(zoomToExtentControl);
+
+                                        
+                              var zoom2layer_now = function(e) {
+                                // special for vector tile
+                                pan_to_real_location()
+                              };
+                              var element2 = document.createElement('div');
+                                element2.innerHTML = '<big>zoom2layer</big>';
+                                element2.className = 'zoom2layer';
+                                element2.addEventListener('click', zoom2layer_now, false);
+                              var zoom2layerControl = new Control({
+                                element: element2
+                              });
+                              map.addControl(zoom2layerControl);
+
+
+                             
+                              var element4 = document.createElement('div');
+                                  element4.id = 'zoom_level_id';
+                                  //element4.value = _center_zoom
+                                  element4.innerHTML = '<big>' + _center_zoom +'</big>';
+                                  element4.className = 'zoomLevel';
+                               
+                              var zoomlevelControl = new Control({
+                                element: element4
+                              }); 
+                              map.addControl(zoomlevelControl);
+
+                            /**/
+
+                            /*  do not use opacity control, because it trigger popup window, also some basic without image overlay, do not need opacity. so keep opacity in setting area 
+                            var opacity_now = function(e) {
+                                //map.getView().setRotation(0);
+                                alert('opacity')
+                            };
+                            var element3 = document.createElement('div');
+                                element3.innerHTML = '<label> Opacity </label> <label id="overlay_opacity_label"></label><input type="range" id="overlay_opacity_range" name="overlay_opacity_range" min="0" max="10"/> ';
+                                element3.className = 'opacityDIV';
+                                //element3.addEventListener('click', opacity_now, false);
+                            var opacityControl = new Control({
+                                element: element3
+                            }); 
+                            map.addControl(opacityControl);
+                            */
+
+
+                            
+                             /*
+                                      =============   end  ============== add control   =============  ==============        
+                              */
+
+
+
+
+
+
 
 
 
@@ -1374,6 +2131,12 @@ console.log(' ------ end  ------   document ready ----- ')
                 return value - worlds * 360;
               }
 
+
+
+
+                var centerlong
+                var centerlat
+                var centerzoom
                function onMoveEnd(evt) {
 
 
@@ -1391,13 +2154,16 @@ console.log(' ------ end  ------   document ready ----- ')
                     // display('right', wrapLon(topRight[0]));
                     // display('top', topRight[1]);
 
-                var centerlong =  ( wrapLon(bottomLeft[0]) +  wrapLon(topRight[0]) ) / 2
-                var centerlat =  ( bottomLeft[1] +  topRight[1] ) / 2
-                var centerzoom = map.getView().getZoom();
+                centerlong =  ( wrapLon(bottomLeft[0]) +  wrapLon(topRight[0]) ) / 2
+                centerlat =  ( bottomLeft[1] +  topRight[1] ) / 2
+                centerzoom = map.getView().getZoom();
+                centerzoom = Number(centerzoom).toFixed(2);
 
                 update_url_parameter('center_long', centerlong);
                 update_url_parameter('center_lat', centerlat);
                 update_url_parameter('center_zoom', centerzoom);
+
+                $('#zoom_level_id').html('<big>' + centerzoom +'</big>');
                 
               }
 
@@ -1596,7 +2362,7 @@ console.log(' ------ end  ------   document ready ----- ')
 
               
 
-
+             
 
 
      //  });  // dom ready 
