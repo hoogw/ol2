@@ -105,7 +105,7 @@ import JSONEditor from "jsoneditor";
                                           $('#jsoneditor_info_outline').show();                                        
                                           editor_info_outline.set(_properties_json);
                                           editor_info_outline.expandAll();
-                                          editor_info_outline.setName(_layer)
+                                         // editor_info_outline.setName(_layer)
 
                                         }
 
@@ -116,7 +116,7 @@ import JSONEditor from "jsoneditor";
                                               $('#jsoneditor_list').show();
                                               editor_list.set(_properties_json);
                                               editor_list.expandAll();
-                                              editor_list.setName(_layer)
+                                           //   editor_list.setName(_layer)
                                         }
 
 

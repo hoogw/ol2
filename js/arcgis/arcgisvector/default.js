@@ -1338,7 +1338,7 @@ import {Circle, Fill, Stroke, Style} from 'ol/style';
                       update_url_parameter('center_zoom', _center_zoom);
                     }   
                     
-                   
+                    // openlayer only,  must convert from lat lng (4326) -- --  >  coordinate '3857'
                     map.getView().setCenter(olProj.transform([_center_long, _center_lat], 'EPSG:4326', 'EPSG:3857'));
                     map.getView().setZoom(_center_zoom);
                 } else {
@@ -2123,17 +2123,24 @@ import {Circle, Fill, Stroke, Style} from 'ol/style';
                 
                                */
 
+
+
+
+
+
+
+
                               import Geolocation from 'ol/Geolocation';
                               import ZoomToExtent from 'ol/control/ZoomToExtent';
                               import * as olExtent from 'ol/extent';
                               //import {createEmpty} from 'ol/extent';
                               //import {extend} from 'ol/extent';
-
+              
                               var geolocation = new Geolocation({
                                 projection: map.getView().getProjection(),
                                 tracking: true
                               });
-                             // geolocation.getPosition(); //this shows the coordinates (e.g.[591374.2306195896, 6746799.171545821])
+                              //geolocation.getPosition(); //this shows the coordinates (e.g.[591374.2306195896, 6746799.171545821])
                               var extent = olExtent.createEmpty();
                               geolocation.on('change:accuracyGeometry', function() {
                                     geolocation.getAccuracyGeometry().getExtent(extent);
@@ -2146,6 +2153,11 @@ import {Circle, Fill, Stroke, Style} from 'ol/style';
                                   label: 'zoom2you'
                                 });
                               map.addControl(zoomToExtentControl);
+
+
+
+
+
 
                                         
                               var zoom2layer_now = function(e) {
@@ -2162,17 +2174,19 @@ import {Circle, Fill, Stroke, Style} from 'ol/style';
                               map.addControl(zoom2layerControl);
 
 
-                             
+
                               var element4 = document.createElement('div');
                                   element4.id = 'zoom_level_id';
                                   //element4.value = _center_zoom
                                   element4.innerHTML = '<big>' + _center_zoom +'</big>';
                                   element4.className = 'zoomLevel';
-                               
+                              
                               var zoomlevelControl = new Control({
                                 element: element4
                               }); 
                               map.addControl(zoomlevelControl);
+
+                             
 
                             /**/
 
@@ -2463,7 +2477,7 @@ import {Circle, Fill, Stroke, Style} from 'ol/style';
                                               //var fid = selected_feature.getId();   
                                               // in use,  ol_uid
                                               var fid = selected_feature.ol_uid;
-                                              console.log('selected_feature fid', fid, selected_feature)
+                                              //console.log('selected_feature fid', fid, selected_feature)
                                               // add selected feature to lookup
                                               selection[fid] = selected_feature;
                                               
@@ -2532,9 +2546,9 @@ import {Circle, Fill, Stroke, Style} from 'ol/style';
                                                } // for
 
 
-                                          console.log('click or hover event -->  ', event.type)
+                                         // console.log('click or hover event -->  ', event.type)
 
-                                          console.log(' mouse move --> get info --> ', more_properties)
+                                          //console.log(' mouse move --> get info --> ', more_properties)
 
                                                           if (event.type == 'pointermove'){
                                                                 

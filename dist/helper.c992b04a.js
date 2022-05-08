@@ -295,16 +295,14 @@ function show_info_outline_Tab(_properties_json) {
   $('#info_outline').show();
   $('#jsoneditor_info_outline').show();
   editor_info_outline.set(_properties_json);
-  editor_info_outline.expandAll();
-  editor_info_outline.setName(_layer);
+  editor_info_outline.expandAll(); // editor_info_outline.setName(_layer)
 }
 
 function show_listTab(_properties_json) {
   $('#list').show();
   $('#jsoneditor_list').show();
   editor_list.set(_properties_json);
-  editor_list.expandAll();
-  editor_list.setName(_layer);
+  editor_list.expandAll(); //   editor_list.setName(_layer)
 }
 
 function empty_info_outline_Tab() {
@@ -402,7 +400,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64609" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57709" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

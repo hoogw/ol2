@@ -78000,16 +78000,14 @@ function show_info_outline_Tab(_properties_json) {
   $('#info_outline').show();
   $('#jsoneditor_info_outline').show();
   editor_info_outline.set(_properties_json);
-  editor_info_outline.expandAll();
-  editor_info_outline.setName(_layer);
+  editor_info_outline.expandAll(); // editor_info_outline.setName(_layer)
 }
 
 function show_listTab(_properties_json) {
   $('#list').show();
   $('#jsoneditor_list').show();
   editor_list.set(_properties_json);
-  editor_list.expandAll();
-  editor_list.setName(_layer);
+  editor_list.expandAll(); //   editor_list.setName(_layer)
 }
 
 function empty_info_outline_Tab() {
@@ -79374,7 +79372,8 @@ function _pan_to_real_location() {
               if (_center_zoom == null || _center_zoom > 20 || _center_zoom < 5) {
                 _center_zoom = default_center_zoom;
                 (0, _helper.update_url_parameter)('center_zoom', _center_zoom);
-              }
+              } // openlayer only,  must convert from lat lng (4326) -- --  >  coordinate '3857'
+
 
               map.getView().setCenter(olProj.transform([_center_long, _center_lat], 'EPSG:4326', 'EPSG:3857'));
               map.getView().setZoom(_center_zoom);
@@ -79873,7 +79872,7 @@ https://stackoverflow.com/questions/65923306/openlayers-add-control-zoom-pan-to-
 var geolocation = new _Geolocation.default({
   projection: map.getView().getProjection(),
   tracking: true
-}); // geolocation.getPosition(); //this shows the coordinates (e.g.[591374.2306195896, 6746799.171545821])
+}); //geolocation.getPosition(); //this shows the coordinates (e.g.[591374.2306195896, 6746799.171545821])
 
 var extent = olExtent.createEmpty();
 geolocation.on('change:accuracyGeometry', function () {
@@ -80107,8 +80106,8 @@ function showInfo(event) {
           // not use,  id_ always undefined
           //var fid = selected_feature.getId();   
           // in use,  ol_uid
-          var fid = selected_feature.ol_uid;
-          console.log('selected_feature fid', fid, selected_feature); // add selected feature to lookup
+          var fid = selected_feature.ol_uid; //console.log('selected_feature fid', fid, selected_feature)
+          // add selected feature to lookup
 
           selection[fid] = selected_feature;
           selectionLayer.changed();
@@ -80155,10 +80154,9 @@ function showInfo(event) {
             break; // for loop
           }
         } // for
+        // console.log('click or hover event -->  ', event.type)
+        //console.log(' mouse move --> get info --> ', more_properties)
 
-
-        console.log('click or hover event -->  ', event.type);
-        console.log(' mouse move --> get info --> ', more_properties);
 
         if (event.type == 'pointermove') {
           (0, _helper.show_info_outline_Tab)(more_properties);
@@ -80215,7 +80213,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64609" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57709" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
