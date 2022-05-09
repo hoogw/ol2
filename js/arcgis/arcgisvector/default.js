@@ -264,7 +264,8 @@ import {Circle, Fill, Stroke, Style} from 'ol/style';
                                             update_url_parameter,
                                             init_json_viewer,
 
-                                           
+                                            asyncFetch,
+                                            asyncAjax,
                                            
                                             empty_list_Tab,
                                             empty_info_outline_Tab,
@@ -562,12 +563,11 @@ import {Circle, Fill, Stroke, Style} from 'ol/style';
 
 
 
-                          async function asyncFetch(_url___){
-                            var response = await fetch(_url___)
-                            var responseJson = await response.json();
-                            //console.log(' root json --> ', responseJson)
-                            return responseJson
-                          }
+
+
+
+
+                         
 
                         async function build_root_json(___url_string) {
 
@@ -599,8 +599,8 @@ import {Circle, Fill, Stroke, Style} from 'ol/style';
 
 
 
-                                    original_rootJson = await asyncFetch(original_rootJson_url)
-
+                                    //original_rootJson = await asyncFetch(original_rootJson_url)
+                                    original_rootJson = await asyncAjax(original_rootJson_url)
 
 
 
@@ -1126,7 +1126,8 @@ import {Circle, Fill, Stroke, Style} from 'ol/style';
 
               */
              
-             var _vectorStyle_json = await asyncFetch(_vectorStyle_url)
+             //var _vectorStyle_json = await asyncFetch(_vectorStyle_url)
+             var _vectorStyle_json = await asyncAjax(_vectorStyle_url)
 
 
 
@@ -1161,8 +1162,8 @@ import {Circle, Fill, Stroke, Style} from 'ol/style';
 
               */
                                       
-             var _sprite_json = await asyncFetch(_sprite_json_url)
-
+             //var _sprite_json = await asyncFetch(_sprite_json_url)
+             var _sprite_json = await asyncAjax(_sprite_json_url)
 
 
 

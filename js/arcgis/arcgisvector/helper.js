@@ -6,6 +6,30 @@
            
 
 
+/**/
+
+                                                              // --------- add proxy  --------- 
+                                                              var ____current_window_protocol = window.location.protocol
+
+                                                              // default http
+                                                              var proxyurl = "http://transparentgov.net:7000/";  
+
+                                                              console.log('____current_window_protocol', ____current_window_protocol)
+
+                                                              if (____current_window_protocol == 'https:') {
+                                                              
+                                                                proxyurl = "https://transparentgov.net:7200/";
+                                                                
+                                                              }
+                                                  // --------- end  ---------  add proxy  --------- 
+
+
+
+
+/**/
+
+
+
 
 
 /**/
@@ -144,15 +168,6 @@ import JSONEditor from "jsoneditor";
 
 
 
-                                        
-                                       
-                                      
-
-
-
-
-
-
 
 
 
@@ -258,15 +273,182 @@ import JSONEditor from "jsoneditor";
 
 
 
-              
+                                                    
 
-           
+                                      async function asyncFetch(_url___){
+                                        var response = await fetch(_url___)
+                                        var responseJson = await response.json();
+                                        //console.log(' root json --> ', responseJson)
+                                        return responseJson
+                                      }
 
 
 
 
-             
-  
+
+                                      async function asyncAjax(_url___){
+
+                                        var responseJson
+
+                                        try {
+                                              // test only
+                                              // throw ' ++++++++ test only ++++++++ jsonp failed';
+
+
+                                              // jsonp 
+
+                                          var response_string =  await $.ajax({
+
+                                              // large data take long long time , so should not time out, let it run until get it
+                                              //timeout: _timeout,
+
+                                                type: 'GET',
+                                                dataType: 'jsonp',
+                                                data: {},
+                                                url: _url___,
+                                                error: function (jqXHR, textStatus, errorThrown) {
+                                                  
+                                                  var _error_status = textStatus + ' : ' + errorThrown;         
+                                                                        console.log('ajax error  + ', _error_status);
+                                                                      
+
+
+                                                },
+                                                success: function (data) {
+
+                                                  console.log('async--ajax --> jsonp --> success  --> ');
+                                                    
+                                                
+                                                }
+                                              });  // await
+
+
+
+                                                                          
+                                          } catch(jsonp_failed) {
+                                                  
+                                                  
+                                                                                console.log('async--ajax,  --> jsonp failed !!!!!!', jsonp_failed);
+                                                  
+                                                                              try {
+                                                  
+                                                                                            
+                                                  
+                                                  
+                                                  
+                                                                                              // test only
+                                                                                              // throw ' ++++++++ test only ++++++++ cors failed'; 
+                                                                              
+                                                                                              // cors
+                                                                                              var response_string =  await $.ajax({
+                                                  
+                                                                                                                                    // large data take long long time , so should not time out, let it run until get it
+                                                                                                                                  // timeout: _timeout,
+                                                  
+                                                  
+                                                                                                                                      type: 'GET',
+                                                                                                                                      
+                                                                                                                                      url: _url___,
+                                                                                                                                      error: function (jqXHR, textStatus, errorThrown) {
+                                                                                                                                        
+                                                                                                                                        var _error_status = textStatus + ' : ' + errorThrown;         
+                                                                                                                                                              console.log('ajax error  + ', _error_status);
+                                                                                                                                                          
+                                                                                                              
+                                                                                                              
+                                                                                                                                      },
+                                                                                                                                      success: function (data) {
+                                                  
+                                                                                                                                        console.log('async--ajax --> cors --> success  --> ');
+                                                                                      
+                                                                                                                                      }
+                                                                                                                                    });  // await
+                                                  
+                                                  
+                                                  
+                                                  
+                                                                                              
+                                                                                
+                                                                                } catch(cors_failed) {
+                                                  
+                                                                                              console.log('async--ajax,  --> cors failed !!!!!!', cors_failed);
+                                                  
+                                                                                              try {
+                                                  
+                                                                                                        
+                                                  
+                                                                                                        // proxy
+                                                                                                        // --------- add proxy  ---------
+                                                                                                        var _url___proxy = proxyurl +  _url___
+                                                  
+                                                                                                        var response_string =  await $.ajax({
+                                                  
+                                                                                                                                                  // large data take long long time , so should not time out, let it run until get it
+                                                                                                                                                  // timeout: _timeout,
+                                                  
+                                                  
+                                                                                                                                                  type: 'GET',
+                                                                                                                                                  
+                                                                                                                                                  url: _url___proxy,
+                                                                                                                                                  error: function (jqXHR, textStatus, errorThrown) {
+                                                                                                                                                    
+                                                                                                                                                    var _error_status = textStatus + ' : ' + errorThrown;         
+                                                                                                                                                                          console.log('ajax error  + ', _error_status);
+                                                                                                                                                                      
+                                                                                                                          
+                                                                                                                          
+                                                                                                                                                  },
+                                                                                                                                                  success: function (data) {
+                                                                                                                                                    console.log('async--ajax --> proxy --> success  --> ');
+                                                                                      
+                                                                                                                                                  }
+                                                                                                        });  // await
+                                                  
+                                                  
+                                                  
+                                                  
+                                                                                                      
+                                                  
+                                                  
+                                                  
+                                                                                              } catch(proxy_failed) {
+                                                  
+                                                  
+                                                                                                console.log('original_rootJson,  --> proxy failed !!!!!!', proxy_failed);
+                                                  
+                                                  
+                                                  
+                                                                                              } // catch proxy
+                                                                                        
+                                                  
+                                                                                } // catch cors
+                                                  
+                                                  
+                                          } // catch jsonp
+
+                                          // jsonp, usually return object.   cors, proxy, can return both string and object, must handle difference  
+                                          if (typeof response_string === 'object') {
+                                              // is object
+                                              responseJson = response_string
+                                          } else {
+                                              // is string
+                                              responseJson = JSON.parse(response_string)
+                                          }
+                                              
+                                          console.log(' >>>>>>>>  responseJson >>>>>>  ', responseJson);
+
+                                          return responseJson
+
+
+                                      }
+
+                                                
+
+
+
+
+                                                  
+                                        
   
 
 
@@ -307,11 +489,8 @@ import JSONEditor from "jsoneditor";
                             init_json_viewer,
 
                            
-                            
-                           
-                            
-                           
-                            
+                            asyncFetch,
+                            asyncAjax,
                             
                             empty_list_Tab,
                             empty_info_outline_Tab,

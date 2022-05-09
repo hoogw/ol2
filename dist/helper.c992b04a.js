@@ -246,6 +246,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.update_url_parameter = update_url_parameter;
 exports.init_json_viewer = init_json_viewer;
+exports.asyncFetch = asyncFetch;
+exports.asyncAjax = asyncAjax;
 exports.empty_list_Tab = empty_list_Tab;
 exports.empty_info_outline_Tab = empty_info_outline_Tab;
 exports.show_listTab = show_listTab;
@@ -258,8 +260,29 @@ var _jsoneditor2 = _interopRequireDefault(require("jsoneditor"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+/**/
+// --------- add proxy  --------- 
+var ____current_window_protocol = window.location.protocol; // default http
+
+var proxyurl = "http://transparentgov.net:7000/";
+console.log('____current_window_protocol', ____current_window_protocol);
+
+if (____current_window_protocol == 'https:') {
+  proxyurl = "https://transparentgov.net:7200/";
+} // --------- end  ---------  add proxy  --------- 
+
+/**/
+
 /**/
 // .............. setting panel  ..............  
+
+
 var setting_panel_status = false; // default street view is off
 // .............. end   ..............  setting panel  .............. 
 
@@ -372,6 +395,160 @@ function turn_off_setting_panel() {
 } // .............. end   ..............  setting panel  .............. 
 
 /**/
+
+
+function asyncFetch(_x) {
+  return _asyncFetch.apply(this, arguments);
+}
+
+function _asyncFetch() {
+  _asyncFetch = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(_url___) {
+    var response, responseJson;
+    return regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.next = 2;
+            return fetch(_url___);
+
+          case 2:
+            response = _context.sent;
+            _context.next = 5;
+            return response.json();
+
+          case 5:
+            responseJson = _context.sent;
+            return _context.abrupt("return", responseJson);
+
+          case 7:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+  return _asyncFetch.apply(this, arguments);
+}
+
+function asyncAjax(_x2) {
+  return _asyncAjax.apply(this, arguments);
+}
+
+function _asyncAjax() {
+  _asyncAjax = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(_url___) {
+    var responseJson, response_string, _url___proxy;
+
+    return regeneratorRuntime.wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.prev = 0;
+            _context2.next = 3;
+            return $.ajax({
+              // large data take long long time , so should not time out, let it run until get it
+              //timeout: _timeout,
+              type: 'GET',
+              dataType: 'jsonp',
+              data: {},
+              url: _url___,
+              error: function error(jqXHR, textStatus, errorThrown) {
+                var _error_status = textStatus + ' : ' + errorThrown;
+
+                console.log('ajax error  + ', _error_status);
+              },
+              success: function success(data) {
+                console.log('async--ajax --> jsonp --> success  --> ');
+              }
+            });
+
+          case 3:
+            response_string = _context2.sent;
+            _context2.next = 28;
+            break;
+
+          case 6:
+            _context2.prev = 6;
+            _context2.t0 = _context2["catch"](0);
+            console.log('async--ajax,  --> jsonp failed !!!!!!', _context2.t0);
+            _context2.prev = 9;
+            _context2.next = 12;
+            return $.ajax({
+              // large data take long long time , so should not time out, let it run until get it
+              // timeout: _timeout,
+              type: 'GET',
+              url: _url___,
+              error: function error(jqXHR, textStatus, errorThrown) {
+                var _error_status = textStatus + ' : ' + errorThrown;
+
+                console.log('ajax error  + ', _error_status);
+              },
+              success: function success(data) {
+                console.log('async--ajax --> cors --> success  --> ');
+              }
+            });
+
+          case 12:
+            response_string = _context2.sent;
+            _context2.next = 28;
+            break;
+
+          case 15:
+            _context2.prev = 15;
+            _context2.t1 = _context2["catch"](9);
+            console.log('async--ajax,  --> cors failed !!!!!!', _context2.t1);
+            _context2.prev = 18;
+            // proxy
+            // --------- add proxy  ---------
+            _url___proxy = proxyurl + _url___;
+            _context2.next = 22;
+            return $.ajax({
+              // large data take long long time , so should not time out, let it run until get it
+              // timeout: _timeout,
+              type: 'GET',
+              url: _url___proxy,
+              error: function error(jqXHR, textStatus, errorThrown) {
+                var _error_status = textStatus + ' : ' + errorThrown;
+
+                console.log('ajax error  + ', _error_status);
+              },
+              success: function success(data) {
+                console.log('async--ajax --> proxy --> success  --> ');
+              }
+            });
+
+          case 22:
+            response_string = _context2.sent;
+            _context2.next = 28;
+            break;
+
+          case 25:
+            _context2.prev = 25;
+            _context2.t2 = _context2["catch"](18);
+            console.log('original_rootJson,  --> proxy failed !!!!!!', _context2.t2);
+
+          case 28:
+            // catch jsonp
+            // jsonp, usually return object.   cors, proxy, can return both string and object, must handle difference  
+            if (_typeof(response_string) === 'object') {
+              // is object
+              responseJson = response_string;
+            } else {
+              // is string
+              responseJson = JSON.parse(response_string);
+            }
+
+            console.log(' >>>>>>>>  responseJson >>>>>>  ', responseJson);
+            return _context2.abrupt("return", responseJson);
+
+          case 31:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2, null, [[0, 6], [9, 15], [18, 25]]);
+  }));
+  return _asyncAjax.apply(this, arguments);
+}
 },{"jsoneditor/dist/jsoneditor.css":"../node_modules/jsoneditor/dist/jsoneditor.css","jsoneditor":"../node_modules/jsoneditor/dist/jsoneditor.min.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -400,7 +577,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57709" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61120" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

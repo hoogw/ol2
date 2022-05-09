@@ -77951,6 +77951,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.update_url_parameter = update_url_parameter;
 exports.init_json_viewer = init_json_viewer;
+exports.asyncFetch = asyncFetch;
+exports.asyncAjax = asyncAjax;
 exports.empty_list_Tab = empty_list_Tab;
 exports.empty_info_outline_Tab = empty_info_outline_Tab;
 exports.show_listTab = show_listTab;
@@ -77963,8 +77965,29 @@ var _jsoneditor2 = _interopRequireDefault(require("jsoneditor"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+/**/
+// --------- add proxy  --------- 
+var ____current_window_protocol = window.location.protocol; // default http
+
+var proxyurl = "http://transparentgov.net:7000/";
+console.log('____current_window_protocol', ____current_window_protocol);
+
+if (____current_window_protocol == 'https:') {
+  proxyurl = "https://transparentgov.net:7200/";
+} // --------- end  ---------  add proxy  --------- 
+
+/**/
+
 /**/
 // .............. setting panel  ..............  
+
+
 var setting_panel_status = false; // default street view is off
 // .............. end   ..............  setting panel  .............. 
 
@@ -78077,6 +78100,160 @@ function turn_off_setting_panel() {
 } // .............. end   ..............  setting panel  .............. 
 
 /**/
+
+
+function asyncFetch(_x) {
+  return _asyncFetch.apply(this, arguments);
+}
+
+function _asyncFetch() {
+  _asyncFetch = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(_url___) {
+    var response, responseJson;
+    return regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.next = 2;
+            return fetch(_url___);
+
+          case 2:
+            response = _context.sent;
+            _context.next = 5;
+            return response.json();
+
+          case 5:
+            responseJson = _context.sent;
+            return _context.abrupt("return", responseJson);
+
+          case 7:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+  return _asyncFetch.apply(this, arguments);
+}
+
+function asyncAjax(_x2) {
+  return _asyncAjax.apply(this, arguments);
+}
+
+function _asyncAjax() {
+  _asyncAjax = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(_url___) {
+    var responseJson, response_string, _url___proxy;
+
+    return regeneratorRuntime.wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.prev = 0;
+            _context2.next = 3;
+            return $.ajax({
+              // large data take long long time , so should not time out, let it run until get it
+              //timeout: _timeout,
+              type: 'GET',
+              dataType: 'jsonp',
+              data: {},
+              url: _url___,
+              error: function error(jqXHR, textStatus, errorThrown) {
+                var _error_status = textStatus + ' : ' + errorThrown;
+
+                console.log('ajax error  + ', _error_status);
+              },
+              success: function success(data) {
+                console.log('async--ajax --> jsonp --> success  --> ');
+              }
+            });
+
+          case 3:
+            response_string = _context2.sent;
+            _context2.next = 28;
+            break;
+
+          case 6:
+            _context2.prev = 6;
+            _context2.t0 = _context2["catch"](0);
+            console.log('async--ajax,  --> jsonp failed !!!!!!', _context2.t0);
+            _context2.prev = 9;
+            _context2.next = 12;
+            return $.ajax({
+              // large data take long long time , so should not time out, let it run until get it
+              // timeout: _timeout,
+              type: 'GET',
+              url: _url___,
+              error: function error(jqXHR, textStatus, errorThrown) {
+                var _error_status = textStatus + ' : ' + errorThrown;
+
+                console.log('ajax error  + ', _error_status);
+              },
+              success: function success(data) {
+                console.log('async--ajax --> cors --> success  --> ');
+              }
+            });
+
+          case 12:
+            response_string = _context2.sent;
+            _context2.next = 28;
+            break;
+
+          case 15:
+            _context2.prev = 15;
+            _context2.t1 = _context2["catch"](9);
+            console.log('async--ajax,  --> cors failed !!!!!!', _context2.t1);
+            _context2.prev = 18;
+            // proxy
+            // --------- add proxy  ---------
+            _url___proxy = proxyurl + _url___;
+            _context2.next = 22;
+            return $.ajax({
+              // large data take long long time , so should not time out, let it run until get it
+              // timeout: _timeout,
+              type: 'GET',
+              url: _url___proxy,
+              error: function error(jqXHR, textStatus, errorThrown) {
+                var _error_status = textStatus + ' : ' + errorThrown;
+
+                console.log('ajax error  + ', _error_status);
+              },
+              success: function success(data) {
+                console.log('async--ajax --> proxy --> success  --> ');
+              }
+            });
+
+          case 22:
+            response_string = _context2.sent;
+            _context2.next = 28;
+            break;
+
+          case 25:
+            _context2.prev = 25;
+            _context2.t2 = _context2["catch"](18);
+            console.log('original_rootJson,  --> proxy failed !!!!!!', _context2.t2);
+
+          case 28:
+            // catch jsonp
+            // jsonp, usually return object.   cors, proxy, can return both string and object, must handle difference  
+            if (_typeof(response_string) === 'object') {
+              // is object
+              responseJson = response_string;
+            } else {
+              // is string
+              responseJson = JSON.parse(response_string);
+            }
+
+            console.log(' >>>>>>>>  responseJson >>>>>>  ', responseJson);
+            return _context2.abrupt("return", responseJson);
+
+          case 31:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2, null, [[0, 6], [9, 15], [18, 25]]);
+  }));
+  return _asyncAjax.apply(this, arguments);
+}
 },{"jsoneditor/dist/jsoneditor.css":"../node_modules/jsoneditor/dist/jsoneditor.css","jsoneditor":"../node_modules/jsoneditor/dist/jsoneditor.min.js"}],"../node_modules/ol/Geolocation.js":[function(require,module,exports) {
 "use strict";
 
@@ -78831,40 +79008,7 @@ var _tile_pbf;
 var original_rootJson;
 var original_rootJson_source_propertyKeyName;
 
-function asyncFetch(_x) {
-  return _asyncFetch.apply(this, arguments);
-}
-
-function _asyncFetch() {
-  _asyncFetch = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(_url___) {
-    var response, responseJson;
-    return regeneratorRuntime.wrap(function _callee2$(_context2) {
-      while (1) {
-        switch (_context2.prev = _context2.next) {
-          case 0:
-            _context2.next = 2;
-            return fetch(_url___);
-
-          case 2:
-            response = _context2.sent;
-            _context2.next = 5;
-            return response.json();
-
-          case 5:
-            responseJson = _context2.sent;
-            return _context2.abrupt("return", responseJson);
-
-          case 7:
-          case "end":
-            return _context2.stop();
-        }
-      }
-    }, _callee2);
-  }));
-  return _asyncFetch.apply(this, arguments);
-}
-
-function build_root_json(_x2) {
+function build_root_json(_x) {
   return _build_root_json.apply(this, arguments);
 } // function
 //  ##########    end     ##########    vector tile    ##########  
@@ -78876,12 +79020,12 @@ function build_root_json(_x2) {
 
 
 function _build_root_json() {
-  _build_root_json = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(___url_string) {
+  _build_root_json = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(___url_string) {
     var original_rootJson_url, _itemObject_key;
 
-    return regeneratorRuntime.wrap(function _callee3$(_context3) {
+    return regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
-        switch (_context3.prev = _context3.next) {
+        switch (_context2.prev = _context2.next) {
           case 0:
             original_rootJson_url = ___url_string + '/resources/styles/root.json'; // ajax not define, must import first, instead use fetch
 
@@ -78903,12 +79047,13 @@ function _build_root_json() {
                                                                             } // success
                                                         });  // ajax
             */
+            //original_rootJson = await asyncFetch(original_rootJson_url)
 
-            _context3.next = 3;
-            return asyncFetch(original_rootJson_url);
+            _context2.next = 3;
+            return (0, _helper.asyncAjax)(original_rootJson_url);
 
           case 3:
-            original_rootJson = _context3.sent;
+            original_rootJson = _context2.sent;
             console.log(' original_rootJson_url :  ', original_rootJson_url);
             console.log(' original_rootJson :  ', original_rootJson);
             _sprite = ___url_string + "/resources/sprites/sprite";
@@ -78941,32 +79086,32 @@ function _build_root_json() {
                           */
 
             if (!original_rootJson.sources) {
-              _context3.next = 19;
+              _context2.next = 19;
               break;
             }
 
-            _context3.t0 = regeneratorRuntime.keys(original_rootJson.sources);
+            _context2.t0 = regeneratorRuntime.keys(original_rootJson.sources);
 
           case 11:
-            if ((_context3.t1 = _context3.t0()).done) {
-              _context3.next = 19;
+            if ((_context2.t1 = _context2.t0()).done) {
+              _context2.next = 19;
               break;
             }
 
-            _itemObject_key = _context3.t1.value;
+            _itemObject_key = _context2.t1.value;
 
             if (!original_rootJson.sources[_itemObject_key].url) {
-              _context3.next = 17;
+              _context2.next = 17;
               break;
             }
 
             // "url" exist, or "type" "bounds" exist
             original_rootJson_source_propertyKeyName = _itemObject_key;
             console.log('original_rootJson_source_propertyKeyName', original_rootJson_source_propertyKeyName);
-            return _context3.abrupt("break", 19);
+            return _context2.abrupt("break", 19);
 
           case 17:
-            _context3.next = 11;
+            _context2.next = 11;
             break;
 
           case 19:
@@ -79003,10 +79148,10 @@ function _build_root_json() {
 
           case 21:
           case "end":
-            return _context3.stop();
+            return _context2.stop();
         }
       }
-    }, _callee3);
+    }, _callee2);
   }));
   return _build_root_json.apply(this, arguments);
 }
@@ -79201,7 +79346,7 @@ function vectorStyle_toLegent(vectorStyleJson, spriteJson, spritePNG, spriteJson
 
 }
 
-function get_vectorTileStyle(_x3) {
+function get_vectorTileStyle(_x2) {
   return _get_vectorTileStyle.apply(this, arguments);
 } //  ++++++++++++++ end +++++++++++++ legend +++++++++++++++++++++++++++++++++++++++++++
 
@@ -79218,12 +79363,12 @@ function get_vectorTileStyle(_x3) {
 
 
 function _get_vectorTileStyle() {
-  _get_vectorTileStyle = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(_vectorTileServer_url) {
+  _get_vectorTileStyle = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(_vectorTileServer_url) {
     var _vectorStyle_url, _vectorStyle_resourceInfo_url, _sprite_json_url, _sprite_json2x_url, _sprite_png_url, _sprite_png2x_url, _vectorStyle_json, _sprite_json;
 
-    return regeneratorRuntime.wrap(function _callee4$(_context4) {
+    return regeneratorRuntime.wrap(function _callee3$(_context3) {
       while (1) {
-        switch (_context4.prev = _context4.next) {
+        switch (_context3.prev = _context3.next) {
           case 0:
             // https://developers.arcgis.com/rest/services-reference/vector-tile-style.htm
             // var _vectorStyle_url = _vectorTileServer_url + '/resources/styles'
@@ -79263,27 +79408,28 @@ function _get_vectorTileStyle() {
                                   } // success
               });  // ajax
              */
+            //var _vectorStyle_json = await asyncFetch(_vectorStyle_url)
 
-            _context4.next = 14;
-            return asyncFetch(_vectorStyle_url);
+            _context3.next = 14;
+            return (0, _helper.asyncAjax)(_vectorStyle_url);
 
           case 14:
-            _vectorStyle_json = _context4.sent;
-            _context4.next = 17;
-            return asyncFetch(_sprite_json_url);
+            _vectorStyle_json = _context3.sent;
+            _context3.next = 17;
+            return (0, _helper.asyncAjax)(_sprite_json_url);
 
           case 17:
-            _sprite_json = _context4.sent;
+            _sprite_json = _context3.sent;
             console.log('vector style json', _vectorStyle_json);
             console.log('sprite json', _sprite_json);
             vectorStyle_toLegent(_vectorStyle_json, _sprite_json, _sprite_png_url, _sprite_json2x_url, _sprite_png2x_url);
 
           case 21:
           case "end":
-            return _context4.stop();
+            return _context3.stop();
         }
       }
-    }, _callee4);
+    }, _callee3);
   }));
   return _get_vectorTileStyle.apply(this, arguments);
 }
@@ -79333,12 +79479,12 @@ function pan_to_real_location() {
 
 
 function _pan_to_real_location() {
-  _pan_to_real_location = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
+  _pan_to_real_location = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
     var _bounds_array, _southWest_long, _southWest_lat, _northEast_long, _northEast_lat;
 
-    return regeneratorRuntime.wrap(function _callee5$(_context5) {
+    return regeneratorRuntime.wrap(function _callee4$(_context4) {
       while (1) {
-        switch (_context5.prev = _context5.next) {
+        switch (_context4.prev = _context4.next) {
           case 0:
             /*
                                         -----     -----    sources property could be default 'esri', could be 'custom-name' depends on, must handle accordingly.  -----  -----  -----
@@ -79390,10 +79536,10 @@ function _pan_to_real_location() {
 
           case 1:
           case "end":
-            return _context5.stop();
+            return _context4.stop();
         }
       }
-    }, _callee5);
+    }, _callee4);
   }));
   return _pan_to_real_location.apply(this, arguments);
 }
@@ -80020,7 +80166,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57709" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61120" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
