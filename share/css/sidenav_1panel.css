@@ -1548,8 +1548,11 @@ html, body{
               cursor: pointer;
 
               color: rgba(255, 255, 255, .9);
-              width: 90px;
-              margin-left: 50px;  
+              width: 120px;
+              margin-left: 50px; 
+              
+              /* openlayers only , let label and input in the same line    https://stackoverflow.com/questions/23530064/how-to-make-label-and-input-appear-on-the-same-line-on-an-html-form     */
+              display:flex; flex-direction: row; justify-content: center; align-items: center;
 
               
             }
@@ -1600,7 +1603,7 @@ html, body{
 
               color: rgba(255, 255, 255, .9);
               width: 120px;
-              margin-left:170px;  
+              margin-left: 50px;   
 
               /* openlayers only , let label and input in the same line    https://stackoverflow.com/questions/23530064/how-to-make-label-and-input-appear-on-the-same-line-on-an-html-form     */
               display:flex; flex-direction: row; justify-content: center; align-items: center;

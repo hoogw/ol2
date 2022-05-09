@@ -78254,493 +78254,7 @@ function _asyncAjax() {
   }));
   return _asyncAjax.apply(this, arguments);
 }
-},{"jsoneditor/dist/jsoneditor.css":"../node_modules/jsoneditor/dist/jsoneditor.css","jsoneditor":"../node_modules/jsoneditor/dist/jsoneditor.min.js"}],"../node_modules/ol/Geolocation.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _Event = _interopRequireDefault(require("./events/Event.js"));
-
-var _Object = _interopRequireDefault(require("./Object.js"));
-
-var _EventType = _interopRequireDefault(require("./events/EventType.js"));
-
-var _Polygon = require("./geom/Polygon.js");
-
-var _proj = require("./proj.js");
-
-var _math = require("./math.js");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var __extends = void 0 && (void 0).__extends || function () {
-  var extendStatics = function (d, b) {
-    extendStatics = Object.setPrototypeOf || {
-      __proto__: []
-    } instanceof Array && function (d, b) {
-      d.__proto__ = b;
-    } || function (d, b) {
-      for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p];
-    };
-
-    return extendStatics(d, b);
-  };
-
-  return function (d, b) {
-    if (typeof b !== "function" && b !== null) throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-    extendStatics(d, b);
-
-    function __() {
-      this.constructor = d;
-    }
-
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-  };
-}();
-/**
- * @module ol/Geolocation
- */
-
-
-/**
- * @enum {string}
- */
-var Property = {
-  ACCURACY: 'accuracy',
-  ACCURACY_GEOMETRY: 'accuracyGeometry',
-  ALTITUDE: 'altitude',
-  ALTITUDE_ACCURACY: 'altitudeAccuracy',
-  HEADING: 'heading',
-  POSITION: 'position',
-  PROJECTION: 'projection',
-  SPEED: 'speed',
-  TRACKING: 'tracking',
-  TRACKING_OPTIONS: 'trackingOptions'
-};
-/**
- * @classdesc
- * Events emitted on Geolocation error.
- */
-
-var GeolocationError =
-/** @class */
-function (_super) {
-  __extends(GeolocationError, _super);
-  /**
-   * @param {GeolocationPositionError} error error object.
-   */
-
-
-  function GeolocationError(error) {
-    var _this = _super.call(this, _EventType.default.ERROR) || this;
-    /**
-     * @type {number}
-     */
-
-
-    _this.code = error.code;
-    /**
-     * @type {string}
-     */
-
-    _this.message = error.message;
-    return _this;
-  }
-
-  return GeolocationError;
-}(_Event.default);
-/**
- * @typedef {Object} Options
- * @property {boolean} [tracking=false] Start Tracking right after
- * instantiation.
- * @property {PositionOptions} [trackingOptions] Tracking options.
- * See https://www.w3.org/TR/geolocation-API/#position_options_interface.
- * @property {import("./proj.js").ProjectionLike} [projection] The projection the position
- * is reported in.
- */
-
-/**
- * @typedef {import("./ObjectEventType").Types|'change:accuracy'|'change:accuracyGeometry'|'change:altitude'|
- *    'change:altitudeAccuracy'|'change:heading'|'change:position'|'change:projection'|'change:speed'|'change:tracking'|
- *    'change:trackingOptions'} GeolocationObjectEventTypes
- */
-
-/***
- * @template Return
- * @typedef {import("./Observable").OnSignature<import("./Observable").EventTypes, import("./events/Event.js").default, Return> &
- *   import("./Observable").OnSignature<GeolocationObjectEventTypes, import("./Object").ObjectEvent, Return> &
- *   import("./Observable").OnSignature<'error', GeolocationError, Return> &
- *   import("./Observable").CombinedOnSignature<import("./Observable").EventTypes|GeolocationObjectEventTypes|
- *     'error', Return>} GeolocationOnSignature
- */
-
-/**
- * @classdesc
- * Helper class for providing HTML5 Geolocation capabilities.
- * The [Geolocation API](https://www.w3.org/TR/geolocation-API/)
- * is used to locate a user's position.
- *
- * To get notified of position changes, register a listener for the generic
- * `change` event on your instance of {@link module:ol/Geolocation~Geolocation}.
- *
- * Example:
- *
- *     var geolocation = new Geolocation({
- *       // take the projection to use from the map's view
- *       projection: view.getProjection()
- *     });
- *     // listen to changes in position
- *     geolocation.on('change', function(evt) {
- *       window.console.log(geolocation.getPosition());
- *     });
- *
- * @fires module:ol/events/Event~BaseEvent#event:error
- * @api
- */
-
-
-var Geolocation =
-/** @class */
-function (_super) {
-  __extends(Geolocation, _super);
-  /**
-   * @param {Options} [opt_options] Options.
-   */
-
-
-  function Geolocation(opt_options) {
-    var _this = _super.call(this) || this;
-    /***
-     * @type {GeolocationOnSignature<import("./events").EventsKey>}
-     */
-
-
-    _this.on;
-    /***
-     * @type {GeolocationOnSignature<import("./events").EventsKey>}
-     */
-
-    _this.once;
-    /***
-     * @type {GeolocationOnSignature<void>}
-     */
-
-    _this.un;
-    var options = opt_options || {};
-    /**
-     * The unprojected (EPSG:4326) device position.
-     * @private
-     * @type {?import("./coordinate.js").Coordinate}
-     */
-
-    _this.position_ = null;
-    /**
-     * @private
-     * @type {import("./proj.js").TransformFunction}
-     */
-
-    _this.transform_ = _proj.identityTransform;
-    /**
-     * @private
-     * @type {number|undefined}
-     */
-
-    _this.watchId_ = undefined;
-
-    _this.addChangeListener(Property.PROJECTION, _this.handleProjectionChanged_);
-
-    _this.addChangeListener(Property.TRACKING, _this.handleTrackingChanged_);
-
-    if (options.projection !== undefined) {
-      _this.setProjection(options.projection);
-    }
-
-    if (options.trackingOptions !== undefined) {
-      _this.setTrackingOptions(options.trackingOptions);
-    }
-
-    _this.setTracking(options.tracking !== undefined ? options.tracking : false);
-
-    return _this;
-  }
-  /**
-   * Clean up.
-   */
-
-
-  Geolocation.prototype.disposeInternal = function () {
-    this.setTracking(false);
-
-    _super.prototype.disposeInternal.call(this);
-  };
-  /**
-   * @private
-   */
-
-
-  Geolocation.prototype.handleProjectionChanged_ = function () {
-    var projection = this.getProjection();
-
-    if (projection) {
-      this.transform_ = (0, _proj.getTransformFromProjections)((0, _proj.get)('EPSG:4326'), projection);
-
-      if (this.position_) {
-        this.set(Property.POSITION, this.transform_(this.position_));
-      }
-    }
-  };
-  /**
-   * @private
-   */
-
-
-  Geolocation.prototype.handleTrackingChanged_ = function () {
-    if ('geolocation' in navigator) {
-      var tracking = this.getTracking();
-
-      if (tracking && this.watchId_ === undefined) {
-        this.watchId_ = navigator.geolocation.watchPosition(this.positionChange_.bind(this), this.positionError_.bind(this), this.getTrackingOptions());
-      } else if (!tracking && this.watchId_ !== undefined) {
-        navigator.geolocation.clearWatch(this.watchId_);
-        this.watchId_ = undefined;
-      }
-    }
-  };
-  /**
-   * @private
-   * @param {GeolocationPosition} position position event.
-   */
-
-
-  Geolocation.prototype.positionChange_ = function (position) {
-    var coords = position.coords;
-    this.set(Property.ACCURACY, coords.accuracy);
-    this.set(Property.ALTITUDE, coords.altitude === null ? undefined : coords.altitude);
-    this.set(Property.ALTITUDE_ACCURACY, coords.altitudeAccuracy === null ? undefined : coords.altitudeAccuracy);
-    this.set(Property.HEADING, coords.heading === null ? undefined : (0, _math.toRadians)(coords.heading));
-
-    if (!this.position_) {
-      this.position_ = [coords.longitude, coords.latitude];
-    } else {
-      this.position_[0] = coords.longitude;
-      this.position_[1] = coords.latitude;
-    }
-
-    var projectedPosition = this.transform_(this.position_);
-    this.set(Property.POSITION, projectedPosition);
-    this.set(Property.SPEED, coords.speed === null ? undefined : coords.speed);
-    var geometry = (0, _Polygon.circular)(this.position_, coords.accuracy);
-    geometry.applyTransform(this.transform_);
-    this.set(Property.ACCURACY_GEOMETRY, geometry);
-    this.changed();
-  };
-  /**
-   * @private
-   * @param {GeolocationPositionError} error error object.
-   */
-
-
-  Geolocation.prototype.positionError_ = function (error) {
-    this.dispatchEvent(new GeolocationError(error));
-  };
-  /**
-   * Get the accuracy of the position in meters.
-   * @return {number|undefined} The accuracy of the position measurement in
-   *     meters.
-   * @observable
-   * @api
-   */
-
-
-  Geolocation.prototype.getAccuracy = function () {
-    return (
-      /** @type {number|undefined} */
-      this.get(Property.ACCURACY)
-    );
-  };
-  /**
-   * Get a geometry of the position accuracy.
-   * @return {?import("./geom/Polygon.js").default} A geometry of the position accuracy.
-   * @observable
-   * @api
-   */
-
-
-  Geolocation.prototype.getAccuracyGeometry = function () {
-    return (
-      /** @type {?import("./geom/Polygon.js").default} */
-      this.get(Property.ACCURACY_GEOMETRY) || null
-    );
-  };
-  /**
-   * Get the altitude associated with the position.
-   * @return {number|undefined} The altitude of the position in meters above mean
-   *     sea level.
-   * @observable
-   * @api
-   */
-
-
-  Geolocation.prototype.getAltitude = function () {
-    return (
-      /** @type {number|undefined} */
-      this.get(Property.ALTITUDE)
-    );
-  };
-  /**
-   * Get the altitude accuracy of the position.
-   * @return {number|undefined} The accuracy of the altitude measurement in
-   *     meters.
-   * @observable
-   * @api
-   */
-
-
-  Geolocation.prototype.getAltitudeAccuracy = function () {
-    return (
-      /** @type {number|undefined} */
-      this.get(Property.ALTITUDE_ACCURACY)
-    );
-  };
-  /**
-   * Get the heading as radians clockwise from North.
-   * Note: depending on the browser, the heading is only defined if the `enableHighAccuracy`
-   * is set to `true` in the tracking options.
-   * @return {number|undefined} The heading of the device in radians from north.
-   * @observable
-   * @api
-   */
-
-
-  Geolocation.prototype.getHeading = function () {
-    return (
-      /** @type {number|undefined} */
-      this.get(Property.HEADING)
-    );
-  };
-  /**
-   * Get the position of the device.
-   * @return {import("./coordinate.js").Coordinate|undefined} The current position of the device reported
-   *     in the current projection.
-   * @observable
-   * @api
-   */
-
-
-  Geolocation.prototype.getPosition = function () {
-    return (
-      /** @type {import("./coordinate.js").Coordinate|undefined} */
-      this.get(Property.POSITION)
-    );
-  };
-  /**
-   * Get the projection associated with the position.
-   * @return {import("./proj/Projection.js").default|undefined} The projection the position is
-   *     reported in.
-   * @observable
-   * @api
-   */
-
-
-  Geolocation.prototype.getProjection = function () {
-    return (
-      /** @type {import("./proj/Projection.js").default|undefined} */
-      this.get(Property.PROJECTION)
-    );
-  };
-  /**
-   * Get the speed in meters per second.
-   * @return {number|undefined} The instantaneous speed of the device in meters
-   *     per second.
-   * @observable
-   * @api
-   */
-
-
-  Geolocation.prototype.getSpeed = function () {
-    return (
-      /** @type {number|undefined} */
-      this.get(Property.SPEED)
-    );
-  };
-  /**
-   * Determine if the device location is being tracked.
-   * @return {boolean} The device location is being tracked.
-   * @observable
-   * @api
-   */
-
-
-  Geolocation.prototype.getTracking = function () {
-    return (
-      /** @type {boolean} */
-      this.get(Property.TRACKING)
-    );
-  };
-  /**
-   * Get the tracking options.
-   * See https://www.w3.org/TR/geolocation-API/#position-options.
-   * @return {PositionOptions|undefined} PositionOptions as defined by
-   *     the [HTML5 Geolocation spec
-   *     ](https://www.w3.org/TR/geolocation-API/#position_options_interface).
-   * @observable
-   * @api
-   */
-
-
-  Geolocation.prototype.getTrackingOptions = function () {
-    return (
-      /** @type {PositionOptions|undefined} */
-      this.get(Property.TRACKING_OPTIONS)
-    );
-  };
-  /**
-   * Set the projection to use for transforming the coordinates.
-   * @param {import("./proj.js").ProjectionLike} projection The projection the position is
-   *     reported in.
-   * @observable
-   * @api
-   */
-
-
-  Geolocation.prototype.setProjection = function (projection) {
-    this.set(Property.PROJECTION, (0, _proj.get)(projection));
-  };
-  /**
-   * Enable or disable tracking.
-   * @param {boolean} tracking Enable tracking.
-   * @observable
-   * @api
-   */
-
-
-  Geolocation.prototype.setTracking = function (tracking) {
-    this.set(Property.TRACKING, tracking);
-  };
-  /**
-   * Set the tracking options.
-   * See http://www.w3.org/TR/geolocation-API/#position-options.
-   * @param {PositionOptions} options PositionOptions as defined by the
-   *     [HTML5 Geolocation spec
-   *     ](http://www.w3.org/TR/geolocation-API/#position_options_interface).
-   * @observable
-   * @api
-   */
-
-
-  Geolocation.prototype.setTrackingOptions = function (options) {
-    this.set(Property.TRACKING_OPTIONS, options);
-  };
-
-  return Geolocation;
-}(_Object.default);
-
-var _default = Geolocation;
-exports.default = _default;
-},{"./events/Event.js":"../node_modules/ol/events/Event.js","./Object.js":"../node_modules/ol/Object.js","./events/EventType.js":"../node_modules/ol/events/EventType.js","./geom/Polygon.js":"../node_modules/ol/geom/Polygon.js","./proj.js":"../node_modules/ol/proj.js","./math.js":"../node_modules/ol/math.js"}],"../js/arcgis/arcgisvector/default2.js":[function(require,module,exports) {
+},{"jsoneditor/dist/jsoneditor.css":"../node_modules/jsoneditor/dist/jsoneditor.css","jsoneditor":"../node_modules/jsoneditor/dist/jsoneditor.min.js"}],"../js/arcgis/arcgisvector/default2.js":[function(require,module,exports) {
 "use strict";
 
 require("regenerator-runtime/runtime");
@@ -78775,7 +78289,7 @@ var _olLayerswitcher = _interopRequireWildcard(require("ol-layerswitcher"));
 
 require("ol-layerswitcher/dist/ol-layerswitcher.css");
 
-var olExtent = _interopRequireWildcard(require("ol/extent"));
+var _extent = require("ol/extent");
 
 var _VectorTile = _interopRequireDefault(require("ol/layer/VectorTile"));
 
@@ -78788,10 +78302,6 @@ var _style = require("ol/style");
 var _olMapboxStyle = _interopRequireWildcard(require("ol-mapbox-style"));
 
 var _helper = require("./helper.js");
-
-var _Geolocation = _interopRequireDefault(require("ol/Geolocation"));
-
-var _ZoomToExtent = _interopRequireDefault(require("ol/control/ZoomToExtent"));
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -79879,31 +79389,70 @@ map.addControl(layerSwitcher); // ----  end   ----  base map switcher ------
 
 /*
           =============  ============== add control   =============  ==============
-geolocation, zoom2you
-   
-https://stackoverflow.com/questions/65923306/openlayers-add-control-zoom-pan-to-current-location
-
+                  
                */
 
-//import {createEmpty} from 'ol/extent';
-//import {extend} from 'ol/extent';
-var geolocation = new _Geolocation.default({
-  projection: map.getView().getProjection(),
-  tracking: true
-}); //geolocation.getPosition(); //this shows the coordinates (e.g.[591374.2306195896, 6746799.171545821])
+/*
+     not use, because 1) it always alert ask for location access at the beginning, should only alert when user click zoom2you button   
+     2) openlayers/geolocation object have bugs, only first time call object ok, second time call object no response. better use HTML5 native geolocation 
+       geolocation, zoom2you
+      https://stackoverflow.com/questions/65923306/openlayers-add-control-zoom-pan-to-current-location
+                   import Geolocation from 'ol/Geolocation';
+ import ZoomToExtent from 'ol/control/ZoomToExtent';
+ import * as olExtent from 'ol/extent';
+ //import {createEmpty} from 'ol/extent';
+ //import {extend} from 'ol/extent';
+                var geolocation = new Geolocation({
+   projection: map.getView().getProjection(),
+   tracking: true
+ });
+ //geolocation.getPosition(); //this shows the coordinates (e.g.[591374.2306195896, 6746799.171545821])
+ var extent = olExtent.createEmpty();
+ geolocation.on('change:accuracyGeometry', function() {
+       geolocation.getAccuracyGeometry().getExtent(extent);
+ });
+ var zoomToExtentControl = new ZoomToExtent({
+ //https://openlayers.org/en/latest/apidoc/module-ol_control_ZoomToExtent-ZoomToExtent.html
+     extent: extent,
+     className: 'zoom2you',
+     // label: '🔍'
+     label: 'zoom2you'
+   });
+ map.addControl(zoomToExtentControl);
+ */
+// native HTML5 geolocation. 
 
-var extent = olExtent.createEmpty();
-geolocation.on('change:accuracyGeometry', function () {
-  geolocation.getAccuracyGeometry().getExtent(extent);
+var zoom2you_now = function zoom2you_now(e) {
+  console.log('zoom 2 you clicked ! '); // native HTML5 geolocation.  https://w3c.github.io/geolocation-api/#dom-navigator-geolocation
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      if (_center_zoom == null || _center_zoom > 20 || _center_zoom < 5) {
+        _center_zoom = default_center_zoom;
+        (0, _helper.update_url_parameter)('center_zoom', _center_zoom);
+      } // openlayer only,  must convert from lat lng (4326) -- --  >  coordinate '3857'
+
+
+      map.getView().setCenter(olProj.transform([position.coords.longitude, position.coords.latitude], 'EPSG:4326', 'EPSG:3857'));
+      map.getView().setZoom(_center_zoom);
+    }, function () {
+      // The Geolocation service failed
+      alert('The Geolocation service failed !');
+    });
+  } else {
+    // Browser doesn't support Geolocation
+    alert('Browser does not support geolocation !');
+  }
+};
+
+var element1 = document.createElement('div');
+element1.innerHTML = '<big>zoom2you</big>';
+element1.className = 'zoom2you';
+element1.addEventListener('click', zoom2you_now, false);
+var zoom2youControl = new _control.Control({
+  element: element1
 });
-var zoomToExtentControl = new _ZoomToExtent.default({
-  //https://openlayers.org/en/latest/apidoc/module-ol_control_ZoomToExtent-ZoomToExtent.html
-  extent: extent,
-  className: 'zoom2you',
-  // label: '🔍'
-  label: 'zoom2you'
-});
-map.addControl(zoomToExtentControl);
+map.addControl(zoom2youControl);
 
 var zoom2layer_now = function zoom2layer_now(e) {
   // special for vector tile
@@ -80051,8 +79600,8 @@ function onMoveEnd(evt) {
   //https://openlayers.org/en/latest/examples/moveend.html
   var map = evt.map;
   var extent = map.getView().calculateExtent(map.getSize());
-  var bottomLeft = (0, olProj.toLonLat)((0, olExtent.getBottomLeft)(extent));
-  var topRight = (0, olProj.toLonLat)((0, olExtent.getTopRight)(extent)); // display('left', wrapLon(bottomLeft[0]));
+  var bottomLeft = (0, olProj.toLonLat)((0, _extent.getBottomLeft)(extent));
+  var topRight = (0, olProj.toLonLat)((0, _extent.getTopRight)(extent)); // display('left', wrapLon(bottomLeft[0]));
   // display('bottom', bottomLeft[1]);
   // display('right', wrapLon(topRight[0]));
   // display('top', topRight[1]);
@@ -80138,7 +79687,7 @@ function showInfo(event) {
   } // if hover
 
 } // function showInfo
-},{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js","ol/ol.css":"../node_modules/ol/ol.css","ol/format/MVT":"../node_modules/ol/format/MVT.js","ol/Map":"../node_modules/ol/Map.js","ol/control":"../node_modules/ol/control.js","ol/proj":"../node_modules/ol/proj.js","ol/source/OSM":"../node_modules/ol/source/OSM.js","ol/source/BingMaps":"../node_modules/ol/source/BingMaps.js","ol/source/XYZ":"../node_modules/ol/source/XYZ.js","ol/source/ImageArcGISRest":"../node_modules/ol/source/ImageArcGISRest.js","ol/source/Stamen":"../node_modules/ol/source/Stamen.js","ol/layer/Tile":"../node_modules/ol/layer/Tile.js","ol/layer/Group":"../node_modules/ol/layer/Group.js","ol/layer/Image":"../node_modules/ol/layer/Image.js","ol-layerswitcher":"../node_modules/ol-layerswitcher/dist/ol-layerswitcher.js","ol-layerswitcher/dist/ol-layerswitcher.css":"../node_modules/ol-layerswitcher/dist/ol-layerswitcher.css","ol/extent":"../node_modules/ol/extent.js","ol/layer/VectorTile":"../node_modules/ol/layer/VectorTile.js","ol/source/VectorTile":"../node_modules/ol/source/VectorTile.js","ol/View":"../node_modules/ol/View.js","ol/style":"../node_modules/ol/style.js","ol-mapbox-style":"../node_modules/ol-mapbox-style/dist/index.js","./helper.js":"../js/arcgis/arcgisvector/helper.js","ol/Geolocation":"../node_modules/ol/Geolocation.js","ol/control/ZoomToExtent":"../node_modules/ol/control/ZoomToExtent.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js","ol/ol.css":"../node_modules/ol/ol.css","ol/format/MVT":"../node_modules/ol/format/MVT.js","ol/Map":"../node_modules/ol/Map.js","ol/control":"../node_modules/ol/control.js","ol/proj":"../node_modules/ol/proj.js","ol/source/OSM":"../node_modules/ol/source/OSM.js","ol/source/BingMaps":"../node_modules/ol/source/BingMaps.js","ol/source/XYZ":"../node_modules/ol/source/XYZ.js","ol/source/ImageArcGISRest":"../node_modules/ol/source/ImageArcGISRest.js","ol/source/Stamen":"../node_modules/ol/source/Stamen.js","ol/layer/Tile":"../node_modules/ol/layer/Tile.js","ol/layer/Group":"../node_modules/ol/layer/Group.js","ol/layer/Image":"../node_modules/ol/layer/Image.js","ol-layerswitcher":"../node_modules/ol-layerswitcher/dist/ol-layerswitcher.js","ol-layerswitcher/dist/ol-layerswitcher.css":"../node_modules/ol-layerswitcher/dist/ol-layerswitcher.css","ol/extent":"../node_modules/ol/extent.js","ol/layer/VectorTile":"../node_modules/ol/layer/VectorTile.js","ol/source/VectorTile":"../node_modules/ol/source/VectorTile.js","ol/View":"../node_modules/ol/View.js","ol/style":"../node_modules/ol/style.js","ol-mapbox-style":"../node_modules/ol-mapbox-style/dist/index.js","./helper.js":"../js/arcgis/arcgisvector/helper.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -80166,7 +79715,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61120" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55194" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -2118,18 +2118,18 @@ import {Circle, Fill, Stroke, Style} from 'ol/style';
 
                 /*
                           =============  ============== add control   =============  ==============
-                geolocation, zoom2you
-                   
-                https://stackoverflow.com/questions/65923306/openlayers-add-control-zoom-pan-to-current-location
-                
+                                  
                                */
 
 
 
+                             /*
+                                  not use, because 1) it always alert ask for location access at the beginning, should only alert when user click zoom2you button   
+                                  2) openlayers/geolocation object have bugs, only first time call object ok, second time call object no response. better use HTML5 native geolocation 
 
-
-
-
+                                   geolocation, zoom2you
+                                   https://stackoverflow.com/questions/65923306/openlayers-add-control-zoom-pan-to-current-location
+                
 
                               import Geolocation from 'ol/Geolocation';
                               import ZoomToExtent from 'ol/control/ZoomToExtent';
@@ -2154,10 +2154,48 @@ import {Circle, Fill, Stroke, Style} from 'ol/style';
                                   label: 'zoom2you'
                                 });
                               map.addControl(zoomToExtentControl);
+                              */
 
+                              // native HTML5 geolocation. 
+                              var zoom2you_now = function(e) {
 
+                                console.log('zoom 2 you clicked ! ')
+                                // native HTML5 geolocation.  https://w3c.github.io/geolocation-api/#dom-navigator-geolocation
+                                if (navigator.geolocation) {
 
+                                  navigator.geolocation.getCurrentPosition(
 
+                                      (position) => {
+
+                                                      if (( _center_zoom == null ) || ( _center_zoom > 20 ) || ( _center_zoom < 5 )) {
+                                                        _center_zoom =  default_center_zoom
+                                                        update_url_parameter('center_zoom', _center_zoom);
+                                                      }   
+                                                      
+                                                      // openlayer only,  must convert from lat lng (4326) -- --  >  coordinate '3857'
+                                                      map.getView().setCenter(olProj.transform([position.coords.longitude, position.coords.latitude], 'EPSG:4326', 'EPSG:3857'));
+                                                      map.getView().setZoom(_center_zoom);
+                                      
+                                      },
+                                      () => {
+                                              // The Geolocation service failed
+                                              alert('The Geolocation service failed !')
+                                      }
+                                  );
+                                  } else {
+                                            // Browser doesn't support Geolocation
+                                            alert('Browser does not support geolocation !')
+                                  }
+                                };
+
+                              var element1 = document.createElement('div');
+                                element1.innerHTML = '<big>zoom2you</big>';
+                                element1.className = 'zoom2you';
+                                element1.addEventListener('click', zoom2you_now, false);
+                              var zoom2youControl = new Control({
+                                element: element1
+                              });
+                              map.addControl(zoom2youControl);
 
 
                                         
