@@ -79073,10 +79073,12 @@ _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
           // legend -------- get   -------   root.json (style)    -------   
           get_vectorTileStyle(___url_string); // special for vector tile
 
-          pan_to_real_location();
+          pan_to_real_location(); // must at the last step, until ro o t . j s o n . l a y e r available and all style layer completed loading
+
+          set_opacity(vectorTile_opacity);
           console.log(' ------ end  ------   document ready ----- ');
 
-        case 11:
+        case 12:
         case "end":
           return _context.stop();
       }
@@ -79611,9 +79613,7 @@ function onMoveEnd(evt) {
   (0, _helper.update_url_parameter)('center_long', centerlong);
   (0, _helper.update_url_parameter)('center_lat', centerlat);
   (0, _helper.update_url_parameter)('center_zoom', centerzoom);
-  $('#zoom_level_id').html('<big>' + centerzoom + '</big>'); //keep here must wait until all map vector tile loaded completed. 
-
-  set_opacity(vectorTile_opacity);
+  $('#zoom_level_id').html('<big>' + centerzoom + '</big>');
 }
 
 function showInfo(event) {
@@ -79715,7 +79715,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49558" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49947" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

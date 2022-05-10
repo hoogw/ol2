@@ -78954,19 +78954,7 @@ function set_opacity(_opacity__) {
 
 }
 
-function init_settingTab() {
-  // set init value on html
-  $('#overlay_opacity_label').text(parseInt(vectorTile_opacity * 10));
-  $('#overlay_opacity_range').val(parseInt(vectorTile_opacity * 10));
-  $('#overlay_opacity_range').change(function () {
-    var _overlay_opacity = $('#overlay_opacity_range').val();
-
-    $('#overlay_opacity_label').text(_overlay_opacity);
-    (0, _helper.update_url_parameter)('overlayOpacity', _overlay_opacity);
-    vectorTile_opacity = _overlay_opacity / 10;
-    console.log('vectorTile_opacity --  >', vectorTile_opacity);
-    set_opacity(vectorTile_opacity);
-  });
+function init_settingTab() {// opacity setting move to map control creation
 } // --------------  end    --------------  layer opacity  --------------------
 
 /**/
@@ -79066,7 +79054,7 @@ _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
           // legend -------- get   -------   root.json (style)    -------   
           get_vectorTileStyle(___url_string); // special for vector tile
 
-          pan_to_real_location(); //keep here must wait until all map vector tile loaded completed. 
+          pan_to_real_location(); // must at the last step, until ro o t . j s o n . l a y e r available and all style layer completed loading
 
           set_opacity(vectorTile_opacity);
           console.log(' ------ end  ------   document ready ----- ');
@@ -79600,14 +79588,21 @@ map.addControl(zoom2layerControl);
 /**/
 
 var opacity_now = function opacity_now(e) {
-  //map.getView().setRotation(0);
-  alert('opacity');
+  // alert('opacity')
+  var _overlay_opacity = $('#overlay_opacity_range').val();
+
+  $('#overlay_opacity_label').text(_overlay_opacity);
+  (0, _helper.update_url_parameter)('overlayOpacity', _overlay_opacity);
+  vectorTile_opacity = _overlay_opacity / 10;
+  console.log('vectorTile_opacity --  >', vectorTile_opacity);
+  set_opacity(vectorTile_opacity);
 };
 
+var opacity_label_value = parseInt(vectorTile_opacity * 10);
 var element3 = document.createElement('div');
-element3.innerHTML = '<label> Opacity </label> <label id="overlay_opacity_label"></label><input type="range" id="overlay_opacity_range" name="overlay_opacity_range" min="0" max="10"/> ';
-element3.className = 'opacityDIV'; //element3.addEventListener('click', opacity_now, false);
-
+element3.innerHTML = '<label> Opacity </label>' + '<input type="range" id="overlay_opacity_range" name="overlay_opacity_range" min="0" max="10" value="' + opacity_label_value + '"/> ' + '<label id="overlay_opacity_label"><b>&nbsp;' + opacity_label_value + '</b></label>';
+element3.className = 'opacityDIV';
+element3.addEventListener('click', opacity_now, false);
 var opacityControl = new _control.Control({
   element: element3
 });
@@ -79906,7 +79901,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49558" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49947" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
