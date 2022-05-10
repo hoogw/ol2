@@ -79602,7 +79602,8 @@ var opacity_label_value = parseInt(vectorTile_opacity * 10);
 var element3 = document.createElement('div');
 element3.innerHTML = '<label> Opacity </label>' + '<input type="range" id="overlay_opacity_range" name="overlay_opacity_range" min="0" max="10" value="' + opacity_label_value + '"/> ' + '<label id="overlay_opacity_label"><b>&nbsp;' + opacity_label_value + '</b></label>';
 element3.className = 'opacityDIV';
-element3.addEventListener('click', opacity_now, false);
+element3.addEventListener('click', opacity_now, false); //document.getElementById("overlay_opacity_range").addEventListener("change", opacity_now);
+
 var opacityControl = new _control.Control({
   element: element3
 });
@@ -79901,7 +79902,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49947" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50220" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

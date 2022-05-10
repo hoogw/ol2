@@ -2215,6 +2215,8 @@ import {Circle, Fill, Stroke, Style} from 'ol/style';
                                 element3.innerHTML = '<label> Opacity </label>' + '<input type="range" id="overlay_opacity_range" name="overlay_opacity_range" min="0" max="10" value="' + opacity_label_value +'"/> ' +  '<label id="overlay_opacity_label"><b>&nbsp;' +  opacity_label_value + '</b></label>';
                                 element3.className = 'opacityDIV';
                                 element3.addEventListener('click', opacity_now, false);
+                                //document.getElementById("overlay_opacity_range").addEventListener("change", opacity_now);
+
                             var opacityControl = new Control({
                                 element: element3
                             }); 
