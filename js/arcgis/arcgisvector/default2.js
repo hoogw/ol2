@@ -5,7 +5,10 @@
 
 /*
 
-     arcgisvector2 , no-highlight,  no-highlight selection feature
+     arcgisvector2 , 
+     
+                   1) no-highlight,  no-highlight selection feature
+                   2) opacity at setting panel, NOT as map control
 
      with all label (normal)
 

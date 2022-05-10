@@ -1,7 +1,9 @@
 
 /*
 
-        arcgisvector, with highlight,  highlight selection feature
+        arcgisvector, 
+                           1) with highlight,  highlight selection feature
+                           2) opacity on map control
 
         with all label (normal)
 
