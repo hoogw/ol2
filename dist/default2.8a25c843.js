@@ -79566,9 +79566,7 @@ var promise = (0, _olMapboxStyle.default)(map, _rootJson_url, {
 var promise2 = promise.then(successCallback, failureCallback);
 
 function successCallback() {
-  console.log(' olms completed'); //keep here must wait until all map vector tile loaded completed. 
-
-  set_opacity(vectorTile_opacity);
+  console.log(' olms completed');
 }
 
 function failureCallback() {
@@ -79613,7 +79611,9 @@ function onMoveEnd(evt) {
   (0, _helper.update_url_parameter)('center_long', centerlong);
   (0, _helper.update_url_parameter)('center_lat', centerlat);
   (0, _helper.update_url_parameter)('center_zoom', centerzoom);
-  $('#zoom_level_id').html('<big>' + centerzoom + '</big>');
+  $('#zoom_level_id').html('<big>' + centerzoom + '</big>'); //keep here must wait until all map vector tile loaded completed. 
+
+  set_opacity(vectorTile_opacity);
 }
 
 function showInfo(event) {
@@ -79715,7 +79715,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55194" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49558" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

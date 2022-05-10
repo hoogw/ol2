@@ -1291,6 +1291,9 @@ import {Circle, Fill, Stroke, Style} from 'ol/style';
                     // special for vector tile
                     pan_to_real_location()
 
+                      // must at the last step, until ro o t . j s o n . l a y e r available and all style layer completed loading
+                      set_opacity(vectorTile_opacity)
+
   console.log(' ------ end  ------   document ready ----- ')
   
 
@@ -2035,8 +2038,7 @@ import {Circle, Fill, Stroke, Style} from 'ol/style';
                                       function successCallback(){
                                             console.log(' olms completed')
 
-                                          //keep here must wait until all map vector tile loaded completed. 
-                                          set_opacity(vectorTile_opacity)
+                                         
 
                                       }
 

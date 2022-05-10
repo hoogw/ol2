@@ -555,6 +555,7 @@ import {Circle, Fill, Stroke, Style} from 'ol/style';
             //  ##########  vector tile    ##########  
 
                           var root_json;
+                          
                           var _sprite;
                           var _glyphs;
                           var _tile_pbf;
@@ -717,7 +718,7 @@ import {Circle, Fill, Stroke, Style} from 'ol/style';
                                                                                               
                                                                                                                                         } // root_json
                                                                                               
-                                                                                              
+                                                                                                                                       
                                                                                               
                                                                                                                                         //before_layer_id = root_json.layers[0].id
                                                                                               
@@ -1384,6 +1385,10 @@ import {Circle, Fill, Stroke, Style} from 'ol/style';
                               
                                 // special for vector tile
                                 pan_to_real_location()
+
+
+                                // must at the last step, until ro o t . j s o n . l a y e r available and all style layer completed loading
+                                set_opacity(vectorTile_opacity)
 
               console.log(' ------ end  ------   document ready ----- ')
 
@@ -2214,6 +2219,24 @@ import {Circle, Fill, Stroke, Style} from 'ol/style';
 
 
 
+                               /**/
+
+                          
+                            var opacity_now = function(e) {
+                                //map.getView().setRotation(0);
+                                alert('opacity')
+                            };
+                            var element3 = document.createElement('div');
+                                element3.innerHTML = '<label> Opacity </label> <label id="overlay_opacity_label"></label><input type="range" id="overlay_opacity_range" name="overlay_opacity_range" min="0" max="10"/> ';
+                                element3.className = 'opacityDIV';
+                                //element3.addEventListener('click', opacity_now, false);
+                            var opacityControl = new Control({
+                                element: element3
+                            }); 
+                            map.addControl(opacityControl);
+                            
+
+
                               var element4 = document.createElement('div');
                                   element4.id = 'zoom_level_id';
                                   //element4.value = _center_zoom
@@ -2227,22 +2250,7 @@ import {Circle, Fill, Stroke, Style} from 'ol/style';
 
                              
 
-                            /**/
-
-                            /*  do not use opacity control, because it trigger popup window, also some basic without image overlay, do not need opacity. so keep opacity in setting area 
-                            var opacity_now = function(e) {
-                                //map.getView().setRotation(0);
-                                alert('opacity')
-                            };
-                            var element3 = document.createElement('div');
-                                element3.innerHTML = '<label> Opacity </label> <label id="overlay_opacity_label"></label><input type="range" id="overlay_opacity_range" name="overlay_opacity_range" min="0" max="10"/> ';
-                                element3.className = 'opacityDIV';
-                                //element3.addEventListener('click', opacity_now, false);
-                            var opacityControl = new Control({
-                                element: element3
-                            }); 
-                            map.addControl(opacityControl);
-                            */
+                           
 
 
                             
@@ -2358,8 +2366,8 @@ import {Circle, Fill, Stroke, Style} from 'ol/style';
                                                           map.addLayer(selectionLayer);
                                                           
                                                         
-                                                        //keep here must wait until all map vector tile loaded completed. 
-                                                        set_opacity(vectorTile_opacity)
+                                                       
+                                                        
 
                                                     }
 
@@ -2434,6 +2442,9 @@ import {Circle, Fill, Stroke, Style} from 'ol/style';
                 update_url_parameter('center_zoom', centerzoom);
 
                 $('#zoom_level_id').html('<big>' + centerzoom +'</big>');
+
+
+                 
                 
               }
 

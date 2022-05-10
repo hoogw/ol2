@@ -79066,10 +79066,12 @@ _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
           // legend -------- get   -------   root.json (style)    -------   
           get_vectorTileStyle(___url_string); // special for vector tile
 
-          pan_to_real_location();
+          pan_to_real_location(); //keep here must wait until all map vector tile loaded completed. 
+
+          set_opacity(vectorTile_opacity);
           console.log(' ------ end  ------   document ready ----- ');
 
-        case 11:
+        case 12:
         case "end":
           return _context.stop();
       }
@@ -79595,6 +79597,21 @@ var zoom2layerControl = new _control.Control({
   element: element2
 });
 map.addControl(zoom2layerControl);
+/**/
+
+var opacity_now = function opacity_now(e) {
+  //map.getView().setRotation(0);
+  alert('opacity');
+};
+
+var element3 = document.createElement('div');
+element3.innerHTML = '<label> Opacity </label> <label id="overlay_opacity_label"></label><input type="range" id="overlay_opacity_range" name="overlay_opacity_range" min="0" max="10"/> ';
+element3.className = 'opacityDIV'; //element3.addEventListener('click', opacity_now, false);
+
+var opacityControl = new _control.Control({
+  element: element3
+});
+map.addControl(opacityControl);
 var element4 = document.createElement('div');
 element4.id = 'zoom_level_id'; //element4.value = _center_zoom
 
@@ -79604,23 +79621,6 @@ var zoomlevelControl = new _control.Control({
   element: element4
 });
 map.addControl(zoomlevelControl);
-/**/
-
-/*  do not use opacity control, because it trigger popup window, also some basic without image overlay, do not need opacity. so keep opacity in setting area 
-var opacity_now = function(e) {
-    //map.getView().setRotation(0);
-    alert('opacity')
-};
-var element3 = document.createElement('div');
-    element3.innerHTML = '<label> Opacity </label> <label id="overlay_opacity_label"></label><input type="range" id="overlay_opacity_range" name="overlay_opacity_range" min="0" max="10"/> ';
-    element3.className = 'opacityDIV';
-    //element3.addEventListener('click', opacity_now, false);
-var opacityControl = new Control({
-    element: element3
-}); 
-map.addControl(opacityControl);
-*/
-
 /*
          =============   end  ============== add control   =============  ==============        
  */
@@ -79700,9 +79700,7 @@ function successCallback() {
   console.log(' olms completed'); //Multiple ways to add layers in OpenLayers  https://medium.com/@ThomasG77/multiple-ways-to-add-layers-in-openlayers-2c9569beb948
 
   map.addLayer(vtLayer);
-  map.addLayer(selectionLayer); //keep here must wait until all map vector tile loaded completed. 
-
-  set_opacity(vectorTile_opacity);
+  map.addLayer(selectionLayer);
 }
 
 function failureCallback() {
@@ -79908,7 +79906,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55194" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49558" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
